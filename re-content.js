@@ -1461,13 +1461,11 @@ function App() {
   }, /*#__PURE__*/React.createElement(CloseIcon, null))), /*#__PURE__*/React.createElement("div", {
     className: "flex flex-col gap-2"
   }, /*#__PURE__*/React.createElement(AccordionSection, {
-    title: "\u66F4\u65B0\u60C5\u5831\uFF082026/03/31\uFF09",
+    title: "\u66F4\u65B0\u60C5\u5831\uFF082026/09/06\uFF09",
     defaultOpen: true
   }, /*#__PURE__*/React.createElement("div", {
     className: "space-y-1 text-sm text-slate-700"
-  }, /*#__PURE__*/React.createElement("div", null, "JRC\u30A8\u30EA\u30A2\u306E\u30E1\u30F3\u30C6\u30CA\u30F3\u30B9\uFF08\u203B\uFF09\u3092\u5B9F\u65BD\u3057\u307E\u3057\u305F\u3002"), /*#__PURE__*/React.createElement("div", {
-    className: "text-xs text-slate-500"
-  }, "\u203B2\u5217\u8ECA\u4F75\u7D50\u3057\u3066\u3044\u308B\u5834\u5408\u306E\u884C\u5148\u60C5\u5831\u3092\u66AB\u5B9A\u7684\u306B\u51FA\u529B\uFF08\u5B9F\u969B\u306E\u904B\u884C\u60C5\u5831\u3068\u7570\u306A\u308B\u5834\u5408\u3042\u308A\uFF09"))), /*#__PURE__*/React.createElement(AccordionSection, {
+  }, /*#__PURE__*/React.createElement("div", null, "UI\u3092\u5237\u65B0\u3057\u307E\u3057\u305F\u3002"))), /*#__PURE__*/React.createElement(AccordionSection, {
     title: "\u904B\u884C\u60C5\u5831\u30EA\u30F3\u30AF\uFF08\u5916\u90E8\u30EA\u30F3\u30AF\uFF09",
     defaultOpen: false,
     badge: OperationInfoPages.length
@@ -1533,7 +1531,10 @@ function App() {
     type: "button",
     onClick: handleRefresh,
     disabled: !selectedCode || loading,
-    className: "inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-emerald-600 px-3 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-emerald-500 disabled:cursor-not-allowed disabled:bg-slate-300"
+    style: selectedLineColor && !loading ? {
+      backgroundColor: selectedLineColor
+    } : undefined,
+    className: "inline-flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-white shadow transition-colors disabled:cursor-not-allowed disabled:bg-slate-300 " + (selectedLineColor && !loading ? "hover:opacity-90" : "bg-emerald-600 hover:bg-emerald-500")
   }, /*#__PURE__*/React.createElement(RefreshIcon, {
     spinning: loading
   }), "\u66F4\u65B0")), loading && /*#__PURE__*/React.createElement("div", {
@@ -1545,7 +1546,7 @@ function App() {
   }, "\u30A8\u30E9\u30FC\u304C\u767A\u751F\u3057\u307E\u3057\u305F\uFF1A", errorMsg), !loading && !errorMsg && selectedCode && cards.length === 0 && /*#__PURE__*/React.createElement("div", {
     className: "rounded-xl border border-slate-200 bg-white px-4 py-6 text-slate-500 shadow-sm"
   }, "\u8A72\u5F53\u3059\u308B\u5217\u8ECA\u60C5\u5831\u304C\u3042\u308A\u307E\u305B\u3093\u3002"), !loading && cards.length > 0 && /*#__PURE__*/React.createElement("div", {
-    className: "grid grid-cols-1 gap-4 lg:grid-cols-2"
+    className: "grid grid-cols-2 gap-3 sm:gap-4"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex flex-col gap-3"
   }, /*#__PURE__*/React.createElement("div", {
@@ -1555,7 +1556,7 @@ function App() {
   }, "\u4E0A\u308A"), /*#__PURE__*/React.createElement("span", {
     className: "text-slate-400"
   }, "\uFF08", upCards.length, "\u4EF6\uFF09")), /*#__PURE__*/React.createElement("div", {
-    className: "grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2"
+    className: "grid grid-cols-1 gap-3 lg:grid-cols-2"
   }, upCards.map(card => /*#__PURE__*/React.createElement(TrainCard, {
     key: card.key,
     card: card
@@ -1568,7 +1569,7 @@ function App() {
   }, "\u4E0B\u308A"), /*#__PURE__*/React.createElement("span", {
     className: "text-slate-400"
   }, "\uFF08", downCards.length, "\u4EF6\uFF09")), /*#__PURE__*/React.createElement("div", {
-    className: "grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2"
+    className: "grid grid-cols-1 gap-3 lg:grid-cols-2"
   }, downCards.map(card => /*#__PURE__*/React.createElement(TrainCard, {
     key: card.key,
     card: card

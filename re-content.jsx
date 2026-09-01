@@ -878,10 +878,9 @@ function App() {
                     </div>
 
                     <div className="flex flex-col gap-2">
-                        <AccordionSection title="更新情報（2026/03/31）" defaultOpen={true}>
+                        <AccordionSection title="更新情報（2026/09/06）" defaultOpen={true}>
                             <div className="space-y-1 text-sm text-slate-700">
-                                <div>JRCエリアのメンテナンス（※）を実施しました。</div>
-                                <div className="text-xs text-slate-500">※2列車併結している場合の行先情報を暫定的に出力（実際の運行情報と異なる場合あり）</div>
+                                <div>UIを刷新しました。</div>
                             </div>
                         </AccordionSection>
 
@@ -936,7 +935,11 @@ function App() {
                             type="button"
                             onClick={handleRefresh}
                             disabled={!selectedCode || loading}
-                            className="inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-emerald-600 px-3 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-emerald-500 disabled:cursor-not-allowed disabled:bg-slate-300"
+                            style={selectedLineColor && !loading ? { backgroundColor: selectedLineColor } : undefined}
+                            className={
+                                "inline-flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-white shadow transition-colors disabled:cursor-not-allowed disabled:bg-slate-300 " +
+                                (selectedLineColor && !loading ? "hover:opacity-90" : "bg-emerald-600 hover:bg-emerald-500")
+                            }
                         >
                             <RefreshIcon spinning={loading} />
                             更新
@@ -963,13 +966,13 @@ function App() {
                     )}
 
                     {!loading && cards.length > 0 && (
-                        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+                        <div className="grid grid-cols-2 gap-3 sm:gap-4">
                             <div className="flex flex-col gap-3">
                                 <div className="flex items-center gap-2 text-sm font-semibold text-emerald-700">
                                     <span className="rounded-full bg-emerald-100 px-2 py-0.5">上り</span>
                                     <span className="text-slate-400">（{upCards.length}件）</span>
                                 </div>
-                                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                                <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
                                     {upCards.map(card => <TrainCard key={card.key} card={card} />)}
                                 </div>
                             </div>
@@ -978,7 +981,7 @@ function App() {
                                     <span className="rounded-full bg-emerald-100 px-2 py-0.5">下り</span>
                                     <span className="text-slate-400">（{downCards.length}件）</span>
                                 </div>
-                                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                                <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
                                     {downCards.map(card => <TrainCard key={card.key} card={card} />)}
                                 </div>
                             </div>
