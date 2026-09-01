@@ -92,6 +92,75 @@ const CentralAreaLine = [
 ];
 
 /* ============================================================
+ * 路線ボタンの配色（re-style.css の kakomi-系／span.系 定義に準拠。
+ * 未定義の路線は re-style.css の kakomi-other と同じ既定色を使用）
+ * ========================================================== */
+const DEFAULT_LINE_COLOR = '#444';
+const LineColorMap = {
+    // JRW 近畿エリア（re-style.css の路線記号色付に準拠）
+    hokuriku: 'blue',
+    kosei: 'deepskyblue',
+    kusatsu: '#7fbf00',
+    nara: 'darkgoldenrod',
+    osakahigashi: 'steelblue',
+    takarazuka: '#f39800',
+    tozai: 'deeppink',
+    osakaloop: 'red',
+    yumesaki: 'navy',
+    yamatoji: 'green',
+    hanwahagoromo: 'darkorange',
+    kansaiairport: 'royalblue',
+    wakayama1: 'hotpink',
+    wakayama2: 'hotpink',
+    kansai: 'darkviolet',
+    kinokuni: 'darkturquoise',
+    manyomahoroba: 'firebrick',
+    // JRW 近畿エリア追加分（train-guide.westjr.co.jp の路線記号バッジに準拠）
+    hokurikubiwako: '#0072bc',
+    kyoto: '#0072bc',
+    kobesanyo: '#0072bc',
+    ako: '#0072bc',
+    sagano: '#8e7cc3',
+    sanin1: '#8e7cc3',
+    sanin2: '#8e7cc3',
+    fukuchiyama: '#f39800',
+    gakkentoshi: 'deeppink',
+    bantan: '#6a3d9a',
+    maizuru: '#f39800',
+    // JRW 岡山・福山エリア（train-guide.westjr.co.jp 準拠）
+    unominato: '#00a0de',
+    setoohashi: '#9b59b6',
+    ako2: '#d6006d',
+    sanyo1: '#0072bc',
+    tsuyama: '#f9a825',
+    hakubi1: '#00a650',
+    fukuen1: '#8b1a1a',
+    // JRW 広島・山口エリア（train-guide.westjr.co.jp 準拠）
+    kabe: '#3cb371',
+    sanyo2: '#00897b',
+    sanyo3: '#1565c0',
+    geibi1: '#7e57c2',
+    kure: '#ffb300',
+    yamaguchi: '#ff7043',
+    // JRW 山陰エリア（train-guide.westjr.co.jp 準拠）
+    sanin3: '#8bc34a',
+    imbi1: '#cddc39',
+    sanin4: '#f4511e',
+    hakubi2: '#00a650',
+    // JRC 在来線エリア（traininfo.jr-central.co.jp 準拠）
+    zaisenichijoho_10001: '#f7931e',
+    zaisenichijoho_10011: '#f7931e',
+    zaisenichijoho_10013: '#2e7d32',
+    zaisenichijoho_10012: '#6a1b9a',
+    zaisenichijoho_10010: '#4fc3f7',
+    zaisenichijoho_10002: '#8d5524',
+    zaisenichijoho_10003: '#607d8b',
+    zaisenichijoho_10004: '#8d4b3b',
+    zaisenichijoho_10005: '#9e9d24',
+    zaisenichijoho_10006: '#26a69a',
+};
+
+/* ============================================================
  * クラス定義（content.js と同一）
  * ========================================================== */
 class TrainWestUrban {
@@ -455,7 +524,7 @@ function cardWestUrban(train, idx) {
         typeChange = "";
     }
     const html = train.no + " " + LineMark + DispTypeAddCol + " " + train.nickname + " " + typeChange + " " + train.via + " " + DestAddCol + " " + train.numberOfCars + "両 " + delayMinutes + " 走行位置：" + position + direction + aSeatInfo + otherInfo + ureSeatInfo;
-    return { key: 'wu-' + idx, className: `kakomi-box3 kakomi-${train.dest.line}`, html };
+    return { key: 'wu-' + idx, className: `kakomi-box3 kakomi-${train.dest.line}`, html, direction };
 }
 
 function cardWestOther(train, idx) {
@@ -481,7 +550,7 @@ function cardWestOther(train, idx) {
         typeChange = "";
     }
     const html = train.no + " " + DispTypeAddCol + typeChange + nickname + " " + DestAddCol + " " + delayMinutes + " 走行位置：" + position + direction + ureSeatInfo;
-    return { key: 'wo-' + idx, className: 'kakomi-box3', html };
+    return { key: 'wo-' + idx, className: 'kakomi-box3', html, direction };
 }
 
 function cardCentral(train, idx) {
@@ -495,7 +564,7 @@ function cardCentral(train, idx) {
     const delayMinutes = delayMinutesSet(train.delay_lin);
     const position = StaGet_Central(train.linename[0].name, train.locationRow, train.position);
     const html = train.trainnumber + " " + DispTypeAddCol + " " + nickname + " " + DestAddCol + Dest2AddCol + " " + delayMinutes + " 走行位置：" + position + direction;
-    return { key: 'ce-' + idx, className: 'kakomi-box3', html };
+    return { key: 'ce-' + idx, className: 'kakomi-box3', html, direction };
 }
 
 /* ============================================================
@@ -586,31 +655,76 @@ function ChevronIcon({ open }) {
     );
 }
 
-// 開閉メニュー（元の <details><summary> をモダンなアコーディオンに置換）
+// アイコン（ハンバーガーメニュー）
+function MenuIcon() {
+    return (
+        <svg className="h-5 w-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M3 5h14M3 10h14M3 15h14" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    );
+}
+
+// アイコン（閉じる）
+function CloseIcon() {
+    return (
+        <svg className="h-5 w-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M5 5l10 10M15 5L5 15" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    );
+}
+
+// アイコン（更新）
+function RefreshIcon({ spinning }) {
+    return (
+        <svg
+            className={`h-4 w-4 ${spinning ? 'animate-spin' : ''}`}
+            viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2"
+        >
+            <path d="M16 10a6 6 0 1 1-2-4.47M16 3v4h-4" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    );
+}
+
+// サイドメニュー内の開閉項目（エリアごとに展開すると路線ボタンが出現する。枠線に色付け、枠内は白／極薄緑）
 function AccordionSection({ title, defaultOpen = false, badge, children }) {
     const [open, setOpen] = useState(defaultOpen);
     return (
-        <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+        <div className="overflow-hidden rounded-lg border border-emerald-300 bg-white shadow-sm">
             <button
                 type="button"
                 onClick={() => setOpen(o => !o)}
-                className="flex w-full items-center justify-between gap-3 bg-gradient-to-r from-indigo-600 to-slate-600 px-4 py-3 text-left text-sm font-semibold text-white transition-colors hover:from-indigo-500 hover:to-slate-500"
+                className="flex w-full items-center justify-between gap-3 bg-emerald-50 px-3 py-2.5 text-left text-sm font-semibold text-emerald-900 transition-colors hover:bg-emerald-100"
             >
                 <span className="flex items-center gap-2">
                     {title}
                     {badge != null && (
-                        <span className="rounded-full bg-white/20 px-2 py-0.5 text-xs font-medium">{badge}</span>
+                        <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700">{badge}</span>
                     )}
                 </span>
                 <ChevronIcon open={open} />
             </button>
-            {open && <div className="px-4 py-3">{children}</div>}
+            {open && <div className="border-t border-emerald-100 bg-emerald-50/60 px-3 py-2.5">{children}</div>}
         </div>
     );
 }
 
-// 路線／外部リンク ボタン
-function ChipButton({ label, active, onClick }) {
+// 路線／外部リンク ボタン（color指定時は路線ごとの色を使用）
+function ChipButton({ label, active, onClick, color }) {
+    if (color) {
+        const style = active
+            ? { backgroundColor: color, borderColor: color, color: '#fff' }
+            : { borderColor: color, color };
+        return (
+            <button
+                type="button"
+                onClick={onClick}
+                style={style}
+                className="rounded-full border bg-white px-3 py-1.5 text-xs sm:text-sm font-medium shadow-sm transition-colors hover:opacity-80"
+            >
+                {label}
+            </button>
+        );
+    }
     return (
         <button
             type="button"
@@ -618,8 +732,8 @@ function ChipButton({ label, active, onClick }) {
             className={
                 "rounded-full border px-3 py-1.5 text-xs sm:text-sm font-medium transition-colors " +
                 (active
-                    ? "border-indigo-600 bg-indigo-600 text-white shadow"
-                    : "border-slate-300 bg-slate-50 text-slate-700 hover:border-indigo-400 hover:bg-indigo-50 hover:text-indigo-700")
+                    ? "border-emerald-600 bg-emerald-600 text-white shadow"
+                    : "border-emerald-200 bg-emerald-50 text-emerald-800 hover:border-emerald-400 hover:bg-emerald-100")
             }
         >
             {label}
@@ -636,6 +750,7 @@ function ButtonGrid({ items, selectedCode, onSelect }) {
                     label={item.line}
                     active={selectedCode === item.code}
                     onClick={() => onSelect(item)}
+                    color={LineColorMap[item.code] || DEFAULT_LINE_COLOR}
                 />
             ))}
         </div>
@@ -657,10 +772,18 @@ function App() {
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState(null);
     const [cards, setCards] = useState([]);
+    const [sideMenuOpen, setSideMenuOpen] = useState(false);
     const requestSeq = useRef(0);
+    const currentItemRef = useRef(null); // 更新ボタンでの再取得用に現在表示中の路線を保持
+    // 進行方向（上り/下り）で表示領域を左右に分ける
+    const upCards = cards.filter(card => card.direction === '上り');
+    const downCards = cards.filter(card => card.direction === '下り');
+    // 選択中の路線カラー（表示領域の枠線・塗りつぶしに使用）
+    const selectedLineColor = selectedCode ? (LineColorMap[selectedCode] || DEFAULT_LINE_COLOR) : null;
 
-    const handleSelectLine = useCallback(async (item) => {
+    const loadLineTrains = useCallback(async (item) => {
         const seq = ++requestSeq.current;
+        currentItemRef.current = item;
         setSelectedLine(item.line);
         setSelectedCode(item.code);
         setLoading(true);
@@ -683,6 +806,19 @@ function App() {
         }
     }, []);
 
+    // 路線ボタンは選択の切り替えのみを行う（同じ路線を再取得したい場合はメイン領域の更新ボタンを使う）
+    const handleSelectLine = useCallback((item) => {
+        if (currentItemRef.current && currentItemRef.current.code === item.code) return;
+        loadLineTrains(item);
+        setSideMenuOpen(false);
+    }, [loadLineTrains]);
+
+    const handleRefresh = useCallback(() => {
+        if (currentItemRef.current) {
+            loadLineTrains(currentItemRef.current);
+        }
+    }, [loadLineTrains]);
+
     const handleOpenInfoLink = useCallback((item) => {
         switch (item.area) {
             case 'JRW':
@@ -696,62 +832,120 @@ function App() {
 
     return (
         <div className="min-h-screen bg-slate-100">
-            <header className="sticky top-0 z-10 bg-gradient-to-r from-slate-900 via-indigo-900 to-slate-900 shadow-md">
-                <div className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
-                    <h1 className="text-lg font-bold text-white sm:text-xl">列車走行位置ビューア</h1>
-                    <Clock />
+            <header className="sticky top-0 z-20 bg-gradient-to-r from-slate-900 via-emerald-900 to-slate-900 shadow-md">
+                <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3">
+                    <button
+                        type="button"
+                        onClick={() => setSideMenuOpen(o => !o)}
+                        className="rounded-lg p-2 text-white transition-colors hover:bg-white/10 lg:hidden"
+                        aria-label="メニューを開閉"
+                    >
+                        <MenuIcon />
+                    </button>
+                    <div className="flex flex-1 flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                        <h1 className="text-lg font-bold text-white sm:text-xl">列車走行位置ビューア</h1>
+                        <Clock />
+                    </div>
                 </div>
             </header>
 
-            <main className="mx-auto max-w-7xl grid grid-cols-1 gap-6 px-4 py-6 lg:grid-cols-[380px_1fr]">
-                <aside className="flex flex-col gap-4">
-                    <AccordionSection title="更新情報（2026/03/31）" defaultOpen={true}>
-                        <div className="space-y-1 text-sm text-slate-700">
-                            <div>JRCエリアのメンテナンス（※）を実施しました。</div>
-                            <div className="text-xs text-slate-500">※2列車併結している場合の行先情報を暫定的に出力（実際の運行情報と異なる場合あり）</div>
-                        </div>
-                    </AccordionSection>
+            <main className="mx-auto max-w-7xl grid grid-cols-1 gap-6 px-4 py-6 lg:grid-cols-[340px_1fr]">
+                {sideMenuOpen && (
+                    <div
+                        className="fixed inset-0 z-30 bg-slate-900/50 lg:hidden"
+                        onClick={() => setSideMenuOpen(false)}
+                    />
+                )}
 
-                    <AccordionSection title="運行情報リンク（外部リンク）" defaultOpen={false} badge={OperationInfoPages.length}>
-                        <div className="flex flex-wrap gap-2">
-                            {OperationInfoPages.map((item, i) => (
-                                <ChipButton key={item.code + i} label={item.line} onClick={() => handleOpenInfoLink(item)} />
-                            ))}
-                        </div>
-                    </AccordionSection>
+                {/* サイドメニュー：スマホは初期非表示のオフキャンバス、PCは常時表示 */}
+                <aside
+                    className={
+                        "fixed inset-y-0 left-0 z-40 w-[300px] max-w-[85vw] transform overflow-y-auto bg-slate-100 p-4 shadow-xl transition-transform duration-300 ease-in-out " +
+                        "lg:static lg:z-auto lg:w-auto lg:max-w-none lg:translate-x-0 lg:overflow-visible lg:bg-transparent lg:p-0 lg:shadow-none " +
+                        (sideMenuOpen ? "translate-x-0" : "-translate-x-full")
+                    }
+                >
+                    <div className="mb-3 flex items-center justify-between lg:hidden">
+                        <span className="text-sm font-semibold text-emerald-800">メニュー</span>
+                        <button
+                            type="button"
+                            onClick={() => setSideMenuOpen(false)}
+                            className="rounded-lg p-1.5 text-emerald-700 hover:bg-emerald-100"
+                            aria-label="メニューを閉じる"
+                        >
+                            <CloseIcon />
+                        </button>
+                    </div>
 
-                    <AccordionSection title="JRW 近畿エリア" defaultOpen={true} badge={KinkiAreaLine.length}>
-                        <ButtonGrid items={KinkiAreaLine} selectedCode={selectedCode} onSelect={handleSelectLine} />
-                    </AccordionSection>
+                    <div className="flex flex-col gap-2">
+                        <AccordionSection title="更新情報（2026/03/31）" defaultOpen={true}>
+                            <div className="space-y-1 text-sm text-slate-700">
+                                <div>JRCエリアのメンテナンス（※）を実施しました。</div>
+                                <div className="text-xs text-slate-500">※2列車併結している場合の行先情報を暫定的に出力（実際の運行情報と異なる場合あり）</div>
+                            </div>
+                        </AccordionSection>
 
-                    <AccordionSection title="JRW 岡山エリア" defaultOpen={false} badge={OkayamaAreaLine.length}>
-                        <ButtonGrid items={OkayamaAreaLine} selectedCode={selectedCode} onSelect={handleSelectLine} />
-                    </AccordionSection>
+                        <AccordionSection title="運行情報リンク（外部リンク）" defaultOpen={false} badge={OperationInfoPages.length}>
+                            <div className="flex flex-wrap gap-2">
+                                {OperationInfoPages.map((item, i) => (
+                                    <ChipButton key={item.code + i} label={item.line} onClick={() => handleOpenInfoLink(item)} />
+                                ))}
+                            </div>
+                        </AccordionSection>
 
-                    <AccordionSection title="JRW 広島/下関エリア" defaultOpen={false} badge={HiroSekiAreaLine.length}>
-                        <ButtonGrid items={HiroSekiAreaLine} selectedCode={selectedCode} onSelect={handleSelectLine} />
-                    </AccordionSection>
+                        <AccordionSection title="JRW 近畿エリア" defaultOpen={false} badge={KinkiAreaLine.length}>
+                            <ButtonGrid items={KinkiAreaLine} selectedCode={selectedCode} onSelect={handleSelectLine} />
+                        </AccordionSection>
 
-                    <AccordionSection title="JRW 山陰エリア" defaultOpen={false} badge={SaninAreaLine.length}>
-                        <ButtonGrid items={SaninAreaLine} selectedCode={selectedCode} onSelect={handleSelectLine} />
-                    </AccordionSection>
+                        <AccordionSection title="JRW 岡山エリア" defaultOpen={false} badge={OkayamaAreaLine.length}>
+                            <ButtonGrid items={OkayamaAreaLine} selectedCode={selectedCode} onSelect={handleSelectLine} />
+                        </AccordionSection>
 
-                    <AccordionSection title="JRC 全エリア" defaultOpen={false} badge={CentralAreaLine.length}>
-                        <ButtonGrid items={CentralAreaLine} selectedCode={selectedCode} onSelect={handleSelectLine} />
-                    </AccordionSection>
+                        <AccordionSection title="JRW 広島/下関エリア" defaultOpen={false} badge={HiroSekiAreaLine.length}>
+                            <ButtonGrid items={HiroSekiAreaLine} selectedCode={selectedCode} onSelect={handleSelectLine} />
+                        </AccordionSection>
+
+                        <AccordionSection title="JRW 山陰エリア" defaultOpen={false} badge={SaninAreaLine.length}>
+                            <ButtonGrid items={SaninAreaLine} selectedCode={selectedCode} onSelect={handleSelectLine} />
+                        </AccordionSection>
+
+                        <AccordionSection title="JRC 全エリア" defaultOpen={false} badge={CentralAreaLine.length}>
+                            <ButtonGrid items={CentralAreaLine} selectedCode={selectedCode} onSelect={handleSelectLine} />
+                        </AccordionSection>
+                    </div>
                 </aside>
 
                 <section className="flex flex-col gap-4">
-                    <div className="rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
-                        <div className="text-sm text-slate-500">選択中の路線</div>
-                        <div className="text-lg font-semibold text-slate-800">
-                            {selectedLine ? `[${selectedLine}]` : "路線を選択してください"}
+                    <div
+                        className={
+                            "flex items-center justify-between gap-3 rounded-xl border-2 px-4 py-3 shadow-sm transition-colors " +
+                            (selectedLineColor ? "" : "border-slate-200 bg-white")
+                        }
+                        style={selectedLineColor ? {
+                            borderColor: selectedLineColor,
+                            backgroundColor: `color-mix(in srgb, ${selectedLineColor} 12%, white)`,
+                        } : undefined}
+                    >
+                        <div>
+                            <div className="text-sm text-slate-500">選択中の路線</div>
+                            <div className="text-lg font-semibold text-slate-800">
+                                {selectedLine || "路線を選択してください"}
+                            </div>
                         </div>
+                        <button
+                            type="button"
+                            onClick={handleRefresh}
+                            disabled={!selectedCode || loading}
+                            className="inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-emerald-600 px-3 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-emerald-500 disabled:cursor-not-allowed disabled:bg-slate-300"
+                        >
+                            <RefreshIcon spinning={loading} />
+                            更新
+                        </button>
                     </div>
 
                     {loading && (
                         <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-6 text-slate-500 shadow-sm">
-                            <span className="h-4 w-4 animate-spin rounded-full border-2 border-indigo-500 border-t-transparent"></span>
+                            <span className="h-4 w-4 animate-spin rounded-full border-2 border-emerald-500 border-t-transparent"></span>
                             ・・・読み込み中・・・
                         </div>
                     )}
@@ -769,8 +963,25 @@ function App() {
                     )}
 
                     {!loading && cards.length > 0 && (
-                        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
-                            {cards.map(card => <TrainCard key={card.key} card={card} />)}
+                        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+                            <div className="flex flex-col gap-3">
+                                <div className="flex items-center gap-2 text-sm font-semibold text-emerald-700">
+                                    <span className="rounded-full bg-emerald-100 px-2 py-0.5">上り</span>
+                                    <span className="text-slate-400">（{upCards.length}件）</span>
+                                </div>
+                                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                                    {upCards.map(card => <TrainCard key={card.key} card={card} />)}
+                                </div>
+                            </div>
+                            <div className="flex flex-col gap-3">
+                                <div className="flex items-center gap-2 text-sm font-semibold text-emerald-700">
+                                    <span className="rounded-full bg-emerald-100 px-2 py-0.5">下り</span>
+                                    <span className="text-slate-400">（{downCards.length}件）</span>
+                                </div>
+                                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                                    {downCards.map(card => <TrainCard key={card.key} card={card} />)}
+                                </div>
+                            </div>
                         </div>
                     )}
                 </section>

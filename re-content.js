@@ -346,6 +346,75 @@ const CentralAreaLine = [{
 }];
 
 /* ============================================================
+ * 路線ボタンの配色（re-style.css の kakomi-系／span.系 定義に準拠。
+ * 未定義の路線は re-style.css の kakomi-other と同じ既定色を使用）
+ * ========================================================== */
+const DEFAULT_LINE_COLOR = '#444';
+const LineColorMap = {
+  // JRW 近畿エリア（re-style.css の路線記号色付に準拠）
+  hokuriku: 'blue',
+  kosei: 'deepskyblue',
+  kusatsu: '#7fbf00',
+  nara: 'darkgoldenrod',
+  osakahigashi: 'steelblue',
+  takarazuka: '#f39800',
+  tozai: 'deeppink',
+  osakaloop: 'red',
+  yumesaki: 'navy',
+  yamatoji: 'green',
+  hanwahagoromo: 'darkorange',
+  kansaiairport: 'royalblue',
+  wakayama1: 'hotpink',
+  wakayama2: 'hotpink',
+  kansai: 'darkviolet',
+  kinokuni: 'darkturquoise',
+  manyomahoroba: 'firebrick',
+  // JRW 近畿エリア追加分（train-guide.westjr.co.jp の路線記号バッジに準拠）
+  hokurikubiwako: '#0072bc',
+  kyoto: '#0072bc',
+  kobesanyo: '#0072bc',
+  ako: '#0072bc',
+  sagano: '#8e7cc3',
+  sanin1: '#8e7cc3',
+  sanin2: '#8e7cc3',
+  fukuchiyama: '#f39800',
+  gakkentoshi: 'deeppink',
+  bantan: '#6a3d9a',
+  maizuru: '#f39800',
+  // JRW 岡山・福山エリア（train-guide.westjr.co.jp 準拠）
+  unominato: '#00a0de',
+  setoohashi: '#9b59b6',
+  ako2: '#d6006d',
+  sanyo1: '#0072bc',
+  tsuyama: '#f9a825',
+  hakubi1: '#00a650',
+  fukuen1: '#8b1a1a',
+  // JRW 広島・山口エリア（train-guide.westjr.co.jp 準拠）
+  kabe: '#3cb371',
+  sanyo2: '#00897b',
+  sanyo3: '#1565c0',
+  geibi1: '#7e57c2',
+  kure: '#ffb300',
+  yamaguchi: '#ff7043',
+  // JRW 山陰エリア（train-guide.westjr.co.jp 準拠）
+  sanin3: '#8bc34a',
+  imbi1: '#cddc39',
+  sanin4: '#f4511e',
+  hakubi2: '#00a650',
+  // JRC 在来線エリア（traininfo.jr-central.co.jp 準拠）
+  zaisenichijoho_10001: '#f7931e',
+  zaisenichijoho_10011: '#f7931e',
+  zaisenichijoho_10013: '#2e7d32',
+  zaisenichijoho_10012: '#6a1b9a',
+  zaisenichijoho_10010: '#4fc3f7',
+  zaisenichijoho_10002: '#8d5524',
+  zaisenichijoho_10003: '#607d8b',
+  zaisenichijoho_10004: '#8d4b3b',
+  zaisenichijoho_10005: '#9e9d24',
+  zaisenichijoho_10006: '#26a69a'
+};
+
+/* ============================================================
  * クラス定義（content.js と同一）
  * ========================================================== */
 class TrainWestUrban {
@@ -1023,7 +1092,8 @@ function cardWestUrban(train, idx) {
   return {
     key: 'wu-' + idx,
     className: `kakomi-box3 kakomi-${train.dest.line}`,
-    html
+    html,
+    direction
   };
 }
 function cardWestOther(train, idx) {
@@ -1053,7 +1123,8 @@ function cardWestOther(train, idx) {
   return {
     key: 'wo-' + idx,
     className: 'kakomi-box3',
-    html
+    html,
+    direction
   };
 }
 function cardCentral(train, idx) {
@@ -1070,7 +1141,8 @@ function cardCentral(train, idx) {
   return {
     key: 'ce-' + idx,
     className: 'kakomi-box3',
-    html
+    html,
+    direction
   };
 }
 
@@ -1169,7 +1241,54 @@ function ChevronIcon({
   }));
 }
 
-// 開閉メニュー（元の <details><summary> をモダンなアコーディオンに置換）
+// アイコン（ハンバーガーメニュー）
+function MenuIcon() {
+  return /*#__PURE__*/React.createElement("svg", {
+    className: "h-5 w-5",
+    viewBox: "0 0 20 20",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M3 5h14M3 10h14M3 15h14",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }));
+}
+
+// アイコン（閉じる）
+function CloseIcon() {
+  return /*#__PURE__*/React.createElement("svg", {
+    className: "h-5 w-5",
+    viewBox: "0 0 20 20",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M5 5l10 10M15 5L5 15",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }));
+}
+
+// アイコン（更新）
+function RefreshIcon({
+  spinning
+}) {
+  return /*#__PURE__*/React.createElement("svg", {
+    className: `h-4 w-4 ${spinning ? 'animate-spin' : ''}`,
+    viewBox: "0 0 20 20",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M16 10a6 6 0 1 1-2-4.47M16 3v4h-4",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }));
+}
+
+// サイドメニュー内の開閉項目（エリアごとに展開すると路線ボタンが出現する。枠線に色付け、枠内は白／極薄緑）
 function AccordionSection({
   title,
   defaultOpen = false,
@@ -1178,32 +1297,49 @@ function AccordionSection({
 }) {
   const [open, setOpen] = useState(defaultOpen);
   return /*#__PURE__*/React.createElement("div", {
-    className: "overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm"
+    className: "overflow-hidden rounded-lg border border-emerald-300 bg-white shadow-sm"
   }, /*#__PURE__*/React.createElement("button", {
     type: "button",
     onClick: () => setOpen(o => !o),
-    className: "flex w-full items-center justify-between gap-3 bg-gradient-to-r from-indigo-600 to-slate-600 px-4 py-3 text-left text-sm font-semibold text-white transition-colors hover:from-indigo-500 hover:to-slate-500"
+    className: "flex w-full items-center justify-between gap-3 bg-emerald-50 px-3 py-2.5 text-left text-sm font-semibold text-emerald-900 transition-colors hover:bg-emerald-100"
   }, /*#__PURE__*/React.createElement("span", {
     className: "flex items-center gap-2"
   }, title, badge != null && /*#__PURE__*/React.createElement("span", {
-    className: "rounded-full bg-white/20 px-2 py-0.5 text-xs font-medium"
+    className: "rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700"
   }, badge)), /*#__PURE__*/React.createElement(ChevronIcon, {
     open: open
   })), open && /*#__PURE__*/React.createElement("div", {
-    className: "px-4 py-3"
+    className: "border-t border-emerald-100 bg-emerald-50/60 px-3 py-2.5"
   }, children));
 }
 
-// 路線／外部リンク ボタン
+// 路線／外部リンク ボタン（color指定時は路線ごとの色を使用）
 function ChipButton({
   label,
   active,
-  onClick
+  onClick,
+  color
 }) {
+  if (color) {
+    const style = active ? {
+      backgroundColor: color,
+      borderColor: color,
+      color: '#fff'
+    } : {
+      borderColor: color,
+      color
+    };
+    return /*#__PURE__*/React.createElement("button", {
+      type: "button",
+      onClick: onClick,
+      style: style,
+      className: "rounded-full border bg-white px-3 py-1.5 text-xs sm:text-sm font-medium shadow-sm transition-colors hover:opacity-80"
+    }, label);
+  }
   return /*#__PURE__*/React.createElement("button", {
     type: "button",
     onClick: onClick,
-    className: "rounded-full border px-3 py-1.5 text-xs sm:text-sm font-medium transition-colors " + (active ? "border-indigo-600 bg-indigo-600 text-white shadow" : "border-slate-300 bg-slate-50 text-slate-700 hover:border-indigo-400 hover:bg-indigo-50 hover:text-indigo-700")
+    className: "rounded-full border px-3 py-1.5 text-xs sm:text-sm font-medium transition-colors " + (active ? "border-emerald-600 bg-emerald-600 text-white shadow" : "border-emerald-200 bg-emerald-50 text-emerald-800 hover:border-emerald-400 hover:bg-emerald-100")
   }, label);
 }
 function ButtonGrid({
@@ -1217,7 +1353,8 @@ function ButtonGrid({
     key: item.code + '-' + i,
     label: item.line,
     active: selectedCode === item.code,
-    onClick: () => onSelect(item)
+    onClick: () => onSelect(item),
+    color: LineColorMap[item.code] || DEFAULT_LINE_COLOR
   })));
 }
 function TrainCard({
@@ -1236,9 +1373,17 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
   const [cards, setCards] = useState([]);
+  const [sideMenuOpen, setSideMenuOpen] = useState(false);
   const requestSeq = useRef(0);
-  const handleSelectLine = useCallback(async item => {
+  const currentItemRef = useRef(null); // 更新ボタンでの再取得用に現在表示中の路線を保持
+  // 進行方向（上り/下り）で表示領域を左右に分ける
+  const upCards = cards.filter(card => card.direction === '上り');
+  const downCards = cards.filter(card => card.direction === '下り');
+  // 選択中の路線カラー（表示領域の枠線・塗りつぶしに使用）
+  const selectedLineColor = selectedCode ? LineColorMap[selectedCode] || DEFAULT_LINE_COLOR : null;
+  const loadLineTrains = useCallback(async item => {
     const seq = ++requestSeq.current;
+    currentItemRef.current = item;
     setSelectedLine(item.line);
     setSelectedCode(item.code);
     setLoading(true);
@@ -1260,6 +1405,18 @@ function App() {
       }
     }
   }, []);
+
+  // 路線ボタンは選択の切り替えのみを行う（同じ路線を再取得したい場合はメイン領域の更新ボタンを使う）
+  const handleSelectLine = useCallback(item => {
+    if (currentItemRef.current && currentItemRef.current.code === item.code) return;
+    loadLineTrains(item);
+    setSideMenuOpen(false);
+  }, [loadLineTrains]);
+  const handleRefresh = useCallback(() => {
+    if (currentItemRef.current) {
+      loadLineTrains(currentItemRef.current);
+    }
+  }, [loadLineTrains]);
   const handleOpenInfoLink = useCallback(item => {
     switch (item.area) {
       case 'JRW':
@@ -1273,15 +1430,36 @@ function App() {
   return /*#__PURE__*/React.createElement("div", {
     className: "min-h-screen bg-slate-100"
   }, /*#__PURE__*/React.createElement("header", {
-    className: "sticky top-0 z-10 bg-gradient-to-r from-slate-900 via-indigo-900 to-slate-900 shadow-md"
+    className: "sticky top-0 z-20 bg-gradient-to-r from-slate-900 via-emerald-900 to-slate-900 shadow-md"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "mx-auto flex max-w-7xl flex-col gap-1 px-4 py-3 sm:flex-row sm:items-center sm:justify-between"
+    className: "mx-auto flex max-w-7xl items-center gap-3 px-4 py-3"
+  }, /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    onClick: () => setSideMenuOpen(o => !o),
+    className: "rounded-lg p-2 text-white transition-colors hover:bg-white/10 lg:hidden",
+    "aria-label": "\u30E1\u30CB\u30E5\u30FC\u3092\u958B\u9589"
+  }, /*#__PURE__*/React.createElement(MenuIcon, null)), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-1 flex-col gap-1 sm:flex-row sm:items-center sm:justify-between"
   }, /*#__PURE__*/React.createElement("h1", {
     className: "text-lg font-bold text-white sm:text-xl"
-  }, "\u5217\u8ECA\u8D70\u884C\u4F4D\u7F6E\u30D3\u30E5\u30FC\u30A2"), /*#__PURE__*/React.createElement(Clock, null))), /*#__PURE__*/React.createElement("main", {
-    className: "mx-auto max-w-7xl grid grid-cols-1 gap-6 px-4 py-6 lg:grid-cols-[380px_1fr]"
-  }, /*#__PURE__*/React.createElement("aside", {
-    className: "flex flex-col gap-4"
+  }, "\u5217\u8ECA\u8D70\u884C\u4F4D\u7F6E\u30D3\u30E5\u30FC\u30A2"), /*#__PURE__*/React.createElement(Clock, null)))), /*#__PURE__*/React.createElement("main", {
+    className: "mx-auto max-w-7xl grid grid-cols-1 gap-6 px-4 py-6 lg:grid-cols-[340px_1fr]"
+  }, sideMenuOpen && /*#__PURE__*/React.createElement("div", {
+    className: "fixed inset-0 z-30 bg-slate-900/50 lg:hidden",
+    onClick: () => setSideMenuOpen(false)
+  }), /*#__PURE__*/React.createElement("aside", {
+    className: "fixed inset-y-0 left-0 z-40 w-[300px] max-w-[85vw] transform overflow-y-auto bg-slate-100 p-4 shadow-xl transition-transform duration-300 ease-in-out " + "lg:static lg:z-auto lg:w-auto lg:max-w-none lg:translate-x-0 lg:overflow-visible lg:bg-transparent lg:p-0 lg:shadow-none " + (sideMenuOpen ? "translate-x-0" : "-translate-x-full")
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mb-3 flex items-center justify-between lg:hidden"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-sm font-semibold text-emerald-800"
+  }, "\u30E1\u30CB\u30E5\u30FC"), /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    onClick: () => setSideMenuOpen(false),
+    className: "rounded-lg p-1.5 text-emerald-700 hover:bg-emerald-100",
+    "aria-label": "\u30E1\u30CB\u30E5\u30FC\u3092\u9589\u3058\u308B"
+  }, /*#__PURE__*/React.createElement(CloseIcon, null))), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-col gap-2"
   }, /*#__PURE__*/React.createElement(AccordionSection, {
     title: "\u66F4\u65B0\u60C5\u5831\uFF082026/03/31\uFF09",
     defaultOpen: true
@@ -1301,7 +1479,7 @@ function App() {
     onClick: () => handleOpenInfoLink(item)
   })))), /*#__PURE__*/React.createElement(AccordionSection, {
     title: "JRW \u8FD1\u757F\u30A8\u30EA\u30A2",
-    defaultOpen: true,
+    defaultOpen: false,
     badge: KinkiAreaLine.length
   }, /*#__PURE__*/React.createElement(ButtonGrid, {
     items: KinkiAreaLine,
@@ -1339,28 +1517,62 @@ function App() {
     items: CentralAreaLine,
     selectedCode: selectedCode,
     onSelect: handleSelectLine
-  }))), /*#__PURE__*/React.createElement("section", {
+  })))), /*#__PURE__*/React.createElement("section", {
     className: "flex flex-col gap-4"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm"
-  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center justify-between gap-3 rounded-xl border-2 px-4 py-3 shadow-sm transition-colors " + (selectedLineColor ? "" : "border-slate-200 bg-white"),
+    style: selectedLineColor ? {
+      borderColor: selectedLineColor,
+      backgroundColor: `color-mix(in srgb, ${selectedLineColor} 12%, white)`
+    } : undefined
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "text-sm text-slate-500"
   }, "\u9078\u629E\u4E2D\u306E\u8DEF\u7DDA"), /*#__PURE__*/React.createElement("div", {
     className: "text-lg font-semibold text-slate-800"
-  }, selectedLine ? `[${selectedLine}]` : "路線を選択してください")), loading && /*#__PURE__*/React.createElement("div", {
+  }, selectedLine || "路線を選択してください")), /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    onClick: handleRefresh,
+    disabled: !selectedCode || loading,
+    className: "inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-emerald-600 px-3 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-emerald-500 disabled:cursor-not-allowed disabled:bg-slate-300"
+  }, /*#__PURE__*/React.createElement(RefreshIcon, {
+    spinning: loading
+  }), "\u66F4\u65B0")), loading && /*#__PURE__*/React.createElement("div", {
     className: "flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-6 text-slate-500 shadow-sm"
   }, /*#__PURE__*/React.createElement("span", {
-    className: "h-4 w-4 animate-spin rounded-full border-2 border-indigo-500 border-t-transparent"
+    className: "h-4 w-4 animate-spin rounded-full border-2 border-emerald-500 border-t-transparent"
   }), "\u30FB\u30FB\u30FB\u8AAD\u307F\u8FBC\u307F\u4E2D\u30FB\u30FB\u30FB"), !loading && errorMsg && /*#__PURE__*/React.createElement("div", {
     className: "rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 shadow-sm"
   }, "\u30A8\u30E9\u30FC\u304C\u767A\u751F\u3057\u307E\u3057\u305F\uFF1A", errorMsg), !loading && !errorMsg && selectedCode && cards.length === 0 && /*#__PURE__*/React.createElement("div", {
     className: "rounded-xl border border-slate-200 bg-white px-4 py-6 text-slate-500 shadow-sm"
   }, "\u8A72\u5F53\u3059\u308B\u5217\u8ECA\u60C5\u5831\u304C\u3042\u308A\u307E\u305B\u3093\u3002"), !loading && cards.length > 0 && /*#__PURE__*/React.createElement("div", {
-    className: "grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3"
-  }, cards.map(card => /*#__PURE__*/React.createElement(TrainCard, {
+    className: "grid grid-cols-1 gap-4 lg:grid-cols-2"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-col gap-3"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-2 text-sm font-semibold text-emerald-700"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "rounded-full bg-emerald-100 px-2 py-0.5"
+  }, "\u4E0A\u308A"), /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-400"
+  }, "\uFF08", upCards.length, "\u4EF6\uFF09")), /*#__PURE__*/React.createElement("div", {
+    className: "grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2"
+  }, upCards.map(card => /*#__PURE__*/React.createElement(TrainCard, {
     key: card.key,
     card: card
-  }))))));
+  })))), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-col gap-3"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-2 text-sm font-semibold text-emerald-700"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "rounded-full bg-emerald-100 px-2 py-0.5"
+  }, "\u4E0B\u308A"), /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-400"
+  }, "\uFF08", downCards.length, "\u4EF6\uFF09")), /*#__PURE__*/React.createElement("div", {
+    className: "grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2"
+  }, downCards.map(card => /*#__PURE__*/React.createElement(TrainCard, {
+    key: card.key,
+    card: card
+  }))))))));
 }
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(/*#__PURE__*/React.createElement(App, null));
