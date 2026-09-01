@@ -878,7 +878,7 @@ function App() {
                     </div>
 
                     <div className="flex flex-col gap-2">
-                        <AccordionSection title="更新情報（2026/09/06）" defaultOpen={true}>
+                        <AccordionSection title="更新情報（2026/09/02）" defaultOpen={true}>
                             <div className="space-y-1 text-sm text-slate-700">
                                 <div>UIを刷新しました。</div>
                             </div>
