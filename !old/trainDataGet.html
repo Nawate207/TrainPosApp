@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name="robots" content="noindex,nofollow">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script>
+    
+    async function clickEvent(queryString, flowType) {
+        elem.innerHTML = "<div class='nowloading'>・・・読み込み中・・・</div>";
+        // リクエスト情報定義
+        const requestUrl = "https://prod-19.japaneast.logic.azure.com:443/workflows/0dc6fea0c8154c789218420e3b376d28/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=mRbcZRd-Nan8YGBNyirWuBGqLIAVspd0WjPAWAZEe5w"
+        const requestMethod = "POST"
+        const requestHeaders = {
+            "Content-Type": "application/json"
+        }
+        const requestBody = JSON.stringify({
+            "queryString": queryString,
+            "flowType": flowType
+        })
+
+        // リクエストを送信して結果を解析
+        try {
+            const response = await fetch(requestUrl, {
+                method: requestMethod,
+                headers: requestHeaders,
+                body: requestBody
+            })
+
+            // レスポンスステータスをチェック
+            if (!response.ok) {
+                throw new Error(`レスポンスステータス: ${response.status}`);
+            }
+
+            // レスポンスヘッダーをチェック
+            const contentType = response.headers.get("content-type");
+            if (!contentType || !contentType.includes("application/json")) {
+                throw new TypeError("残念、受信したのは JSON ではなかった！");
+            }
+
+            // レスポンスボディを取得
+            const body = await response.json();
+            // const trains = body.trains.map(buildTrain);
+            let trains;
+
+            switch (flowType) {
+                case 'Jrw': trains = body.map(buildTrain);
+                    viewTrains(trains, flowType);
+                    break;
+                case 'Jrc': trains = body.lst.map(buildTrainC);
+                    viewTrainsC(trains, flowType);
+                    break;
+            }
+
+            // エラー発生時にキャッチしてメッセージを返す
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+
+</script>
+
+<body>
+    <h1>Hello, world!</h1>
+    <!-- 路線, 上下区分, 昇順降順, 平土休の選択ボックスを配置
+    路線はラジオボタン、上下区分はリスト（すべて含む）、昇順降順はリスト（選択なし含む）、平土休はリスト（すべて含む） -->
+    <div id="elem"></div>
+</body>
+
+</html>

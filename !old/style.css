@@ -1,0 +1,367 @@
+    /*** ユーザー押下ボタンスタイル ***/
+    #text-button {
+        display: block;
+        cursor: pointer;
+        width: 160px;
+        text-align: center;
+        border: 1px solid #232323;
+        padding: 10px;
+    }
+
+    /*** 路線ボタン開閉メニュースタイル ***/
+    /* 開閉メニュー全体スタイル */
+    .accordion-container {
+        max-width: 2400px;
+        margin: 0 auto;
+    }
+
+    /* 開閉メニューヘッダー枠スタイル */
+    details {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    /* 開閉メニューヘッダー本文スタイル */
+    summary {
+        display: block;
+        font-weight: bold;
+        padding: 10px 15px;
+        cursor: pointer;
+        background-color: #787ea0;
+        color: #fff;
+    }
+
+    /* 開閉メニュー内コンテンツスタイル */
+    .accordion-content {
+        padding: 10px 15px;
+        border-top: 1px solid #ccc;
+    }
+
+    .accordion-content-info {
+        padding: 10px 15px;
+        border-top: 1px solid #ccc;
+        font-size: 10pt;
+    }
+
+    /* 開閉メニュー開時スタイル */
+    details[open] summary {
+        background-color: #4b6ac7;
+        color: #fff;
+    }
+
+
+    /*** 列車情報スタイル ***/
+    .kakomi-hokuriku:hover {
+        background-color: white;
+        border: 1px solid blue;
+    }
+
+    .kakomi-kosei:hover {
+        background-color: white;
+        border: 1px solid deepskyblue;
+    }
+
+    .kakomi-osakahigashi:hover {
+        background-color: white;
+        border: 1px solid steelblue;
+    }
+
+    .kakomi-takarazuka:hover {
+        background-color: white;
+        border: 1px solid yellow;
+    }
+
+    .kakomi-tozai:hover {
+        background-color: white;
+        border: 1px solid deeppink;
+    }
+
+    .kakomi-osakaloop:hover {
+        background-color: white;
+        border: 1px solid red;
+    }
+
+    .kakomi-yumesaki:hover {
+        background-color: white;
+        border: 1px solid navy;
+    }
+
+    .kakomi-yamatoji:hover {
+        background-color: white;
+        border: 1px solid green;
+    }
+
+    .kakomi-hanwa:hover {
+        background-color: white;
+        border: 1px solid darkorange;
+    }
+
+    .kakomi-kansaiairport:hover {
+        background-color: white;
+        border: 1px solid darkblue;
+    }
+
+    .kakomi-kusatsu:hover {
+        background-color: white;
+        border: 1px solid lime;
+    }
+
+    .kakomi-nara:hover {
+        background-color: white;
+        border: 1px solid darkgoldenrod;
+    }
+
+    .kakomi-kakogawa:hover {
+        background-color: white;
+        border: 1px solid turquoise;
+    }
+
+    .kakomi-kishin:hover {
+        background-color: white;
+        border: 1px solid orangered;
+    }
+
+    .kakomi-wakayama1:hover {
+        background-color: white;
+        border: 1px solid hotpink;
+    }
+
+    .kakomi-wakayama2:hover {
+        background-color: white;
+        border: 1px solid hotpink;
+    }
+
+    .kakomi-manyomahoroba:hover {
+        background-color: white;
+        border: 1px solid firebrick;
+    }
+
+    .kakomi-kansai:hover {
+        background-color: white;
+        border: 1px solid purple;
+    }
+
+    .kakomi-kinokuni:hover {
+        background-color: white;
+        border: 1px solid darkturquoise;
+    }
+
+    .kakomi-other:hover {
+        background-color: white;
+        border: 1px solid black;
+    }
+
+    /*** 列車情報枠スタイル ***/
+    /* シンプル 枠（影）1 */
+
+    .kakomi-box3 {
+        margin: 5px auto;
+        padding: 5px;
+        /* width: 90%; */
+        border: 1px solid lightgray;
+        /* 枠線 */
+        background-color: white;
+        /* 背景色 */
+        box-shadow: 1px 1px 2px #ccc;
+    }
+
+    .kakomi-box3:hover {
+        background-color: white;
+        /* width: 90%; */
+        border: 1px solid blue;
+    }
+
+    /*** 列車情報スタイル ***/
+    /* 行先色付 */
+
+    span.destination {
+        color: darkorange;
+        /* font-weight: bold; */
+    }
+
+    /* 遅延時分色付 */
+
+    span.noDelay {
+        color: blue;
+        /* font-weight: normal; */
+    }
+
+    span.delayMinutes {
+        color: red;
+    }
+
+    span.overDelay {
+        color: red;
+        background-color: yellow;
+    }
+
+    /* 種別色付 */
+
+    span.local {
+        color: black;
+        font-style: italic;
+    }
+
+    span.regionalrapid {
+        color: green;
+        font-style: italic;
+    }
+
+    span.rapid {
+        color: darkorange;
+        font-style: italic;
+    }
+
+    span.rapidC {
+        color: blue;
+        font-style: italic;
+    }
+
+    span.specialrapid {
+        color: blue;
+        font-style: italic;
+    }
+
+    span.newrapid {
+        color: darkorange;
+        font-style: italic;
+    }
+
+    span.specialrapidC {
+        color: goldenrod;
+        font-style: italic;
+    }
+
+    span.tambajirapid {
+        color: goldenrod;
+        font-style: italic;
+    }
+
+    span.kixrapid {
+        color: royalblue;
+        font-style: italic;
+    }
+
+    span.kishujirapid {
+        color: darkorange;
+        font-style: italic;
+    }
+
+    span.yamatojirapid {
+        color: green;
+        font-style: italic;
+    }
+
+    span.miyakojirapid {
+        color: darkgoldenrod;
+        font-style: italic;
+    }
+
+    span.directrapid {
+        color: steelblue;
+        font-style: italic;
+    }
+
+    span.limitedexp {
+        color: red;
+        font-style: italic;
+    }
+
+    span.express {
+        color: orangered;
+        font-style: italic;
+    }
+
+    span.notinservice {
+        color: white;
+        background-color: black;
+        font-style: italic;
+    }
+
+    span.extra {
+        color: purple;
+        font-style: italic;
+    }
+
+    /* 路線記号色付 */
+
+    span.hokurikuA {
+        color: blue;
+    }
+
+    span.kosei {
+        color: deepskyblue;
+    }
+
+    span.kusatsu {
+        color: lime;
+    }
+
+    span.nara {
+        color: darkgoldenrod;
+    }
+
+    span.osakahigashi {
+        color: steelblue;
+    }
+
+    span.takarazuka {
+        color: gold;
+    }
+
+    span.tozai {
+        color: deeppink;
+    }
+
+    span.kakogawa {
+        color: turquoise;
+    }
+
+    span.kishin {
+        color: orangered;
+    }
+
+    span.osakaloop {
+        color: red;
+    }
+
+    span.yumesaki {
+        color: navy;
+    }
+
+    span.yamatoji {
+        color: green;
+    }
+
+    span.hanwahagoromo {
+        color: darkorange;
+    }
+
+    span.kansaiairport {
+        color: royalblue;
+    }
+
+    span.wakayama1 {
+        color: hotpink;
+    }
+
+    span.wakayama2 {
+        color: hotpink;
+    }
+
+    span.kansai {
+        color: darkviolet;
+    }
+
+    span.kinokuni {
+        color: darkturquoise;
+    }
+
+    span.manyomahoroba {
+        color: firebrick;
+    }
+
+    span.imbi1 {
+        color: goldenrod;
+    }

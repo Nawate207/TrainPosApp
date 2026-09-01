@@ -1,0 +1,990 @@
+[
+  {
+    "stationCode": "0382",
+    "stationName": "米原"
+  },
+  {
+    "stationCode": "0384",
+    "stationName": "彦根"
+  },
+  {
+    "stationCode": "0385",
+    "stationName": "南彦根"
+  },
+  {
+    "stationCode": "0386",
+    "stationName": "河瀬"
+  },
+  {
+    "stationCode": "0387",
+    "stationName": "稲枝"
+  },
+  {
+    "stationCode": "0388",
+    "stationName": "能登川"
+  },
+  {
+    "stationCode": "0389",
+    "stationName": "安土"
+  },
+  {
+    "stationCode": "0390",
+    "stationName": "近江八幡"
+  },
+  {
+    "stationCode": "0391",
+    "stationName": "篠原"
+  },
+  {
+    "stationCode": "0392",
+    "stationName": "野洲"
+  },
+  {
+    "stationCode": "0393",
+    "stationName": "守山"
+  },
+  {
+    "stationCode": "0394",
+    "stationName": "栗東"
+  },
+  {
+    "stationCode": "0395",
+    "stationName": "草津"
+  },
+  {
+    "stationCode": "0396",
+    "stationName": "南草津"
+  },
+  {
+    "stationCode": "0397",
+    "stationName": "瀬田"
+  },
+  {
+    "stationCode": "0398",
+    "stationName": "石山"
+  },
+  {
+    "stationCode": "0399",
+    "stationName": "膳所"
+  },
+  {
+    "stationCode": "0400",
+    "stationName": "大津"
+  },
+  {
+    "stationCode": "0401",
+    "stationName": "山科"
+  },
+  {
+    "stationCode": "0402",
+    "stationName": "京都"
+  },
+  {
+    "stationCode": "0404",
+    "stationName": "西大路"
+  },
+  {
+    "stationCode": "0405",
+    "stationName": "向日町"
+  },
+  {
+    "stationCode": "0406",
+    "stationName": "長岡京"
+  },
+  {
+    "stationCode": "0407",
+    "stationName": "山崎"
+  },
+  {
+    "stationCode": "0408",
+    "stationName": "高槻"
+  },
+  {
+    "stationCode": "0409",
+    "stationName": "摂津富田"
+  },
+  {
+    "stationCode": "0410",
+    "stationName": "茨木"
+  },
+  {
+    "stationCode": "0411",
+    "stationName": "千里丘"
+  },
+  {
+    "stationCode": "0412",
+    "stationName": "岸辺"
+  },
+  {
+    "stationCode": "0413",
+    "stationName": "吹田"
+  },
+  {
+    "stationCode": "0414",
+    "stationName": "東淀川"
+  },
+  {
+    "stationCode": "0415",
+    "stationName": "新大阪"
+  },
+  {
+    "stationCode": "0416",
+    "stationName": "大阪"
+  },
+  {
+    "stationCode": "0417",
+    "stationName": "塚本"
+  },
+  {
+    "stationCode": "0419",
+    "stationName": "尼崎"
+  },
+  {
+    "stationCode": "0420",
+    "stationName": "立花"
+  },
+  {
+    "stationCode": "0421",
+    "stationName": "甲子園口"
+  },
+  {
+    "stationCode": "0422",
+    "stationName": "西宮"
+  },
+  {
+    "stationCode": "0423",
+    "stationName": "芦屋"
+  },
+  {
+    "stationCode": "0424",
+    "stationName": "甲南山手"
+  },
+  {
+    "stationCode": "0425",
+    "stationName": "摂津本山"
+  },
+  {
+    "stationCode": "0426",
+    "stationName": "住吉"
+  },
+  {
+    "stationCode": "0427",
+    "stationName": "六甲道"
+  },
+  {
+    "stationCode": "0428",
+    "stationName": "摩耶"
+  },
+  {
+    "stationCode": "0429",
+    "stationName": "灘"
+  },
+  {
+    "stationCode": "0430",
+    "stationName": "三ノ宮"
+  },
+  {
+    "stationCode": "0431",
+    "stationName": "元町"
+  },
+  {
+    "stationCode": "0432",
+    "stationName": "神戸"
+  },
+  {
+    "stationCode": "0433",
+    "stationName": "兵庫"
+  },
+  {
+    "stationCode": "0434",
+    "stationName": "新長田"
+  },
+  {
+    "stationCode": "0435",
+    "stationName": "鷹取"
+  },
+  {
+    "stationCode": "0436",
+    "stationName": "須磨"
+  },
+  {
+    "stationCode": "0437",
+    "stationName": "塩屋"
+  },
+  {
+    "stationCode": "0438",
+    "stationName": "垂水"
+  },
+  {
+    "stationCode": "0439",
+    "stationName": "舞子"
+  },
+  {
+    "stationCode": "0440",
+    "stationName": "朝霧"
+  },
+  {
+    "stationCode": "0441",
+    "stationName": "明石"
+  },
+  {
+    "stationCode": "0442",
+    "stationName": "西明石"
+  },
+  {
+    "stationCode": "0443",
+    "stationName": "大久保"
+  },
+  {
+    "stationCode": "0444",
+    "stationName": "魚住"
+  },
+  {
+    "stationCode": "0445",
+    "stationName": "土山"
+  },
+  {
+    "stationCode": "0446",
+    "stationName": "東加古川"
+  },
+  {
+    "stationCode": "0447",
+    "stationName": "加古川"
+  },
+  {
+    "stationCode": "0448",
+    "stationName": "宝殿"
+  },
+  {
+    "stationCode": "0449",
+    "stationName": "曽根"
+  },
+  {
+    "stationCode": "0450",
+    "stationName": "ひめじ別所"
+  },
+  {
+    "stationCode": "0451",
+    "stationName": "御着"
+  },
+  {
+    "stationCode": "0452",
+    "stationName": "姫路"
+  },
+  {
+    "stationCode": "0453",
+    "stationName": "英賀保"
+  },
+  {
+    "stationCode": "0454",
+    "stationName": "網干"
+  },
+  {
+    "stationCode": "0455",
+    "stationName": "竜野"
+  },
+  {
+    "stationCode": "0456",
+    "stationName": "相生"
+  },
+  {
+    "stationCode": "0457",
+    "stationName": "有年"
+  },
+  {
+    "stationCode": "0458",
+    "stationName": "上郡"
+  },
+  {
+    "stationCode": "0459",
+    "stationName": "三石"
+  },
+  {
+    "stationCode": "0460",
+    "stationName": "さくら夙川"
+  },
+  {
+    "stationCode": "0461",
+    "stationName": "島本"
+  },
+  {
+    "stationCode": "0462",
+    "stationName": "須磨海浜公園"
+  },
+  {
+    "stationCode": "0463",
+    "stationName": "はりま勝原"
+  },
+  {
+    "stationCode": "0464",
+    "stationName": "桂川"
+  },
+  {
+    "stationCode": "0465",
+    "stationName": "東姫路"
+  },
+  {
+    "stationCode": "0466",
+    "stationName": "ＪＲ総持寺"
+  },
+  {
+    "stationCode": "0501",
+    "stationName": "坂田"
+  },
+  {
+    "stationCode": "0502",
+    "stationName": "田村"
+  },
+  {
+    "stationCode": "0503",
+    "stationName": "長浜"
+  },
+  {
+    "stationCode": "0504",
+    "stationName": "虎姫"
+  },
+  {
+    "stationCode": "0505",
+    "stationName": "河毛"
+  },
+  {
+    "stationCode": "0506",
+    "stationName": "高月"
+  },
+  {
+    "stationCode": "0507",
+    "stationName": "木ノ本"
+  },
+  {
+    "stationCode": "0508",
+    "stationName": "余呉"
+  },
+  {
+    "stationCode": "0509",
+    "stationName": "近江塩津"
+  },
+  {
+    "stationCode": "0510",
+    "stationName": "新疋田"
+  },
+  {
+    "stationCode": "0601",
+    "stationName": "大津京"
+  },
+  {
+    "stationCode": "0602",
+    "stationName": "唐崎"
+  },
+  {
+    "stationCode": "0603",
+    "stationName": "比叡山坂本"
+  },
+  {
+    "stationCode": "0604",
+    "stationName": "おごと温泉"
+  },
+  {
+    "stationCode": "0605",
+    "stationName": "堅田"
+  },
+  {
+    "stationCode": "0606",
+    "stationName": "小野"
+  },
+  {
+    "stationCode": "0607",
+    "stationName": "和邇"
+  },
+  {
+    "stationCode": "0608",
+    "stationName": "蓬莱"
+  },
+  {
+    "stationCode": "0609",
+    "stationName": "志賀"
+  },
+  {
+    "stationCode": "0610",
+    "stationName": "比良"
+  },
+  {
+    "stationCode": "0611",
+    "stationName": "近江舞子"
+  },
+  {
+    "stationCode": "0612",
+    "stationName": "北小松"
+  },
+  {
+    "stationCode": "0613",
+    "stationName": "近江高島"
+  },
+  {
+    "stationCode": "0614",
+    "stationName": "安曇川"
+  },
+  {
+    "stationCode": "0615",
+    "stationName": "新旭"
+  },
+  {
+    "stationCode": "0616",
+    "stationName": "近江今津"
+  },
+  {
+    "stationCode": "0617",
+    "stationName": "近江中庄"
+  },
+  {
+    "stationCode": "0618",
+    "stationName": "マキノ"
+  },
+  {
+    "stationCode": "0919",
+    "stationName": "永原"
+  },
+  {
+    "stationCode": "1204",
+    "stationName": "南吹田"
+  },
+  {
+    "stationCode": "1206",
+    "stationName": "ＪＲ淡路"
+  },
+  {
+    "stationCode": "1207",
+    "stationName": "城北公園通"
+  },
+  {
+    "stationCode": "1208",
+    "stationName": "ＪＲ野江"
+  },
+  {
+    "stationCode": "1301",
+    "stationName": "鴫野"
+  },
+  {
+    "stationCode": "1302",
+    "stationName": "放出"
+  },
+  {
+    "stationCode": "1303",
+    "stationName": "徳庵"
+  },
+  {
+    "stationCode": "1304",
+    "stationName": "鴻池新田"
+  },
+  {
+    "stationCode": "1305",
+    "stationName": "住道"
+  },
+  {
+    "stationCode": "1306",
+    "stationName": "野崎"
+  },
+  {
+    "stationCode": "1307",
+    "stationName": "四条畷"
+  },
+  {
+    "stationCode": "1308",
+    "stationName": "忍ケ丘"
+  },
+  {
+    "stationCode": "1309",
+    "stationName": "寝屋川公園"
+  },
+  {
+    "stationCode": "1310",
+    "stationName": "星田"
+  },
+  {
+    "stationCode": "1311",
+    "stationName": "河内磐船"
+  },
+  {
+    "stationCode": "1312",
+    "stationName": "津田"
+  },
+  {
+    "stationCode": "1313",
+    "stationName": "藤阪"
+  },
+  {
+    "stationCode": "1314",
+    "stationName": "長尾"
+  },
+  {
+    "stationCode": "1315",
+    "stationName": "松井山手"
+  },
+  {
+    "stationCode": "1316",
+    "stationName": "大住"
+  },
+  {
+    "stationCode": "1317",
+    "stationName": "京田辺"
+  },
+  {
+    "stationCode": "1318",
+    "stationName": "同志社前"
+  },
+  {
+    "stationCode": "1319",
+    "stationName": "ＪＲ三山木"
+  },
+  {
+    "stationCode": "1320",
+    "stationName": "下狛"
+  },
+  {
+    "stationCode": "1321",
+    "stationName": "祝園"
+  },
+  {
+    "stationCode": "1322",
+    "stationName": "西木津"
+  },
+  {
+    "stationCode": "1401",
+    "stationName": "大阪"
+  },
+  {
+    "stationCode": "1501",
+    "stationName": "大阪城北詰"
+  },
+  {
+    "stationCode": "1502",
+    "stationName": "大阪天満宮"
+  },
+  {
+    "stationCode": "1503",
+    "stationName": "北新地"
+  },
+  {
+    "stationCode": "1504",
+    "stationName": "新福島"
+  },
+  {
+    "stationCode": "1505",
+    "stationName": "海老江"
+  },
+  {
+    "stationCode": "1506",
+    "stationName": "御幣島"
+  },
+  {
+    "stationCode": "1508",
+    "stationName": "加島"
+  },
+  {
+    "stationCode": "1601",
+    "stationName": "塚口"
+  },
+  {
+    "stationCode": "1602",
+    "stationName": "猪名寺"
+  },
+  {
+    "stationCode": "1603",
+    "stationName": "伊丹"
+  },
+  {
+    "stationCode": "1604",
+    "stationName": "北伊丹"
+  },
+  {
+    "stationCode": "1605",
+    "stationName": "川西池田"
+  },
+  {
+    "stationCode": "1606",
+    "stationName": "中山寺"
+  },
+  {
+    "stationCode": "1607",
+    "stationName": "宝塚"
+  },
+  {
+    "stationCode": "1608",
+    "stationName": "生瀬"
+  },
+  {
+    "stationCode": "1609",
+    "stationName": "西宮名塩"
+  },
+  {
+    "stationCode": "1610",
+    "stationName": "武田尾"
+  },
+  {
+    "stationCode": "1611",
+    "stationName": "道場"
+  },
+  {
+    "stationCode": "1612",
+    "stationName": "三田"
+  },
+  {
+    "stationCode": "1613",
+    "stationName": "新三田"
+  },
+  {
+    "stationCode": "1614",
+    "stationName": "広野"
+  },
+  {
+    "stationCode": "2301",
+    "stationName": "西相生"
+  },
+  {
+    "stationCode": "2302",
+    "stationName": "坂越"
+  },
+  {
+    "stationCode": "2303",
+    "stationName": "播州赤穂"
+  },
+  {
+    "stationCode": "2305",
+    "stationName": "天和"
+  },
+  {
+    "stationCode": "2501",
+    "stationName": "福島"
+  },
+  {
+    "stationCode": "2502",
+    "stationName": "野田"
+  },
+  {
+    "stationCode": "2503",
+    "stationName": "西九条"
+  },
+  {
+    "stationCode": "2504",
+    "stationName": "弁天町"
+  },
+  {
+    "stationCode": "2506",
+    "stationName": "大正"
+  },
+  {
+    "stationCode": "2507",
+    "stationName": "芦原橋"
+  },
+  {
+    "stationCode": "2508",
+    "stationName": "今宮"
+  },
+  {
+    "stationCode": "2509",
+    "stationName": "新今宮"
+  },
+  {
+    "stationCode": "2510",
+    "stationName": "天王寺"
+  },
+  {
+    "stationCode": "2511",
+    "stationName": "寺田町"
+  },
+  {
+    "stationCode": "2512",
+    "stationName": "桃谷"
+  },
+  {
+    "stationCode": "2513",
+    "stationName": "鶴橋"
+  },
+  {
+    "stationCode": "2514",
+    "stationName": "玉造"
+  },
+  {
+    "stationCode": "2515",
+    "stationName": "森ノ宮"
+  },
+  {
+    "stationCode": "2516",
+    "stationName": "大阪城公園"
+  },
+  {
+    "stationCode": "2517",
+    "stationName": "京橋"
+  },
+  {
+    "stationCode": "2518",
+    "stationName": "桜ノ宮"
+  },
+  {
+    "stationCode": "2519",
+    "stationName": "天満"
+  },
+  {
+    "stationCode": "2551",
+    "stationName": "安治川口"
+  },
+  {
+    "stationCode": "2552",
+    "stationName": "ユニバーサルシティ"
+  },
+  {
+    "stationCode": "2553",
+    "stationName": "桜島"
+  },
+  {
+    "stationCode": "2601",
+    "stationName": "美章園"
+  },
+  {
+    "stationCode": "2602",
+    "stationName": "南田辺"
+  },
+  {
+    "stationCode": "2603",
+    "stationName": "鶴ケ丘"
+  },
+  {
+    "stationCode": "2604",
+    "stationName": "長居"
+  },
+  {
+    "stationCode": "2605",
+    "stationName": "我孫子町"
+  },
+  {
+    "stationCode": "2606",
+    "stationName": "杉本町"
+  },
+  {
+    "stationCode": "2607",
+    "stationName": "浅香"
+  },
+  {
+    "stationCode": "2608",
+    "stationName": "堺市"
+  },
+  {
+    "stationCode": "2609",
+    "stationName": "三国ケ丘"
+  },
+  {
+    "stationCode": "2610",
+    "stationName": "百舌鳥"
+  },
+  {
+    "stationCode": "2611",
+    "stationName": "上野芝"
+  },
+  {
+    "stationCode": "2613",
+    "stationName": "鳳"
+  },
+  {
+    "stationCode": "2614",
+    "stationName": "富木"
+  },
+  {
+    "stationCode": "2615",
+    "stationName": "北信太"
+  },
+  {
+    "stationCode": "2616",
+    "stationName": "信太山"
+  },
+  {
+    "stationCode": "2617",
+    "stationName": "和泉府中"
+  },
+  {
+    "stationCode": "2618",
+    "stationName": "久米田"
+  },
+  {
+    "stationCode": "2619",
+    "stationName": "下松"
+  },
+  {
+    "stationCode": "2620",
+    "stationName": "東岸和田"
+  },
+  {
+    "stationCode": "2621",
+    "stationName": "東貝塚"
+  },
+  {
+    "stationCode": "2622",
+    "stationName": "和泉橋本"
+  },
+  {
+    "stationCode": "2623",
+    "stationName": "東佐野"
+  },
+  {
+    "stationCode": "2624",
+    "stationName": "熊取"
+  },
+  {
+    "stationCode": "2625",
+    "stationName": "日根野"
+  },
+  {
+    "stationCode": "2651",
+    "stationName": "東羽衣"
+  },
+  {
+    "stationCode": "2701",
+    "stationName": "りんくうタウン"
+  },
+  {
+    "stationCode": "2702",
+    "stationName": "関西空港"
+  },
+  {
+    "stationCode": "3002",
+    "stationName": "ＪＲ難波"
+  },
+  {
+    "stationCode": "3003",
+    "stationName": "東部市場前"
+  },
+  {
+    "stationCode": "3005",
+    "stationName": "平野"
+  },
+  {
+    "stationCode": "3008",
+    "stationName": "加美"
+  },
+  {
+    "stationCode": "3009",
+    "stationName": "久宝寺"
+  },
+  {
+    "stationCode": "3010",
+    "stationName": "八尾"
+  },
+  {
+    "stationCode": "3011",
+    "stationName": "志紀"
+  },
+  {
+    "stationCode": "3012",
+    "stationName": "柏原"
+  },
+  {
+    "stationCode": "3013",
+    "stationName": "高井田"
+  },
+  {
+    "stationCode": "3014",
+    "stationName": "河内堅上"
+  },
+  {
+    "stationCode": "3015",
+    "stationName": "三郷"
+  },
+  {
+    "stationCode": "3016",
+    "stationName": "王寺"
+  },
+  {
+    "stationCode": "3017",
+    "stationName": "法隆寺"
+  },
+  {
+    "stationCode": "3018",
+    "stationName": "大和小泉"
+  },
+  {
+    "stationCode": "3019",
+    "stationName": "郡山"
+  },
+  {
+    "stationCode": "3020",
+    "stationName": "奈良"
+  },
+  {
+    "stationCode": "3022",
+    "stationName": "平城山"
+  },
+  {
+    "stationCode": "3023",
+    "stationName": "木津"
+  },
+  {
+    "stationCode": "3024",
+    "stationName": "加茂"
+  },
+  {
+    "stationCode": "3025",
+    "stationName": "笠置"
+  },
+  {
+    "stationCode": "3701",
+    "stationName": "長滝"
+  },
+  {
+    "stationCode": "3702",
+    "stationName": "新家"
+  },
+  {
+    "stationCode": "3703",
+    "stationName": "和泉砂川"
+  },
+  {
+    "stationCode": "3704",
+    "stationName": "和泉鳥取"
+  },
+  {
+    "stationCode": "3705",
+    "stationName": "山中渓"
+  },
+  {
+    "stationCode": "3706",
+    "stationName": "紀伊"
+  },
+  {
+    "stationCode": "3707",
+    "stationName": "六十谷"
+  },
+  {
+    "stationCode": "3708",
+    "stationName": "紀伊中ノ島"
+  },
+  {
+    "stationCode": "3709",
+    "stationName": "和歌山"
+  },
+  {
+    "stationCode": "6061",
+    "stationName": "津久野"
+  },
+  {
+    "stationCode": "8001",
+    "stationName": "新加美"
+  },
+  {
+    "stationCode": "8003",
+    "stationName": "ＪＲ長瀬"
+  },
+  {
+    "stationCode": "8004",
+    "stationName": "ＪＲ俊徳道"
+  },
+  {
+    "stationCode": "8005",
+    "stationName": "ＪＲ河内永和"
+  },
+  {
+    "stationCode": "8006",
+    "stationName": "高井田中央"
+  },
+  {
+    "stationCode": "8007",
+    "stationName": "衣摺加美北"
+  }
+]

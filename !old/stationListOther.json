@@ -1,0 +1,2342 @@
+[
+  {
+    "StationCode": "0000",
+    "StationName": "居組"
+  },
+  {
+    "StationCode": "0001",
+    "StationName": "東浜"
+  },
+  {
+    "StationCode": "0002",
+    "StationName": "岩美"
+  },
+  {
+    "StationCode": "0003",
+    "StationName": "大岩"
+  },
+  {
+    "StationCode": "0004",
+    "StationName": "福部"
+  },
+  {
+    "StationCode": "0006",
+    "StationName": "鳥取"
+  },
+  {
+    "StationCode": "0007",
+    "StationName": "湖山"
+  },
+  {
+    "StationCode": "0008",
+    "StationName": "鳥取大学前"
+  },
+  {
+    "StationCode": "0009",
+    "StationName": "末恒"
+  },
+  {
+    "StationCode": "0010",
+    "StationName": "宝木"
+  },
+  {
+    "StationCode": "0011",
+    "StationName": "浜村"
+  },
+  {
+    "StationCode": "0012",
+    "StationName": "青谷"
+  },
+  {
+    "StationCode": "0013",
+    "StationName": "泊"
+  },
+  {
+    "StationCode": "0014",
+    "StationName": "松崎"
+  },
+  {
+    "StationCode": "0015",
+    "StationName": "倉吉"
+  },
+  {
+    "StationCode": "0016",
+    "StationName": "下北条"
+  },
+  {
+    "StationCode": "0017",
+    "StationName": "由良"
+  },
+  {
+    "StationCode": "0018",
+    "StationName": "浦安"
+  },
+  {
+    "StationCode": "0019",
+    "StationName": "八橋"
+  },
+  {
+    "StationCode": "0020",
+    "StationName": "赤碕"
+  },
+  {
+    "StationCode": "0021",
+    "StationName": "中山口"
+  },
+  {
+    "StationCode": "0022",
+    "StationName": "下市"
+  },
+  {
+    "StationCode": "0023",
+    "StationName": "御来屋"
+  },
+  {
+    "StationCode": "0024",
+    "StationName": "名和"
+  },
+  {
+    "StationCode": "0025",
+    "StationName": "大山口"
+  },
+  {
+    "StationCode": "0026",
+    "StationName": "淀江"
+  },
+  {
+    "StationCode": "0027",
+    "StationName": "伯耆大山"
+  },
+  {
+    "StationCode": "0028",
+    "StationName": "東山公園"
+  },
+  {
+    "StationCode": "0029",
+    "StationName": "米子"
+  },
+  {
+    "StationCode": "0031",
+    "StationName": "安来"
+  },
+  {
+    "StationCode": "0032",
+    "StationName": "荒島"
+  },
+  {
+    "StationCode": "0033",
+    "StationName": "揖屋"
+  },
+  {
+    "StationCode": "0034",
+    "StationName": "東松江"
+  },
+  {
+    "StationCode": "0035",
+    "StationName": "松江"
+  },
+  {
+    "StationCode": "0036",
+    "StationName": "乃木"
+  },
+  {
+    "StationCode": "0037",
+    "StationName": "玉造温泉"
+  },
+  {
+    "StationCode": "0038",
+    "StationName": "来待"
+  },
+  {
+    "StationCode": "0039",
+    "StationName": "宍道"
+  },
+  {
+    "StationCode": "0040",
+    "StationName": "荘原"
+  },
+  {
+    "StationCode": "0041",
+    "StationName": "直江"
+  },
+  {
+    "StationCode": "0042",
+    "StationName": "出雲市"
+  },
+  {
+    "StationCode": "0043",
+    "StationName": "西出雲"
+  },
+  {
+    "StationCode": "0044",
+    "StationName": "出雲神西"
+  },
+  {
+    "StationCode": "0045",
+    "StationName": "江南"
+  },
+  {
+    "StationCode": "0046",
+    "StationName": "小田"
+  },
+  {
+    "StationCode": "0047",
+    "StationName": "田儀"
+  },
+  {
+    "StationCode": "0048",
+    "StationName": "波根"
+  },
+  {
+    "StationCode": "0049",
+    "StationName": "久手"
+  },
+  {
+    "StationCode": "0050",
+    "StationName": "大田市"
+  },
+  {
+    "StationCode": "0051",
+    "StationName": "静間"
+  },
+  {
+    "StationCode": "0052",
+    "StationName": "五十猛"
+  },
+  {
+    "StationCode": "0053",
+    "StationName": "仁万"
+  },
+  {
+    "StationCode": "0054",
+    "StationName": "馬路"
+  },
+  {
+    "StationCode": "0055",
+    "StationName": "湯里"
+  },
+  {
+    "StationCode": "0056",
+    "StationName": "温泉津"
+  },
+  {
+    "StationCode": "0057",
+    "StationName": "石見福光"
+  },
+  {
+    "StationCode": "0058",
+    "StationName": "黒松"
+  },
+  {
+    "StationCode": "0059",
+    "StationName": "浅利"
+  },
+  {
+    "StationCode": "0060",
+    "StationName": "江津"
+  },
+  {
+    "StationCode": "0061",
+    "StationName": "都野津"
+  },
+  {
+    "StationCode": "0062",
+    "StationName": "敬川"
+  },
+  {
+    "StationCode": "0063",
+    "StationName": "波子"
+  },
+  {
+    "StationCode": "0064",
+    "StationName": "久代"
+  },
+  {
+    "StationCode": "0065",
+    "StationName": "下府"
+  },
+  {
+    "StationCode": "0066",
+    "StationName": "浜田"
+  },
+  {
+    "StationCode": "0067",
+    "StationName": "西浜田"
+  },
+  {
+    "StationCode": "0068",
+    "StationName": "周布"
+  },
+  {
+    "StationCode": "0069",
+    "StationName": "折居"
+  },
+  {
+    "StationCode": "0070",
+    "StationName": "三保三隅"
+  },
+  {
+    "StationCode": "0071",
+    "StationName": "岡見"
+  },
+  {
+    "StationCode": "0072",
+    "StationName": "鎌手"
+  },
+  {
+    "StationCode": "0073",
+    "StationName": "石見津田"
+  },
+  {
+    "StationCode": "0074",
+    "StationName": "益田"
+  },
+  {
+    "StationCode": "0075",
+    "StationName": "倉敷"
+  },
+  {
+    "StationCode": "0076",
+    "StationName": "清音"
+  },
+  {
+    "StationCode": "0077",
+    "StationName": "総社"
+  },
+  {
+    "StationCode": "0078",
+    "StationName": "豪渓"
+  },
+  {
+    "StationCode": "0079",
+    "StationName": "日羽"
+  },
+  {
+    "StationCode": "0080",
+    "StationName": "美袋"
+  },
+  {
+    "StationCode": "0081",
+    "StationName": "備中広瀬"
+  },
+  {
+    "StationCode": "0082",
+    "StationName": "備中高梁"
+  },
+  {
+    "StationCode": "0083",
+    "StationName": "木野山"
+  },
+  {
+    "StationCode": "0084",
+    "StationName": "備中川面"
+  },
+  {
+    "StationCode": "0085",
+    "StationName": "方谷"
+  },
+  {
+    "StationCode": "0087",
+    "StationName": "井倉"
+  },
+  {
+    "StationCode": "0088",
+    "StationName": "石蟹"
+  },
+  {
+    "StationCode": "0089",
+    "StationName": "新見"
+  },
+  {
+    "StationCode": "0090",
+    "StationName": "布原"
+  },
+  {
+    "StationCode": "0091",
+    "StationName": "備中神代"
+  },
+  {
+    "StationCode": "0092",
+    "StationName": "足立"
+  },
+  {
+    "StationCode": "0093",
+    "StationName": "新郷"
+  },
+  {
+    "StationCode": "0094",
+    "StationName": "上石見"
+  },
+  {
+    "StationCode": "0096",
+    "StationName": "生山"
+  },
+  {
+    "StationCode": "0097",
+    "StationName": "上菅"
+  },
+  {
+    "StationCode": "0098",
+    "StationName": "黒坂"
+  },
+  {
+    "StationCode": "0099",
+    "StationName": "根雨"
+  },
+  {
+    "StationCode": "0100",
+    "StationName": "武庫"
+  },
+  {
+    "StationCode": "0101",
+    "StationName": "江尾"
+  },
+  {
+    "StationCode": "0103",
+    "StationName": "伯耆溝口"
+  },
+  {
+    "StationCode": "0104",
+    "StationName": "岸本"
+  },
+  {
+    "StationCode": "0106",
+    "StationName": "糸崎"
+  },
+  {
+    "StationCode": "0107",
+    "StationName": "三原"
+  },
+  {
+    "StationCode": "0108",
+    "StationName": "本郷"
+  },
+  {
+    "StationCode": "0109",
+    "StationName": "河内"
+  },
+  {
+    "StationCode": "0110",
+    "StationName": "入野"
+  },
+  {
+    "StationCode": "0111",
+    "StationName": "白市"
+  },
+  {
+    "StationCode": "0112",
+    "StationName": "西高屋"
+  },
+  {
+    "StationCode": "0113",
+    "StationName": "西条"
+  },
+  {
+    "StationCode": "0114",
+    "StationName": "八本松"
+  },
+  {
+    "StationCode": "0115",
+    "StationName": "瀬野"
+  },
+  {
+    "StationCode": "0116",
+    "StationName": "中野東"
+  },
+  {
+    "StationCode": "0117",
+    "StationName": "安芸中野"
+  },
+  {
+    "StationCode": "0118",
+    "StationName": "海田市"
+  },
+  {
+    "StationCode": "0119",
+    "StationName": "向洋"
+  },
+  {
+    "StationCode": "0120",
+    "StationName": "天神川"
+  },
+  {
+    "StationCode": "0122",
+    "StationName": "広島"
+  },
+  {
+    "StationCode": "0123",
+    "StationName": "新白島"
+  },
+  {
+    "StationCode": "0124",
+    "StationName": "横川"
+  },
+  {
+    "StationCode": "0125",
+    "StationName": "西広島"
+  },
+  {
+    "StationCode": "0126",
+    "StationName": "新井口"
+  },
+  {
+    "StationCode": "0127",
+    "StationName": "五日市"
+  },
+  {
+    "StationCode": "0128",
+    "StationName": "廿日市"
+  },
+  {
+    "StationCode": "0129",
+    "StationName": "宮内串戸"
+  },
+  {
+    "StationCode": "0130",
+    "StationName": "阿品"
+  },
+  {
+    "StationCode": "0131",
+    "StationName": "宮島口"
+  },
+  {
+    "StationCode": "0132",
+    "StationName": "前空"
+  },
+  {
+    "StationCode": "0133",
+    "StationName": "大野浦"
+  },
+  {
+    "StationCode": "0134",
+    "StationName": "玖波"
+  },
+  {
+    "StationCode": "0135",
+    "StationName": "大竹"
+  },
+  {
+    "StationCode": "0136",
+    "StationName": "和木"
+  },
+  {
+    "StationCode": "0137",
+    "StationName": "岩国"
+  },
+  {
+    "StationCode": "0138",
+    "StationName": "南岩国"
+  },
+  {
+    "StationCode": "0139",
+    "StationName": "藤生"
+  },
+  {
+    "StationCode": "0140",
+    "StationName": "通津"
+  },
+  {
+    "StationCode": "0141",
+    "StationName": "由宇"
+  },
+  {
+    "StationCode": "0142",
+    "StationName": "神代"
+  },
+  {
+    "StationCode": "0143",
+    "StationName": "大畠"
+  },
+  {
+    "StationCode": "0144",
+    "StationName": "柳井港"
+  },
+  {
+    "StationCode": "0145",
+    "StationName": "柳井"
+  },
+  {
+    "StationCode": "0146",
+    "StationName": "田布施"
+  },
+  {
+    "StationCode": "0147",
+    "StationName": "岩田"
+  },
+  {
+    "StationCode": "0148",
+    "StationName": "島田"
+  },
+  {
+    "StationCode": "0149",
+    "StationName": "光"
+  },
+  {
+    "StationCode": "0150",
+    "StationName": "下松"
+  },
+  {
+    "StationCode": "0151",
+    "StationName": "櫛ヶ浜"
+  },
+  {
+    "StationCode": "0152",
+    "StationName": "徳山"
+  },
+  {
+    "StationCode": "0153",
+    "StationName": "新南陽"
+  },
+  {
+    "StationCode": "0154",
+    "StationName": "福川"
+  },
+  {
+    "StationCode": "0155",
+    "StationName": "戸田"
+  },
+  {
+    "StationCode": "0156",
+    "StationName": "富海"
+  },
+  {
+    "StationCode": "0157",
+    "StationName": "防府"
+  },
+  {
+    "StationCode": "0158",
+    "StationName": "大道"
+  },
+  {
+    "StationCode": "0159",
+    "StationName": "四辻"
+  },
+  {
+    "StationCode": "0160",
+    "StationName": "新山口"
+  },
+  {
+    "StationCode": "0161",
+    "StationName": "嘉川"
+  },
+  {
+    "StationCode": "0162",
+    "StationName": "本由良"
+  },
+  {
+    "StationCode": "0163",
+    "StationName": "厚東"
+  },
+  {
+    "StationCode": "0164",
+    "StationName": "宇部"
+  },
+  {
+    "StationCode": "0165",
+    "StationName": "小野田"
+  },
+  {
+    "StationCode": "0166",
+    "StationName": "厚狭"
+  },
+  {
+    "StationCode": "0167",
+    "StationName": "埴生"
+  },
+  {
+    "StationCode": "0168",
+    "StationName": "小月"
+  },
+  {
+    "StationCode": "0169",
+    "StationName": "長府"
+  },
+  {
+    "StationCode": "0170",
+    "StationName": "新下関"
+  },
+  {
+    "StationCode": "0171",
+    "StationName": "幡生"
+  },
+  {
+    "StationCode": "0172",
+    "StationName": "下関"
+  },
+  {
+    "StationCode": "0173",
+    "StationName": "須波"
+  },
+  {
+    "StationCode": "0174",
+    "StationName": "安芸幸崎"
+  },
+  {
+    "StationCode": "0175",
+    "StationName": "忠海"
+  },
+  {
+    "StationCode": "0176",
+    "StationName": "安芸長浜"
+  },
+  {
+    "StationCode": "0177",
+    "StationName": "大乗"
+  },
+  {
+    "StationCode": "0178",
+    "StationName": "竹原"
+  },
+  {
+    "StationCode": "0179",
+    "StationName": "吉名"
+  },
+  {
+    "StationCode": "0180",
+    "StationName": "安芸津"
+  },
+  {
+    "StationCode": "0181",
+    "StationName": "風早"
+  },
+  {
+    "StationCode": "0182",
+    "StationName": "安浦"
+  },
+  {
+    "StationCode": "0183",
+    "StationName": "安登"
+  },
+  {
+    "StationCode": "0184",
+    "StationName": "安芸川尻"
+  },
+  {
+    "StationCode": "0185",
+    "StationName": "仁方"
+  },
+  {
+    "StationCode": "0186",
+    "StationName": "広"
+  },
+  {
+    "StationCode": "0187",
+    "StationName": "新広"
+  },
+  {
+    "StationCode": "0188",
+    "StationName": "安芸阿賀"
+  },
+  {
+    "StationCode": "0189",
+    "StationName": "呉"
+  },
+  {
+    "StationCode": "0190",
+    "StationName": "川原石"
+  },
+  {
+    "StationCode": "0191",
+    "StationName": "吉浦"
+  },
+  {
+    "StationCode": "0192",
+    "StationName": "かるが浜"
+  },
+  {
+    "StationCode": "0193",
+    "StationName": "天応"
+  },
+  {
+    "StationCode": "0194",
+    "StationName": "呉ポートピア"
+  },
+  {
+    "StationCode": "0195",
+    "StationName": "小屋浦"
+  },
+  {
+    "StationCode": "0196",
+    "StationName": "水尻"
+  },
+  {
+    "StationCode": "0197",
+    "StationName": "坂"
+  },
+  {
+    "StationCode": "0198",
+    "StationName": "矢野"
+  },
+  {
+    "StationCode": "0199",
+    "StationName": "三滝"
+  },
+  {
+    "StationCode": "0200",
+    "StationName": "安芸長束"
+  },
+  {
+    "StationCode": "0201",
+    "StationName": "下祇園"
+  },
+  {
+    "StationCode": "0202",
+    "StationName": "古市橋"
+  },
+  {
+    "StationCode": "0203",
+    "StationName": "大町"
+  },
+  {
+    "StationCode": "0204",
+    "StationName": "緑井"
+  },
+  {
+    "StationCode": "0205",
+    "StationName": "七軒茶屋"
+  },
+  {
+    "StationCode": "0206",
+    "StationName": "梅林"
+  },
+  {
+    "StationCode": "0207",
+    "StationName": "上八木"
+  },
+  {
+    "StationCode": "0208",
+    "StationName": "中島"
+  },
+  {
+    "StationCode": "0209",
+    "StationName": "可部"
+  },
+  {
+    "StationCode": "0210",
+    "StationName": "上狛"
+  },
+  {
+    "StationCode": "0211",
+    "StationName": "棚倉"
+  },
+  {
+    "StationCode": "0212",
+    "StationName": "玉水"
+  },
+  {
+    "StationCode": "0213",
+    "StationName": "山城多賀"
+  },
+  {
+    "StationCode": "0214",
+    "StationName": "山城青谷"
+  },
+  {
+    "StationCode": "0215",
+    "StationName": "長池"
+  },
+  {
+    "StationCode": "0216",
+    "StationName": "城陽"
+  },
+  {
+    "StationCode": "0217",
+    "StationName": "新田"
+  },
+  {
+    "StationCode": "0218",
+    "StationName": "JR小倉"
+  },
+  {
+    "StationCode": "0219",
+    "StationName": "宇治"
+  },
+  {
+    "StationCode": "0220",
+    "StationName": "黄檗"
+  },
+  {
+    "StationCode": "0221",
+    "StationName": "木幡"
+  },
+  {
+    "StationCode": "0222",
+    "StationName": "六地蔵"
+  },
+  {
+    "StationCode": "0223",
+    "StationName": "桃山"
+  },
+  {
+    "StationCode": "0224",
+    "StationName": "JR藤森"
+  },
+  {
+    "StationCode": "0225",
+    "StationName": "稲荷"
+  },
+  {
+    "StationCode": "0226",
+    "StationName": "東福寺"
+  },
+  {
+    "StationCode": "0227",
+    "StationName": "京都"
+  },
+  {
+    "StationCode": "0228",
+    "StationName": "木津"
+  },
+  {
+    "StationCode": "0229",
+    "StationName": "梅小路京都西"
+  },
+  {
+    "StationCode": "0230",
+    "StationName": "丹波口"
+  },
+  {
+    "StationCode": "0231",
+    "StationName": "二条"
+  },
+  {
+    "StationCode": "0232",
+    "StationName": "円町"
+  },
+  {
+    "StationCode": "0233",
+    "StationName": "花園"
+  },
+  {
+    "StationCode": "0234",
+    "StationName": "太秦"
+  },
+  {
+    "StationCode": "0235",
+    "StationName": "嵯峨嵐山"
+  },
+  {
+    "StationCode": "0236",
+    "StationName": "保津峡"
+  },
+  {
+    "StationCode": "0237",
+    "StationName": "馬堀"
+  },
+  {
+    "StationCode": "0238",
+    "StationName": "亀岡"
+  },
+  {
+    "StationCode": "0239",
+    "StationName": "並河"
+  },
+  {
+    "StationCode": "0240",
+    "StationName": "千代川"
+  },
+  {
+    "StationCode": "0241",
+    "StationName": "八木"
+  },
+  {
+    "StationCode": "0242",
+    "StationName": "吉富"
+  },
+  {
+    "StationCode": "0243",
+    "StationName": "園部"
+  },
+  {
+    "StationCode": "0244",
+    "StationName": "船岡"
+  },
+  {
+    "StationCode": "0245",
+    "StationName": "岡山"
+  },
+  {
+    "StationCode": "0246",
+    "StationName": "大元"
+  },
+  {
+    "StationCode": "0247",
+    "StationName": "備前西市"
+  },
+  {
+    "StationCode": "0248",
+    "StationName": "妹尾"
+  },
+  {
+    "StationCode": "0249",
+    "StationName": "備中箕島"
+  },
+  {
+    "StationCode": "0250",
+    "StationName": "早島"
+  },
+  {
+    "StationCode": "0251",
+    "StationName": "久々原"
+  },
+  {
+    "StationCode": "0252",
+    "StationName": "茶屋町"
+  },
+  {
+    "StationCode": "0253",
+    "StationName": "植松"
+  },
+  {
+    "StationCode": "0254",
+    "StationName": "木見"
+  },
+  {
+    "StationCode": "0255",
+    "StationName": "上の町"
+  },
+  {
+    "StationCode": "0256",
+    "StationName": "児島"
+  },
+  {
+    "StationCode": "0258",
+    "StationName": "彦崎"
+  },
+  {
+    "StationCode": "0259",
+    "StationName": "備前片岡"
+  },
+  {
+    "StationCode": "0260",
+    "StationName": "迫川"
+  },
+  {
+    "StationCode": "0261",
+    "StationName": "常山"
+  },
+  {
+    "StationCode": "0262",
+    "StationName": "八浜"
+  },
+  {
+    "StationCode": "0263",
+    "StationName": "備前田井"
+  },
+  {
+    "StationCode": "0264",
+    "StationName": "宇野"
+  },
+  {
+    "StationCode": "0265",
+    "StationName": "上郡"
+  },
+  {
+    "StationCode": "0266",
+    "StationName": "三石"
+  },
+  {
+    "StationCode": "0267",
+    "StationName": "吉永"
+  },
+  {
+    "StationCode": "0268",
+    "StationName": "和気"
+  },
+  {
+    "StationCode": "0269",
+    "StationName": "熊山"
+  },
+  {
+    "StationCode": "0270",
+    "StationName": "万富"
+  },
+  {
+    "StationCode": "0271",
+    "StationName": "瀬戸"
+  },
+  {
+    "StationCode": "0272",
+    "StationName": "上道"
+  },
+  {
+    "StationCode": "0273",
+    "StationName": "東岡山"
+  },
+  {
+    "StationCode": "0274",
+    "StationName": "高島"
+  },
+  {
+    "StationCode": "0275",
+    "StationName": "西川原"
+  },
+  {
+    "StationCode": "0277",
+    "StationName": "北長瀬"
+  },
+  {
+    "StationCode": "0278",
+    "StationName": "庭瀬"
+  },
+  {
+    "StationCode": "0279",
+    "StationName": "中庄"
+  },
+  {
+    "StationCode": "0280",
+    "StationName": "西阿知"
+  },
+  {
+    "StationCode": "0281",
+    "StationName": "新倉敷"
+  },
+  {
+    "StationCode": "0282",
+    "StationName": "金光"
+  },
+  {
+    "StationCode": "0283",
+    "StationName": "鴨方"
+  },
+  {
+    "StationCode": "0284",
+    "StationName": "里庄"
+  },
+  {
+    "StationCode": "0285",
+    "StationName": "笠岡"
+  },
+  {
+    "StationCode": "0286",
+    "StationName": "大門"
+  },
+  {
+    "StationCode": "0287",
+    "StationName": "東福山"
+  },
+  {
+    "StationCode": "0288",
+    "StationName": "福山"
+  },
+  {
+    "StationCode": "0289",
+    "StationName": "備後赤坂"
+  },
+  {
+    "StationCode": "0290",
+    "StationName": "松永"
+  },
+  {
+    "StationCode": "0291",
+    "StationName": "東尾道"
+  },
+  {
+    "StationCode": "0292",
+    "StationName": "尾道"
+  },
+  {
+    "StationCode": "0296",
+    "StationName": "播州赤穂"
+  },
+  {
+    "StationCode": "0298",
+    "StationName": "天和"
+  },
+  {
+    "StationCode": "0299",
+    "StationName": "備前福河"
+  },
+  {
+    "StationCode": "0300",
+    "StationName": "寒河"
+  },
+  {
+    "StationCode": "0301",
+    "StationName": "日生"
+  },
+  {
+    "StationCode": "0302",
+    "StationName": "伊里"
+  },
+  {
+    "StationCode": "0303",
+    "StationName": "備前片上"
+  },
+  {
+    "StationCode": "0304",
+    "StationName": "西片上"
+  },
+  {
+    "StationCode": "0305",
+    "StationName": "伊部"
+  },
+  {
+    "StationCode": "0306",
+    "StationName": "香登"
+  },
+  {
+    "StationCode": "0307",
+    "StationName": "長船"
+  },
+  {
+    "StationCode": "0308",
+    "StationName": "邑久"
+  },
+  {
+    "StationCode": "0309",
+    "StationName": "大富"
+  },
+  {
+    "StationCode": "0310",
+    "StationName": "西大寺"
+  },
+  {
+    "StationCode": "0311",
+    "StationName": "大多羅"
+  },
+  {
+    "StationCode": "0312",
+    "StationName": "河戸帆待川"
+  },
+  {
+    "StationCode": "0313",
+    "StationName": "あき亀山"
+  },
+  {
+    "StationCode": "0349",
+    "StationName": "周防下郷"
+  },
+  {
+    "StationCode": "0350",
+    "StationName": "上郷"
+  },
+  {
+    "StationCode": "0351",
+    "StationName": "仁保津"
+  },
+  {
+    "StationCode": "0352",
+    "StationName": "大歳"
+  },
+  {
+    "StationCode": "0353",
+    "StationName": "矢原"
+  },
+  {
+    "StationCode": "0354",
+    "StationName": "湯田温泉"
+  },
+  {
+    "StationCode": "0355",
+    "StationName": "山口"
+  },
+  {
+    "StationCode": "0356",
+    "StationName": "上山口"
+  },
+  {
+    "StationCode": "0357",
+    "StationName": "宮野"
+  },
+  {
+    "StationCode": "0358",
+    "StationName": "仁保"
+  },
+  {
+    "StationCode": "0359",
+    "StationName": "篠目"
+  },
+  {
+    "StationCode": "0360",
+    "StationName": "長門峡"
+  },
+  {
+    "StationCode": "0361",
+    "StationName": "渡川"
+  },
+  {
+    "StationCode": "0362",
+    "StationName": "三谷"
+  },
+  {
+    "StationCode": "0363",
+    "StationName": "名草"
+  },
+  {
+    "StationCode": "0364",
+    "StationName": "地福"
+  },
+  {
+    "StationCode": "0365",
+    "StationName": "鍋倉"
+  },
+  {
+    "StationCode": "0366",
+    "StationName": "徳佐"
+  },
+  {
+    "StationCode": "0367",
+    "StationName": "船平山"
+  },
+  {
+    "StationCode": "0368",
+    "StationName": "津和野"
+  },
+  {
+    "StationCode": "0369",
+    "StationName": "青野山"
+  },
+  {
+    "StationCode": "0370",
+    "StationName": "日原"
+  },
+  {
+    "StationCode": "0371",
+    "StationName": "青原"
+  },
+  {
+    "StationCode": "0372",
+    "StationName": "東青原"
+  },
+  {
+    "StationCode": "0373",
+    "StationName": "石見横田"
+  },
+  {
+    "StationCode": "0374",
+    "StationName": "本俣賀"
+  },
+  {
+    "StationCode": "0375",
+    "StationName": "日吉"
+  },
+  {
+    "StationCode": "0376",
+    "StationName": "鍼灸大学前"
+  },
+  {
+    "StationCode": "0377",
+    "StationName": "胡麻"
+  },
+  {
+    "StationCode": "0378",
+    "StationName": "下山"
+  },
+  {
+    "StationCode": "0379",
+    "StationName": "和知"
+  },
+  {
+    "StationCode": "0380",
+    "StationName": "安栖里"
+  },
+  {
+    "StationCode": "0381",
+    "StationName": "立木"
+  },
+  {
+    "StationCode": "0382",
+    "StationName": "山家"
+  },
+  {
+    "StationCode": "0383",
+    "StationName": "綾部"
+  },
+  {
+    "StationCode": "0384",
+    "StationName": "高津"
+  },
+  {
+    "StationCode": "0385",
+    "StationName": "石原"
+  },
+  {
+    "StationCode": "0386",
+    "StationName": "福知山"
+  },
+  {
+    "StationCode": "0387",
+    "StationName": "上川口"
+  },
+  {
+    "StationCode": "0388",
+    "StationName": "下夜久野"
+  },
+  {
+    "StationCode": "0389",
+    "StationName": "上夜久野"
+  },
+  {
+    "StationCode": "0390",
+    "StationName": "梁瀬"
+  },
+  {
+    "StationCode": "0391",
+    "StationName": "和田山"
+  },
+  {
+    "StationCode": "0392",
+    "StationName": "養父"
+  },
+  {
+    "StationCode": "0393",
+    "StationName": "八鹿"
+  },
+  {
+    "StationCode": "0395",
+    "StationName": "江原"
+  },
+  {
+    "StationCode": "0396",
+    "StationName": "国府"
+  },
+  {
+    "StationCode": "0397",
+    "StationName": "豊岡"
+  },
+  {
+    "StationCode": "0398",
+    "StationName": "玄武洞"
+  },
+  {
+    "StationCode": "0399",
+    "StationName": "城崎温泉"
+  },
+  {
+    "StationCode": "0400",
+    "StationName": "竹野"
+  },
+  {
+    "StationCode": "0401",
+    "StationName": "佐津"
+  },
+  {
+    "StationCode": "0402",
+    "StationName": "柴山"
+  },
+  {
+    "StationCode": "0403",
+    "StationName": "香住"
+  },
+  {
+    "StationCode": "0404",
+    "StationName": "鎧"
+  },
+  {
+    "StationCode": "0405",
+    "StationName": "餘部"
+  },
+  {
+    "StationCode": "0406",
+    "StationName": "久谷"
+  },
+  {
+    "StationCode": "0407",
+    "StationName": "浜坂"
+  },
+  {
+    "StationCode": "0408",
+    "StationName": "諸寄"
+  },
+  {
+    "StationCode": "0409",
+    "StationName": "新三田"
+  },
+  {
+    "StationCode": "0410",
+    "StationName": "広野"
+  },
+  {
+    "StationCode": "0411",
+    "StationName": "相野"
+  },
+  {
+    "StationCode": "0412",
+    "StationName": "藍本"
+  },
+  {
+    "StationCode": "0413",
+    "StationName": "草野"
+  },
+  {
+    "StationCode": "0414",
+    "StationName": "古市"
+  },
+  {
+    "StationCode": "0415",
+    "StationName": "南矢代"
+  },
+  {
+    "StationCode": "0416",
+    "StationName": "篠山口"
+  },
+  {
+    "StationCode": "0417",
+    "StationName": "丹波大山"
+  },
+  {
+    "StationCode": "0418",
+    "StationName": "下滝"
+  },
+  {
+    "StationCode": "0419",
+    "StationName": "谷川"
+  },
+  {
+    "StationCode": "0420",
+    "StationName": "柏原"
+  },
+  {
+    "StationCode": "0421",
+    "StationName": "石生"
+  },
+  {
+    "StationCode": "0422",
+    "StationName": "黒井"
+  },
+  {
+    "StationCode": "0423",
+    "StationName": "市島"
+  },
+  {
+    "StationCode": "0424",
+    "StationName": "丹波竹田"
+  },
+  {
+    "StationCode": "0425",
+    "StationName": "姫路"
+  },
+  {
+    "StationCode": "0426",
+    "StationName": "京口"
+  },
+  {
+    "StationCode": "0427",
+    "StationName": "野里"
+  },
+  {
+    "StationCode": "0428",
+    "StationName": "砥堀"
+  },
+  {
+    "StationCode": "0429",
+    "StationName": "仁豊野"
+  },
+  {
+    "StationCode": "0430",
+    "StationName": "香呂"
+  },
+  {
+    "StationCode": "0431",
+    "StationName": "溝口"
+  },
+  {
+    "StationCode": "0432",
+    "StationName": "福崎"
+  },
+  {
+    "StationCode": "0433",
+    "StationName": "甘地"
+  },
+  {
+    "StationCode": "0434",
+    "StationName": "鶴居"
+  },
+  {
+    "StationCode": "0435",
+    "StationName": "新野"
+  },
+  {
+    "StationCode": "0436",
+    "StationName": "寺前"
+  },
+  {
+    "StationCode": "0437",
+    "StationName": "長谷"
+  },
+  {
+    "StationCode": "0438",
+    "StationName": "生野"
+  },
+  {
+    "StationCode": "0439",
+    "StationName": "新井"
+  },
+  {
+    "StationCode": "0440",
+    "StationName": "青倉"
+  },
+  {
+    "StationCode": "0441",
+    "StationName": "竹田"
+  },
+  {
+    "StationCode": "0442",
+    "StationName": "淵垣"
+  },
+  {
+    "StationCode": "0443",
+    "StationName": "梅迫"
+  },
+  {
+    "StationCode": "0444",
+    "StationName": "真倉"
+  },
+  {
+    "StationCode": "0445",
+    "StationName": "西舞鶴"
+  },
+  {
+    "StationCode": "0446",
+    "StationName": "東舞鶴"
+  },
+  {
+    "StationCode": "0447",
+    "StationName": "寺家"
+  },
+  {
+    "StationCode": "0448",
+    "StationName": "近江塩津"
+  },
+  {
+    "StationCode": "0449",
+    "StationName": "新疋田"
+  },
+  {
+    "StationCode": "0450",
+    "StationName": "敦賀"
+  },
+  {
+    "StationCode": "0488",
+    "StationName": "新宮"
+  },
+  {
+    "StationCode": "0489",
+    "StationName": "三輪崎"
+  },
+  {
+    "StationCode": "0490",
+    "StationName": "紀伊佐野"
+  },
+  {
+    "StationCode": "0491",
+    "StationName": "宇久井"
+  },
+  {
+    "StationCode": "0492",
+    "StationName": "那智"
+  },
+  {
+    "StationCode": "0493",
+    "StationName": "紀伊天満"
+  },
+  {
+    "StationCode": "0494",
+    "StationName": "紀伊勝浦"
+  },
+  {
+    "StationCode": "0495",
+    "StationName": "湯川"
+  },
+  {
+    "StationCode": "0496",
+    "StationName": "太地"
+  },
+  {
+    "StationCode": "0497",
+    "StationName": "下里"
+  },
+  {
+    "StationCode": "0498",
+    "StationName": "紀伊浦神"
+  },
+  {
+    "StationCode": "0499",
+    "StationName": "紀伊田原"
+  },
+  {
+    "StationCode": "0500",
+    "StationName": "古座"
+  },
+  {
+    "StationCode": "0501",
+    "StationName": "紀伊姫"
+  },
+  {
+    "StationCode": "0502",
+    "StationName": "串本"
+  },
+  {
+    "StationCode": "0503",
+    "StationName": "紀伊有田"
+  },
+  {
+    "StationCode": "0504",
+    "StationName": "田並"
+  },
+  {
+    "StationCode": "0505",
+    "StationName": "田子"
+  },
+  {
+    "StationCode": "0506",
+    "StationName": "和深"
+  },
+  {
+    "StationCode": "0507",
+    "StationName": "江住"
+  },
+  {
+    "StationCode": "0508",
+    "StationName": "見老津"
+  },
+  {
+    "StationCode": "0510",
+    "StationName": "周参見"
+  },
+  {
+    "StationCode": "0511",
+    "StationName": "紀伊日置"
+  },
+  {
+    "StationCode": "0512",
+    "StationName": "椿"
+  },
+  {
+    "StationCode": "0513",
+    "StationName": "紀伊富田"
+  },
+  {
+    "StationCode": "0514",
+    "StationName": "白浜"
+  },
+  {
+    "StationCode": "0515",
+    "StationName": "朝来"
+  },
+  {
+    "StationCode": "0516",
+    "StationName": "紀伊新庄"
+  },
+  {
+    "StationCode": "0517",
+    "StationName": "紀伊田辺"
+  },
+  {
+    "StationCode": "0518",
+    "StationName": "芳養"
+  },
+  {
+    "StationCode": "0519",
+    "StationName": "南部"
+  },
+  {
+    "StationCode": "0520",
+    "StationName": "岩代"
+  },
+  {
+    "StationCode": "0521",
+    "StationName": "切目"
+  },
+  {
+    "StationCode": "0522",
+    "StationName": "印南"
+  },
+  {
+    "StationCode": "0523",
+    "StationName": "稲原"
+  },
+  {
+    "StationCode": "0524",
+    "StationName": "和佐"
+  },
+  {
+    "StationCode": "0525",
+    "StationName": "道成寺"
+  },
+  {
+    "StationCode": "0526",
+    "StationName": "御坊"
+  },
+  {
+    "StationCode": "0527",
+    "StationName": "紀伊内原"
+  },
+  {
+    "StationCode": "0528",
+    "StationName": "紀伊由良"
+  },
+  {
+    "StationCode": "0529",
+    "StationName": "広川ビーチ"
+  },
+  {
+    "StationCode": "0530",
+    "StationName": "湯浅"
+  },
+  {
+    "StationCode": "0531",
+    "StationName": "藤並"
+  },
+  {
+    "StationCode": "0532",
+    "StationName": "紀伊宮原"
+  },
+  {
+    "StationCode": "0533",
+    "StationName": "箕島"
+  },
+  {
+    "StationCode": "0534",
+    "StationName": "初島"
+  },
+  {
+    "StationCode": "0535",
+    "StationName": "下津"
+  },
+  {
+    "StationCode": "0536",
+    "StationName": "加茂郷"
+  },
+  {
+    "StationCode": "0537",
+    "StationName": "冷水浦"
+  },
+  {
+    "StationCode": "0538",
+    "StationName": "海南"
+  },
+  {
+    "StationCode": "0539",
+    "StationName": "黒江"
+  },
+  {
+    "StationCode": "0540",
+    "StationName": "紀三井寺"
+  },
+  {
+    "StationCode": "0541",
+    "StationName": "宮前"
+  },
+  {
+    "StationCode": "0542",
+    "StationName": "和歌山"
+  },
+  {
+    "StationCode": "0543",
+    "StationName": "五条"
+  },
+  {
+    "StationCode": "0544",
+    "StationName": "大和二見"
+  },
+  {
+    "StationCode": "0545",
+    "StationName": "隅田"
+  },
+  {
+    "StationCode": "0546",
+    "StationName": "下兵庫"
+  },
+  {
+    "StationCode": "0547",
+    "StationName": "橋本"
+  },
+  {
+    "StationCode": "0548",
+    "StationName": "紀伊山田"
+  },
+  {
+    "StationCode": "0549",
+    "StationName": "高野口"
+  },
+  {
+    "StationCode": "0550",
+    "StationName": "中飯降"
+  },
+  {
+    "StationCode": "0551",
+    "StationName": "妙寺"
+  },
+  {
+    "StationCode": "0552",
+    "StationName": "大谷"
+  },
+  {
+    "StationCode": "0553",
+    "StationName": "笠田"
+  },
+  {
+    "StationCode": "0554",
+    "StationName": "西笠田"
+  },
+  {
+    "StationCode": "0555",
+    "StationName": "名手"
+  },
+  {
+    "StationCode": "0556",
+    "StationName": "粉河"
+  },
+  {
+    "StationCode": "0557",
+    "StationName": "紀伊長田"
+  },
+  {
+    "StationCode": "0558",
+    "StationName": "打田"
+  },
+  {
+    "StationCode": "0559",
+    "StationName": "下井阪"
+  },
+  {
+    "StationCode": "0560",
+    "StationName": "岩出"
+  },
+  {
+    "StationCode": "0561",
+    "StationName": "船戸"
+  },
+  {
+    "StationCode": "0562",
+    "StationName": "紀伊小倉"
+  },
+  {
+    "StationCode": "0563",
+    "StationName": "布施屋"
+  },
+  {
+    "StationCode": "0564",
+    "StationName": "千旦"
+  },
+  {
+    "StationCode": "0565",
+    "StationName": "田井ノ瀬"
+  },
+  {
+    "StationCode": "0566",
+    "StationName": "亀山"
+  },
+  {
+    "StationCode": "0567",
+    "StationName": "関"
+  },
+  {
+    "StationCode": "0568",
+    "StationName": "加太"
+  },
+  {
+    "StationCode": "0569",
+    "StationName": "柘植"
+  },
+  {
+    "StationCode": "0570",
+    "StationName": "新堂"
+  },
+  {
+    "StationCode": "0571",
+    "StationName": "佐那具"
+  },
+  {
+    "StationCode": "0572",
+    "StationName": "伊賀上野"
+  },
+  {
+    "StationCode": "0573",
+    "StationName": "島ケ原"
+  },
+  {
+    "StationCode": "0574",
+    "StationName": "月ケ瀬口"
+  },
+  {
+    "StationCode": "0575",
+    "StationName": "大河原"
+  },
+  {
+    "StationCode": "0576",
+    "StationName": "笠置"
+  },
+  {
+    "StationCode": "0577",
+    "StationName": "加茂"
+  },
+  {
+    "StationCode": "0578",
+    "StationName": "油日"
+  },
+  {
+    "StationCode": "0579",
+    "StationName": "甲賀"
+  },
+  {
+    "StationCode": "0580",
+    "StationName": "寺庄"
+  },
+  {
+    "StationCode": "0581",
+    "StationName": "甲南"
+  },
+  {
+    "StationCode": "0582",
+    "StationName": "貴生川"
+  },
+  {
+    "StationCode": "0583",
+    "StationName": "三雲"
+  },
+  {
+    "StationCode": "0584",
+    "StationName": "甲西"
+  },
+  {
+    "StationCode": "0585",
+    "StationName": "石部"
+  },
+  {
+    "StationCode": "0586",
+    "StationName": "手原"
+  },
+  {
+    "StationCode": "0587",
+    "StationName": "草津"
+  },
+  {
+    "StationCode": "0588",
+    "StationName": "奈良"
+  },
+  {
+    "StationCode": "0589",
+    "StationName": "京終"
+  },
+  {
+    "StationCode": "0590",
+    "StationName": "帯解"
+  },
+  {
+    "StationCode": "0591",
+    "StationName": "櫟本"
+  },
+  {
+    "StationCode": "0592",
+    "StationName": "天理"
+  },
+  {
+    "StationCode": "0593",
+    "StationName": "長柄"
+  },
+  {
+    "StationCode": "0594",
+    "StationName": "柳本"
+  },
+  {
+    "StationCode": "0595",
+    "StationName": "巻向"
+  },
+  {
+    "StationCode": "0596",
+    "StationName": "三輪"
+  },
+  {
+    "StationCode": "0597",
+    "StationName": "桜井"
+  },
+  {
+    "StationCode": "0598",
+    "StationName": "香久山"
+  },
+  {
+    "StationCode": "0599",
+    "StationName": "畝傍"
+  },
+  {
+    "StationCode": "0600",
+    "StationName": "金橋"
+  },
+  {
+    "StationCode": "0601",
+    "StationName": "高田"
+  },
+  {
+    "StationCode": "0602",
+    "StationName": "王寺"
+  },
+  {
+    "StationCode": "0603",
+    "StationName": "畠田"
+  },
+  {
+    "StationCode": "0604",
+    "StationName": "志都美"
+  },
+  {
+    "StationCode": "0605",
+    "StationName": "香芝"
+  },
+  {
+    "StationCode": "0606",
+    "StationName": "JR五位堂"
+  },
+  {
+    "StationCode": "0607",
+    "StationName": "大和新庄"
+  },
+  {
+    "StationCode": "0608",
+    "StationName": "御所"
+  },
+  {
+    "StationCode": "0609",
+    "StationName": "玉手"
+  },
+  {
+    "StationCode": "0610",
+    "StationName": "掖上"
+  },
+  {
+    "StationCode": "0611",
+    "StationName": "吉野口"
+  },
+  {
+    "StationCode": "0612",
+    "StationName": "北宇智"
+  },
+  {
+    "StationCode": "0613",
+    "StationName": "津ノ井"
+  },
+  {
+    "StationCode": "0614",
+    "StationName": "東郡家"
+  },
+  {
+    "StationCode": "0615",
+    "StationName": "郡家"
+  },
+  {
+    "StationCode": "0616",
+    "StationName": "河原"
+  },
+  {
+    "StationCode": "0617",
+    "StationName": "国英"
+  },
+  {
+    "StationCode": "0618",
+    "StationName": "鷹狩"
+  },
+  {
+    "StationCode": "0619",
+    "StationName": "用瀬"
+  },
+  {
+    "StationCode": "0620",
+    "StationName": "因幡社"
+  },
+  {
+    "StationCode": "0621",
+    "StationName": "智頭"
+  },
+  {
+    "StationCode": "0645",
+    "StationName": "三次"
+  },
+  {
+    "StationCode": "0646",
+    "StationName": "西三次"
+  },
+  {
+    "StationCode": "0647",
+    "StationName": "志和地"
+  },
+  {
+    "StationCode": "0648",
+    "StationName": "上川立"
+  },
+  {
+    "StationCode": "0649",
+    "StationName": "甲立"
+  },
+  {
+    "StationCode": "0650",
+    "StationName": "吉田口"
+  },
+  {
+    "StationCode": "0651",
+    "StationName": "向原"
+  },
+  {
+    "StationCode": "0652",
+    "StationName": "井原市"
+  },
+  {
+    "StationCode": "0653",
+    "StationName": "志和口"
+  },
+  {
+    "StationCode": "0654",
+    "StationName": "上三田"
+  },
+  {
+    "StationCode": "0655",
+    "StationName": "中三田"
+  },
+  {
+    "StationCode": "0656",
+    "StationName": "白木山"
+  },
+  {
+    "StationCode": "0657",
+    "StationName": "狩留家"
+  },
+  {
+    "StationCode": "0658",
+    "StationName": "上深川"
+  },
+  {
+    "StationCode": "0659",
+    "StationName": "中深川"
+  },
+  {
+    "StationCode": "0660",
+    "StationName": "下深川"
+  },
+  {
+    "StationCode": "0661",
+    "StationName": "玖村"
+  },
+  {
+    "StationCode": "0662",
+    "StationName": "安芸矢口"
+  },
+  {
+    "StationCode": "0663",
+    "StationName": "戸坂"
+  },
+  {
+    "StationCode": "0664",
+    "StationName": "矢賀"
+  },
+  {
+    "StationCode": "0665",
+    "StationName": "津山"
+  },
+  {
+    "StationCode": "0666",
+    "StationName": "津山口"
+  },
+  {
+    "StationCode": "0667",
+    "StationName": "佐良山"
+  },
+  {
+    "StationCode": "0668",
+    "StationName": "亀甲"
+  },
+  {
+    "StationCode": "0669",
+    "StationName": "小原"
+  },
+  {
+    "StationCode": "0670",
+    "StationName": "誕生寺"
+  },
+  {
+    "StationCode": "0671",
+    "StationName": "弓削"
+  },
+  {
+    "StationCode": "0672",
+    "StationName": "神目"
+  },
+  {
+    "StationCode": "0673",
+    "StationName": "福渡"
+  },
+  {
+    "StationCode": "0674",
+    "StationName": "建部"
+  },
+  {
+    "StationCode": "0675",
+    "StationName": "金川"
+  },
+  {
+    "StationCode": "0676",
+    "StationName": "野々口"
+  },
+  {
+    "StationCode": "0677",
+    "StationName": "牧山"
+  },
+  {
+    "StationCode": "0678",
+    "StationName": "玉柏"
+  },
+  {
+    "StationCode": "0679",
+    "StationName": "備前原"
+  },
+  {
+    "StationCode": "0680",
+    "StationName": "法界院"
+  },
+  {
+    "StationCode": "0695",
+    "StationName": "備後本庄"
+  },
+  {
+    "StationCode": "0696",
+    "StationName": "横尾"
+  },
+  {
+    "StationCode": "0697",
+    "StationName": "神辺"
+  },
+  {
+    "StationCode": "0698",
+    "StationName": "湯田村"
+  },
+  {
+    "StationCode": "0699",
+    "StationName": "道上"
+  },
+  {
+    "StationCode": "0700",
+    "StationName": "万能倉"
+  },
+  {
+    "StationCode": "0701",
+    "StationName": "駅家"
+  },
+  {
+    "StationCode": "0702",
+    "StationName": "近田"
+  },
+  {
+    "StationCode": "0703",
+    "StationName": "戸手"
+  },
+  {
+    "StationCode": "0704",
+    "StationName": "上戸手"
+  },
+  {
+    "StationCode": "0705",
+    "StationName": "新市"
+  },
+  {
+    "StationCode": "0706",
+    "StationName": "高木"
+  },
+  {
+    "StationCode": "0707",
+    "StationName": "鵜飼"
+  },
+  {
+    "StationCode": "0708",
+    "StationName": "府中"
+  }
+]
