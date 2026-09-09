@@ -7219,6 +7219,76 @@ var stations_Central = [
         "ryokakuSenkuMei": "伊勢鉄道",
         "kudariJun": "7",
         "ekiMei": "津"
+    },
+    {
+        "ryokakuSenkuMei": "あおなみ線",
+        "kudariJun": "2",
+        "ekiMei": "名古屋"
+    },
+    {
+        "ryokakuSenkuMei": "あおなみ線",
+        "kudariJun": "3",
+        "ekiMei": "ささしまライブ"
+    },
+    {
+        "ryokakuSenkuMei": "あおなみ線",
+        "kudariJun": "4",
+        "ekiMei": "笹島"
+    },
+    {
+        "ryokakuSenkuMei": "あおなみ線",
+        "kudariJun": "5",
+        "ekiMei": "小本"
+    },
+    {
+        "ryokakuSenkuMei": "あおなみ線",
+        "kudariJun": "6",
+        "ekiMei": "荒子"
+    },
+    {
+        "ryokakuSenkuMei": "あおなみ線",
+        "kudariJun": "7",
+        "ekiMei": "南荒子"
+    },
+    {
+        "ryokakuSenkuMei": "あおなみ線",
+        "kudariJun": "8",
+        "ekiMei": "中島"
+    },
+    {
+        "ryokakuSenkuMei": "あおなみ線",
+        "kudariJun": "9",
+        "ekiMei": "港北"
+    },
+    {
+        "ryokakuSenkuMei": "あおなみ線",
+        "kudariJun": "10",
+        "ekiMei": "荒子川公園"
+    },
+    {
+        "ryokakuSenkuMei": "あおなみ線",
+        "kudariJun": "11",
+        "ekiMei": "稲永"
+    },
+    {
+        "ryokakuSenkuMei": "あおなみ線",
+        "kudariJun": "12",
+        "ekiMei": "潮凪信号場"
+    },
+    {
+        "ryokakuSenkuMei": "あおなみ線",
+        "kudariJun": "13",
+        "ekiMei": "野跡"
+    },
+    {
+        "ryokakuSenkuMei": "あおなみ線",
+        "kudariJun": "14",
+        "ekiMei": "金城ふ頭"
+    },
+    {
+        "ryokakuSenkuMei": "あおなみ線",
+        "kudariJun": "18",
+        "ekiMei": "潮凪車庫"
     }
 ]
 

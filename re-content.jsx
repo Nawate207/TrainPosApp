@@ -89,6 +89,7 @@ const CentralAreaLine = [
     { code: 'zaisenichijoho_10008', line: '参宮線', sectionId: 'lineBtnCentral', flowType: 'Jrc' },
     { code: 'zaisenichijoho_99999', line: 'CA 美濃赤坂線', sectionId: 'lineBtnCentral', flowType: 'Jrc' },
     { code: 'zaisenichijoho_99999', line: '伊勢鉄道', sectionId: 'lineBtnCentral', flowType: 'Jrc' },
+    { code: 'Aonami', line: 'あおなみ線', sectionId: 'lineBtnCentral', flowType: 'Aonami' },
 ];
 
 /* ============================================================
@@ -188,6 +189,13 @@ class TrainCentral {
     }
 }
 
+class TrainAonami {
+    constructor() {
+        this.position = ""; this.trainnumber = ""; this.sy = ""; this.tostation = "";
+        this.delay = ""; this.locationCol = "";
+    }
+}
+
 class Destination {
     constructor(code, line, text) {
         this.text = text; this.code = code; this.line = line;
@@ -253,6 +261,17 @@ function buildTrainCentral(obj) {
     train.tostation2 = obj["tostation2"];
     train.trainnumber = obj["trainnumber"];
     train.traintype = obj["traintype"];
+    return train;
+}
+
+function buildTrainAonami(obj) {
+    const train = new TrainAonami();
+    train.position = obj["id"];
+    train.trainnumber = obj.tr[0]["no"];
+    train.traintype = obj.tr[0]["sy"];
+    train.tostation = obj.tr[0]["ik"];
+    train.delay = obj.tr[0]["dl"];
+    train.locationCol = obj.tr[0]["hk"];
     return train;
 }
 
@@ -367,9 +386,32 @@ function AddDispTypeCol(trainType, linename) {
     }
 }
 
+function AddDispTypeMapCol(trainType, linename) {
+    switch (linename) {
+        case "aonami": {
+            switch (trainType) {
+                case "1": return '<span class="local">普通</span>';
+                case "6": return '<span class="extra">ノンストップ</span>';
+                default: return trainType;
+            }
+        }
+        default: return trainType;
+    }
+}
+
 function AddDestCol(trainDest) {
     switch (trainDest) {
         case null: return '';
+        default: return '<span class="destination">' + trainDest + '</span>行き';
+    }
+}
+
+function AddDestMapCol(trainDest, line) {
+    switch (line) {
+        case "aonami": {
+            const staInfo = stations_Central.filter(Aostation => Aostation.kudariJun === trainDest && Aostation.ryokakuSenkuMei === "あおなみ線");
+            return staInfo[0].ekiMei;
+        }
         default: return '<span class="destination">' + trainDest + '</span>行き';
     }
 }
@@ -494,6 +536,16 @@ function posMatch_Central(linename, locationRow) {
     );
 }
 
+function StaGet_Other(pos, line) {
+    switch (line) {
+        case "aonami": {
+            const position = pos.replace(/[A-Z]/, '').replace(/0{0,2}/, '').replace(/[A-Z]/, '');
+            const staInfo = stations_Central.filter(Aostation => Aostation.kudariJun === position && Aostation.ryokakuSenkuMei === "あおなみ線");
+            return staInfo[0].ekiMei;
+        }
+    }
+}
+
 /* ============================================================
  * 列車情報カードHTML生成（DOM生成の代わりに React へ渡す文字列を組み立てる）
  * ========================================================== */
@@ -567,6 +619,17 @@ function cardCentral(train, idx) {
     return { key: 'ce-' + idx, className: 'kakomi-box3', html, direction };
 }
 
+function cardAonami(train, idx) {
+    const line = 'aonami';
+    const DispTypeAddCol = AddDispTypeMapCol(train.traintype, line);
+    const DestAddCol = AddDestMapCol(train.tostation, line);
+    const direction = directionSet(train.locationCol, line);
+    const delayMinutes = delayMinutesSet(train.delay);
+    const position = StaGet_Other(train.position, line);
+    const html = train.trainnumber + " " + DispTypeAddCol + " " + DestAddCol + " " + delayMinutes + " 走行位置：" + position + direction;
+    return { key: 'ao-' + idx, className: 'kakomi-box3', html, direction };
+}
+
 /* ============================================================
  * 通信先エンドポイント（content.js と同一）
  * ========================================================== */
@@ -603,6 +666,10 @@ async function fetchLineTrains(linename, flowType, line) {
             const displine = regex.test(line) ? line.split(' ')[1] : line;
             const trainsFilter = trains.filter(t => t.linename[0].name === displine);
             return trainsFilter.map((t, i) => cardCentral(t, i));
+        }
+        case 'Aonami': {
+            const trains = body.map(buildTrainAonami);
+            return trains.map((t, i) => cardAonami(t, i));
         }
         default:
             return [];
@@ -878,9 +945,9 @@ function App() {
                     </div>
 
                     <div className="flex flex-col gap-2">
-                        <AccordionSection title="更新情報（2026/09/02）" defaultOpen={true}>
+                        <AccordionSection title="更新情報（2026/09/09）" defaultOpen={true}>
                             <div className="space-y-1 text-sm text-slate-700">
-                                <div>UIを刷新しました。</div>
+                                <div>あおなみ線に対応しました。</div>
                             </div>
                         </AccordionSection>
 
