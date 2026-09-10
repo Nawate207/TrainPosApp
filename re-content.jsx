@@ -947,7 +947,7 @@ function App() {
                     <div className="flex flex-col gap-2">
                         <AccordionSection title="更新情報（2026/09/09）" defaultOpen={true}>
                             <div className="space-y-1 text-sm text-slate-700">
-                                <div>あおなみ線に対応しました。</div>
+                                <div>あおなみ線の処理を修正しました。</div>
                             </div>
                         </AccordionSection>
 

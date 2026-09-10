@@ -560,6 +560,38 @@ function buildTrainAonami(obj) {
   train.locationCol = obj.tr[0]["hk"];
   return train;
 }
+/**
+ * あおなみ線専用（将来的にはLogicAppsに置換したい）
+ * TS と EK をマージして新しいオブジェクトを返す（null チェックあり）
+ * @param {Object} data - 元のオブジェクト（UP, TS, EK を含む可能性あり）
+ * @returns {Object} - マージ後の新しいオブジェクト（UP をそのまま、TS に結合）
+ */
+function mergeTSandEKWithNullCheck(data) {
+  // 安全にオブジェクト化（null や非オブジェクトを受け取った場合に備える）
+  const src = (data && typeof data === 'object') ? data : {};
+
+  // UP はそのまま（存在しない場合は空配列）
+  const up = Array.isArray(src.UP) ? deepCopy(src.UP) : [];
+
+  // TS と EK を配列として取得（存在しない・null・非配列なら空配列にする）
+  const tsArray = Array.isArray(src.TS) ? deepCopy(src.TS) : [];
+  const ekArray = Array.isArray(src.EK) ? deepCopy(src.EK) : [];
+
+  // マージ（順序: TS の要素の後に EK の要素）
+  const mergedTS = tsArray.concat(ekArray);
+
+  return {
+    UP: up,
+    TS: mergedTS
+  };
+}
+/**
+ * 簡易な深いコピー（オブジェクト/配列のみを想定）
+ * JSON シリアライズで十分なケース向け
+ */
+function deepCopy(value) {
+  return JSON.parse(JSON.stringify(value));
+}
 
 /* ============================================================
  * 列車情報装飾関数（content.js と同一）
@@ -1268,7 +1300,8 @@ async function fetchLineTrains(linename, flowType, line) {
       }
     case 'Aonami':
       {
-        const trains = body.map(buildTrainAonami);
+        const aonamiTrains = mergeTSandEKWithNullCheck(body);
+        const trains = aonamiTrains.TS.map(buildTrainAonami);
         return trains.map((t, i) => cardAonami(t, i));
       }
     default:
