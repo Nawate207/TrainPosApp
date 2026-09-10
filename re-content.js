@@ -1079,21 +1079,21 @@ function nicknameSet(nickname, nickname_no, line) {
   switch (line) {
     case "central":
       {
-        if (nickname != null && nickname_no == '-1') return nickname;else if (nickname == null || nickname_no == '-1') return "";else return nickname + nickname_no + "号";
+        if (nickname != null && nickname_no == '-1') return nickname; else if (nickname == null || nickname_no == '-1') return ""; else return nickname + nickname_no + "号";
       }
   }
-  if (nickname == null) return "";else return nickname;
+  if (nickname == null) return ""; else return nickname;
 }
 function directionSet(direction, line) {
   switch (line) {
     case 'central':
-      if (direction == 1) return "上り";else return "下り";
+      if (direction == 1) return "上り"; else return "下り";
     default:
-      if (direction == 0) return "上り";else return "下り";
+      if (direction == 0) return "上り"; else return "下り";
   }
 }
 function delayMinutesSet(delayMinutes) {
-  if (delayMinutes == 0) return '<span class="noDelay"></span>';else if (delayMinutes >= 60) return '<span class="overDelay">60分以上遅れ</span>';else return '<span class="delayMinutes">' + delayMinutes + '分遅れ</span>';
+  if (delayMinutes == 0) return '<span class="noDelay"></span>'; else if (delayMinutes >= 60) return '<span class="overDelay">60分以上遅れ</span>'; else return '<span class="delayMinutes">' + delayMinutes + '分遅れ</span>';
 }
 
 /* ============================================================
@@ -1103,7 +1103,7 @@ function StaGet_WestUrban(pos) {
   const position = pos.split('_');
   const pos1 = posMatch_WestUrban(position[0]);
   const pos2 = posMatch_WestUrban(position[1]);
-  if (pos2.length == 0) return pos1[0].stationName;else return pos1[0].stationName + "～" + pos2[0].stationName;
+  if (pos2.length == 0) return pos1[0].stationName; else return pos1[0].stationName + "～" + pos2[0].stationName;
 }
 function posMatch_WestUrban(pos_u) {
   return stations_urban.filter(Ustation => Ustation.stationCode === pos_u);
@@ -1112,7 +1112,7 @@ function StaGet_WestOther(pos) {
   const position = pos.split('_');
   const pos1 = posMatch_WestOther(position[0]);
   const pos2 = posMatch_WestOther(position[1]);
-  if (pos2.length == 0) return pos1[0].StationName;else return pos1[0].StationName + "～" + pos2[0].StationName;
+  if (pos2.length == 0) return pos1[0].StationName; else return pos1[0].StationName + "～" + pos2[0].StationName;
 }
 function posMatch_WestOther(pos_o) {
   return stations_other.filter(Ostation => Ostation.StationCode === pos_o);
@@ -1276,7 +1276,7 @@ async function fetchLineTrains(linename, flowType, line) {
   }
   const contentType = response.headers.get("content-type");
   if (!contentType || !contentType.includes("application/json")) {
-    throw new TypeError("残念、受信したのは JSON ではなかった！");
+    throw new TypeError("エラーが発生しました。時間をおいて再実行してください。");
   }
   const body = await response.json();
   switch (flowType) {
@@ -1484,6 +1484,20 @@ function TrainCard({
   });
 }
 function App() {
+  // サイドメニューラベルテキスト
+  const pageTitle            = "列車情報テキストビューア";
+  const updateInfoTitle      = "更新情報（2026/09/10）";
+  const updateInfoBody       = "あおなみ線を修正しました。随時改修中。";
+  const operationInfoLink    = "運行情報リンク（外部リンク）";
+  const lineTitleJrwKinki    = "JRW 近畿エリア";
+  const lineTitleJrwOkayama  = "JRW 岡山エリア";
+  const lineTitleJrwHiroseki = "JRW 広島/下関エリア";
+  const lineTitleJrwSanin    = "JRW 山陰エリア";
+  const lineTitleJrc         = "JRC 全エリア";
+  const selectLineTitle      = "選択中の路線";
+  const selectLineBody       = "路線を選択してください";
+  const loadingText          = "読み込み中";
+  const notVisibleInfo       = "該当する列車情報がありません。";
   const [selectedLine, setSelectedLine] = useState(null);
   const [selectedCode, setSelectedCode] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -1558,7 +1572,7 @@ function App() {
     className: "flex flex-1 flex-col gap-1 sm:flex-row sm:items-center sm:justify-between"
   }, /*#__PURE__*/React.createElement("h1", {
     className: "text-lg font-bold text-white sm:text-xl"
-  }, "\u5217\u8ECA\u8D70\u884C\u4F4D\u7F6E\u30D3\u30E5\u30FC\u30A2"), /*#__PURE__*/React.createElement(Clock, null)))), /*#__PURE__*/React.createElement("main", {
+  }, pageTitle), /*#__PURE__*/React.createElement(Clock, null)))), /*#__PURE__*/React.createElement("main", {
     className: "mx-auto max-w-7xl grid grid-cols-1 gap-6 px-4 py-6 lg:grid-cols-[340px_1fr]"
   }, sideMenuOpen && /*#__PURE__*/React.createElement("div", {
     className: "fixed inset-0 z-30 bg-slate-900/50 lg:hidden",
@@ -1577,12 +1591,12 @@ function App() {
   }, /*#__PURE__*/React.createElement(CloseIcon, null))), /*#__PURE__*/React.createElement("div", {
     className: "flex flex-col gap-2"
   }, /*#__PURE__*/React.createElement(AccordionSection, {
-    title: "\u66F4\u65B0\u60C5\u5831\uFF082026/09/02\uFF09",
+    title: updateInfoTitle,
     defaultOpen: true
   }, /*#__PURE__*/React.createElement("div", {
     className: "space-y-1 text-sm text-slate-700"
-  }, /*#__PURE__*/React.createElement("div", null, "UI\u3092\u5237\u65B0\u3057\u307E\u3057\u305F\u3002"))), /*#__PURE__*/React.createElement(AccordionSection, {
-    title: "\u904B\u884C\u60C5\u5831\u30EA\u30F3\u30AF\uFF08\u5916\u90E8\u30EA\u30F3\u30AF\uFF09",
+  }, /*#__PURE__*/React.createElement("div", null, updateInfoBody))), /*#__PURE__*/React.createElement(AccordionSection, {
+    title: operationInfoLink,
     defaultOpen: false,
     badge: OperationInfoPages.length
   }, /*#__PURE__*/React.createElement("div", {
@@ -1592,7 +1606,7 @@ function App() {
     label: item.line,
     onClick: () => handleOpenInfoLink(item)
   })))), /*#__PURE__*/React.createElement(AccordionSection, {
-    title: "JRW \u8FD1\u757F\u30A8\u30EA\u30A2",
+    title: lineTitleJrwKinki,
     defaultOpen: false,
     badge: KinkiAreaLine.length
   }, /*#__PURE__*/React.createElement(ButtonGrid, {
@@ -1600,7 +1614,7 @@ function App() {
     selectedCode: selectedCode,
     onSelect: handleSelectLine
   })), /*#__PURE__*/React.createElement(AccordionSection, {
-    title: "JRW \u5CA1\u5C71\u30A8\u30EA\u30A2",
+    title: lineTitleJrwOkayama,
     defaultOpen: false,
     badge: OkayamaAreaLine.length
   }, /*#__PURE__*/React.createElement(ButtonGrid, {
@@ -1608,7 +1622,7 @@ function App() {
     selectedCode: selectedCode,
     onSelect: handleSelectLine
   })), /*#__PURE__*/React.createElement(AccordionSection, {
-    title: "JRW \u5E83\u5CF6/\u4E0B\u95A2\u30A8\u30EA\u30A2",
+    title: lineTitleJrwHiroseki,
     defaultOpen: false,
     badge: HiroSekiAreaLine.length
   }, /*#__PURE__*/React.createElement(ButtonGrid, {
@@ -1616,7 +1630,7 @@ function App() {
     selectedCode: selectedCode,
     onSelect: handleSelectLine
   })), /*#__PURE__*/React.createElement(AccordionSection, {
-    title: "JRW \u5C71\u9670\u30A8\u30EA\u30A2",
+    title: lineTitleJrwSanin,
     defaultOpen: false,
     badge: SaninAreaLine.length
   }, /*#__PURE__*/React.createElement(ButtonGrid, {
@@ -1624,7 +1638,7 @@ function App() {
     selectedCode: selectedCode,
     onSelect: handleSelectLine
   })), /*#__PURE__*/React.createElement(AccordionSection, {
-    title: "JRC \u5168\u30A8\u30EA\u30A2",
+    title: lineTitleJrc,
     defaultOpen: false,
     badge: CentralAreaLine.length
   }, /*#__PURE__*/React.createElement(ButtonGrid, {
@@ -1641,9 +1655,9 @@ function App() {
     } : undefined
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "text-sm text-slate-500"
-  }, "\u9078\u629E\u4E2D\u306E\u8DEF\u7DDA"), /*#__PURE__*/React.createElement("div", {
+  }, selectLineTitle), /*#__PURE__*/React.createElement("div", {
     className: "text-lg font-semibold text-slate-800"
-  }, selectedLine || "路線を選択してください")), /*#__PURE__*/React.createElement("button", {
+  }, selectedLine || selectLineBody)), /*#__PURE__*/React.createElement("button", {
     type: "button",
     onClick: handleRefresh,
     disabled: !selectedCode || loading,
@@ -1657,11 +1671,11 @@ function App() {
     className: "flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-6 text-slate-500 shadow-sm"
   }, /*#__PURE__*/React.createElement("span", {
     className: "h-4 w-4 animate-spin rounded-full border-2 border-emerald-500 border-t-transparent"
-  }), "\u30FB\u30FB\u30FB\u8AAD\u307F\u8FBC\u307F\u4E2D\u30FB\u30FB\u30FB"), !loading && errorMsg && /*#__PURE__*/React.createElement("div", {
+  }), loadingText), !loading && errorMsg && /*#__PURE__*/React.createElement("div", {
     className: "rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 shadow-sm"
   }, "\u30A8\u30E9\u30FC\u304C\u767A\u751F\u3057\u307E\u3057\u305F\uFF1A", errorMsg), !loading && !errorMsg && selectedCode && cards.length === 0 && /*#__PURE__*/React.createElement("div", {
     className: "rounded-xl border border-slate-200 bg-white px-4 py-6 text-slate-500 shadow-sm"
-  }, "\u8A72\u5F53\u3059\u308B\u5217\u8ECA\u60C5\u5831\u304C\u3042\u308A\u307E\u305B\u3093\u3002"), !loading && cards.length > 0 && /*#__PURE__*/React.createElement("div", {
+  }, notVisibleInfo), !loading && cards.length > 0 && /*#__PURE__*/React.createElement("div", {
     className: "grid grid-cols-2 gap-3 sm:gap-4"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex flex-col gap-3"
