@@ -35,6 +35,12 @@
 .kakomi-kinokuni:hover { border-color: darkturquoise; }
 .kakomi-other:hover { border-color: #444; }
 
+/* 都営地下鉄：ホバー時に所有会社の色で縁取る（色は TrainCard が --owner-color で指定。太さは box-shadow で補い、レイアウトを動かさない） */
+.kakomi-owner:hover {
+    border-color: var(--owner-color);
+    box-shadow: 0 0 0 1px var(--owner-color);
+}
+
 /* 行先色付 */
 span.destination {
     color: #c2410c;

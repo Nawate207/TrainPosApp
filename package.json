@@ -5,7 +5,7 @@
   "main": "content.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:jsx": "babel re-content.jsx --presets=@babel/preset-react --out-file re-content.js",
+    "build:jsx": "babel re-content.jsx --out-file re-content.js",
     "build:css": "tailwindcss -c re-tailwind.config.js -i re-tailwind.input.css -o re-tailwind.css --minify",
     "build:vendor": "node -e \"require('fs').mkdirSync('vendor',{recursive:true});require('fs').copyFileSync('node_modules/react/umd/react.production.min.js','vendor/react.production.min.js');require('fs').copyFileSync('node_modules/react-dom/umd/react-dom.production.min.js','vendor/react-dom.production.min.js');\"",
     "build": "npm run build:jsx && npm run build:css && npm run build:vendor"
@@ -21,12 +21,15 @@
     "url": "https://github.com/R-Kawabe/TrainPosReplace/issues"
   },
   "homepage": "https://github.com/R-Kawabe/TrainPosReplace#readme",
+  "engines": {
+    "node": ">=20"
+  },
   "devDependencies": {
     "@babel/cli": "^7.29.7",
     "@babel/core": "^7.29.7",
     "@babel/preset-react": "^7.29.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "tailwindcss": "^3.3.2"
+    "tailwindcss": "^3.4.19"
   }
 }

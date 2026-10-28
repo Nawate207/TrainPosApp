@@ -1,0 +1,21 @@
+# GitHub Pages（ブランチからの Jekyll ビルド）の設定。
+# 公開するのは、画面の表示に必要なファイルだけにする。以下は公開しない（デプロイ対象から除外する）。
+#
+# ※ この設定は Jekyll が動く場合に有効。リポジトリに .nojekyll を置くと Jekyll が動かず、
+#    除外が効かなくなる（すべて公開される）ので、置かないこと。
+# ※ "!old" は先頭が ! のため、YAML では引用符で囲む必要がある。
+
+exclude:
+  # 旧版（レガシー）と中継 API
+  - "!old"
+  - functions
+  # 開発・ビルド用のファイル（画面の表示には不要）
+  - node_modules
+  - package.json
+  - package-lock.json
+  - babel.config.json
+  - re-tailwind.config.js
+  - re-tailwind.input.css
+  - re-content.jsx
+  - readme.md
+  - index.php

@@ -1,1 +1,10 @@
 node_modules/
+!old/
+.copilot/
+.vscode/
+# 秘密情報・接続情報は、誤ってコミットしないよう常に除外する
+.env
+.env.*
+local.settings.json
+*.publishsettings
+*.pubxml

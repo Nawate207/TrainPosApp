@@ -1,0 +1,25 @@
+{
+  "name": "trainpos-line-proxy",
+  "version": "1.0.0",
+  "description": "列車走行位置ビューア用の中継 API（許可リスト検証・キャッシュ・レート制限を行い、署名付き URL を隠したまま Logic Apps を呼び出す）",
+  "private": true,
+  "main": "dist/src/functions/*.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\"",
+    "prestart": "npm run clean && npm run build",
+    "start": "func start",
+    "test": "npm run clean && npm run build && node --test dist/test/lib.test.js dist/test/handler.test.js"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}

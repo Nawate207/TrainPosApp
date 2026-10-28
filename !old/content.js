@@ -1336,7 +1336,7 @@ function trainElementCentral(train) {
 // ボタンクリック時にLogicAppsへリクエストを送信し、結果を取得（非同期）
 // function stationGet(position) {
 //     // リクエスト情報定義
-//     const requestUrl = "https://prod-19.japaneast.logic.azure.com:443/workflows/c03397c866cd415cadc47c5499dc2be3/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=LMRDZoK-DBcp7fYgwMQOlKCsEOqnUXCveX32lm0V89w"
+//     const requestUrl = "<Logic Apps の署名付き URL（コードには埋め込まない）>"
 //     const requestMethod = "POST"
 //     const requestHeaders = {
 //         "Content-Type": "application/json"

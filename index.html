@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="robots" content="noindex,nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- XSS 対策の多層防御：スクリプト／CSSは同一オリジンのみ許可し、通信先は Logic Apps に限定する（GitHub Pages は HTTP ヘッダーを設定できないため meta で指定） -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https://prod-38.japaneast.logic.azure.com; base-uri 'none'; form-action 'none'; object-src 'none'">
+    <meta name="referrer" content="no-referrer">
     <title>列車走行位置ビューア</title>
 
     <!-- Tailwind CSS（ビルド済み静的CSS。インターネット接続不要） -->

@@ -1,0 +1,17 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "LOGIC_APP_URL": "https://<logic-app-host>/workflows/<workflow-id>/triggers/When_a_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=<NEW-SIG-AFTER-KEY-REGENERATION>",
+    "ALLOWED_ORIGINS": "http://localhost:8765,https://<your-account>.github.io",
+    "CACHE_TTL_SECONDS": "30",
+    "STALE_IF_ERROR_SECONDS": "300",
+    "RATE_LIMIT_PER_MINUTE": "30",
+    "UPSTREAM_TIMEOUT_MS": "15000"
+  },
+  "Host": {
+    "CORS": "http://localhost:8765",
+    "CORSCredentials": false
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "presets": ["@babel/preset-react"],
+  "generatorOpts": {
+    "jsescOption": { "minimal": true }
+  }
+}

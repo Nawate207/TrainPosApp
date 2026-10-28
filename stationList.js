@@ -7292,3 +7292,57 @@ var stations_Central = [
     }
 ]
 
+// 駅一覧 - 都営地下鉄（駅ID（"odpt.Station:" 以降）→ 駅名）。都営5路線の全駅と、直通先の主な駅を収録（出典：ODPT 公開API）
+var ToeiStationName = {
+    // 浅草線
+    'Toei.Asakusa.NishiMagome': '西馬込', 'Toei.Asakusa.Magome': '馬込', 'Toei.Asakusa.Nakanobu': '中延', 'Toei.Asakusa.Togoshi': '戸越',
+    'Toei.Asakusa.Gotanda': '五反田', 'Toei.Asakusa.Takanawadai': '高輪台', 'Toei.Asakusa.Sengakuji': '泉岳寺', 'Toei.Asakusa.Mita': '三田',
+    'Toei.Asakusa.Daimon': '大門', 'Toei.Asakusa.Shimbashi': '新橋', 'Toei.Asakusa.HigashiGinza': '東銀座', 'Toei.Asakusa.Takaracho': '宝町',
+    'Toei.Asakusa.Nihombashi': '日本橋', 'Toei.Asakusa.Ningyocho': '人形町', 'Toei.Asakusa.HigashiNihombashi': '東日本橋', 'Toei.Asakusa.Asakusabashi': '浅草橋',
+    'Toei.Asakusa.Kuramae': '蔵前', 'Toei.Asakusa.Asakusa': '浅草', 'Toei.Asakusa.HonjoAzumabashi': '本所吾妻橋', 'Toei.Asakusa.Oshiage': '押上',
+    // 三田線
+    'Toei.Mita.Meguro': '目黒', 'Toei.Mita.Shirokanedai': '白金台', 'Toei.Mita.ShirokaneTakanawa': '白金高輪', 'Toei.Mita.Mita': '三田',
+    'Toei.Mita.Shibakoen': '芝公園', 'Toei.Mita.Onarimon': '御成門', 'Toei.Mita.Uchisaiwaicho': '内幸町', 'Toei.Mita.Hibiya': '日比谷',
+    'Toei.Mita.Otemachi': '大手町', 'Toei.Mita.Jimbocho': '神保町', 'Toei.Mita.Suidobashi': '水道橋', 'Toei.Mita.Kasuga': '春日',
+    'Toei.Mita.Hakusan': '白山', 'Toei.Mita.Sengoku': '千石', 'Toei.Mita.Sugamo': '巣鴨', 'Toei.Mita.NishiSugamo': '西巣鴨',
+    'Toei.Mita.ShinItabashi': '新板橋', 'Toei.Mita.ItabashiKuyakushomae': '板橋区役所前', 'Toei.Mita.Itabashihoncho': '板橋本町', 'Toei.Mita.Motohasunuma': '本蓮沼',
+    'Toei.Mita.ShimuraSakaue': '志村坂上', 'Toei.Mita.ShimuraSanchome': '志村三丁目', 'Toei.Mita.Hasune': '蓮根', 'Toei.Mita.Nishidai': '西台',
+    'Toei.Mita.Takashimadaira': '高島平', 'Toei.Mita.ShinTakashimadaira': '新高島平', 'Toei.Mita.NishiTakashimadaira': '西高島平',
+    // 新宿線
+    'Toei.Shinjuku.Shinjuku': '新宿', 'Toei.Shinjuku.ShinjukuSanchome': '新宿三丁目', 'Toei.Shinjuku.Akebonobashi': '曙橋', 'Toei.Shinjuku.Ichigaya': '市ヶ谷',
+    'Toei.Shinjuku.Kudanshita': '九段下', 'Toei.Shinjuku.Jimbocho': '神保町', 'Toei.Shinjuku.Ogawamachi': '小川町', 'Toei.Shinjuku.Iwamotocho': '岩本町',
+    'Toei.Shinjuku.BakuroYokoyama': '馬喰横山', 'Toei.Shinjuku.Hamacho': '浜町', 'Toei.Shinjuku.Morishita': '森下', 'Toei.Shinjuku.Kikukawa': '菊川',
+    'Toei.Shinjuku.Sumiyoshi': '住吉', 'Toei.Shinjuku.NishiOjima': '西大島', 'Toei.Shinjuku.Ojima': '大島', 'Toei.Shinjuku.HigashiOjima': '東大島',
+    'Toei.Shinjuku.Funabori': '船堀', 'Toei.Shinjuku.Ichinoe': '一之江', 'Toei.Shinjuku.Mizue': '瑞江', 'Toei.Shinjuku.Shinozaki': '篠崎',
+    'Toei.Shinjuku.Motoyawata': '本八幡',
+    // 大江戸線
+    'Toei.Oedo.ShinjukuNishiguchi': '新宿西口', 'Toei.Oedo.HigashiShinjuku': '東新宿', 'Toei.Oedo.WakamatsuKawada': '若松河田', 'Toei.Oedo.UshigomeYanagicho': '牛込柳町',
+    'Toei.Oedo.UshigomeKagurazaka': '牛込神楽坂', 'Toei.Oedo.Iidabashi': '飯田橋', 'Toei.Oedo.Kasuga': '春日', 'Toei.Oedo.HongoSanchome': '本郷三丁目',
+    'Toei.Oedo.UenoOkachimachi': '上野御徒町', 'Toei.Oedo.ShinOkachimachi': '新御徒町', 'Toei.Oedo.Kuramae': '蔵前', 'Toei.Oedo.Ryogoku': '両国',
+    'Toei.Oedo.Morishita': '森下', 'Toei.Oedo.KiyosumiShirakawa': '清澄白河', 'Toei.Oedo.MonzenNakacho': '門前仲町', 'Toei.Oedo.Tsukishima': '月島',
+    'Toei.Oedo.Kachidoki': '勝どき', 'Toei.Oedo.Tsukijishijo': '築地市場', 'Toei.Oedo.Shiodome': '汐留', 'Toei.Oedo.Daimon': '大門',
+    'Toei.Oedo.Akabanebashi': '赤羽橋', 'Toei.Oedo.AzabuJuban': '麻布十番', 'Toei.Oedo.Roppongi': '六本木', 'Toei.Oedo.AoyamaItchome': '青山一丁目',
+    'Toei.Oedo.KokuritsuKyogijo': '国立競技場', 'Toei.Oedo.Yoyogi': '代々木', 'Toei.Oedo.Shinjuku': '新宿', 'Toei.Oedo.Tochomae': '都庁前',
+    'Toei.Oedo.NishiShinjukuGochome': '西新宿五丁目', 'Toei.Oedo.NakanoSakaue': '中野坂上', 'Toei.Oedo.HigashiNakano': '東中野', 'Toei.Oedo.Nakai': '中井',
+    'Toei.Oedo.OchiaiMinamiNagasaki': '落合南長崎', 'Toei.Oedo.ShinEgota': '新江古田', 'Toei.Oedo.Nerima': '練馬', 'Toei.Oedo.Toshimaen': '豊島園',
+    'Toei.Oedo.NerimaKasugacho': '練馬春日町', 'Toei.Oedo.Hikarigaoka': '光が丘',
+    // 荒川線
+    'Toei.Arakawa.Minowabashi': '三ノ輪橋', 'Toei.Arakawa.ArakawaItchumae': '荒川一中前', 'Toei.Arakawa.Arakawakuyakushomae': '荒川区役所前', 'Toei.Arakawa.ArakawaNichome': '荒川二丁目',
+    'Toei.Arakawa.ArakawaNanachome': '荒川七丁目', 'Toei.Arakawa.MachiyaEkimae': '町屋駅前', 'Toei.Arakawa.MachiyaNichome': '町屋二丁目', 'Toei.Arakawa.HigashiOguSanchome': '東尾久三丁目',
+    'Toei.Arakawa.Kumanomae': '熊野前', 'Toei.Arakawa.Miyanomae': '宮ノ前', 'Toei.Arakawa.Odai': '小台', 'Toei.Arakawa.ArakawaYuenchimae': '荒川遊園地前',
+    'Toei.Arakawa.ArakawaShakomae': '荒川車庫前', 'Toei.Arakawa.Kajiwara': '梶原', 'Toei.Arakawa.Sakaecho': '栄町', 'Toei.Arakawa.OjiEkimae': '王子駅前',
+    'Toei.Arakawa.Asukayama': '飛鳥山', 'Toei.Arakawa.TakinogawaItchome': '滝野川一丁目', 'Toei.Arakawa.NishigaharaYonchome': '西ヶ原四丁目', 'Toei.Arakawa.ShinKoshinzuka': '新庚申塚',
+    'Toei.Arakawa.Koshinzuka': '庚申塚', 'Toei.Arakawa.Sugamoshinden': '巣鴨新田', 'Toei.Arakawa.OtsukaEkimae': '大塚駅前', 'Toei.Arakawa.Mukohara': '向原',
+    'Toei.Arakawa.HigashiIkebukuroYonchome': '東池袋四丁目', 'Toei.Arakawa.TodenZoshigaya': '都電雑司ヶ谷', 'Toei.Arakawa.Kishibojimmae': '鬼子母神前', 'Toei.Arakawa.Gakushuinshita': '学習院下',
+    'Toei.Arakawa.Omokagebashi': '面影橋', 'Toei.Arakawa.Waseda': '早稲田',
+    // 直通先（行先・始発駅として表示されるもの）
+    'Keisei.Oshiage.Aoto': '青砥', 'Keisei.Main.KeiseiTakasago': '京成高砂', 'Keisei.Main.KeiseiNarita': '京成成田',
+    'Keisei.Main.NaritaAirportTerminal1': '成田空港', 'Keisei.NaritaSkyAccess.NaritaAirportTerminal1': '成田空港',
+    'Hokuso.Hokuso.ImbaNihonIdai': '印旛日本医大', 'Hokuso.Hokuso.InzaiMakinohara': '印西牧の原',
+    'Keikyu.Airport.HanedaAirportTerminal1and2': '羽田空港第1・第2ターミナル', 'Keikyu.Kurihama.Misakiguchi': '三崎口',
+    'Keio.KeioNew.Sasazuka': '笹塚', 'Keio.Sagamihara.Hashimoto': '橋本', 'Keio.Sagamihara.KeioTamaCenter': '京王多摩センター', 'Keio.Sagamihara.Wakabadai': '若葉台',
+    'Sotetsu.Izumino.Shonandai': '湘南台', 'Sotetsu.Main.Ebina': '海老名',
+    'Keikyu.Main.Shinagawa': '品川',
+    'Tokyu.Meguro.Hiyoshi': '日吉', 'Tokyu.Meguro.Motosumiyoshi': '元住吉', 'Tokyu.TokyuShinYokohama.ShinYokohama': '新横浜',
+};
+

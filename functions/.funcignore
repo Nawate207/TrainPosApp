@@ -1,0 +1,11 @@
+*.js.map
+*.ts
+.git*
+.vscode
+local.settings.json
+local.settings.sample.json
+test
+dist/test
+tsconfig.json
+node_modules/@types
+README.md

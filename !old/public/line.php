@@ -1,8 +1,17 @@
 <?php
 
-$word1 = ($_GET['word']);
+// JRW の運行情報 JSON を中継する。word は英小文字・数字のみ（URL の区切りや ".." を含められないようにする）
+ini_set('display_errors', '0');
+header('Content-Type: application/json; charset=utf-8');
+header('X-Content-Type-Options: nosniff');
 
-header('Content-Type: application/json');
+$word1 = $_GET['word'] ?? '';
+
+if (!is_string($word1) || !preg_match('/^[a-z0-9]{1,40}$/D', $word1)) {
+    http_response_code(400);
+    echo json_encode(['error' => 'invalid_word']);
+    exit;
+}
 
 switch ($word1) {
     case "kyoto": {
@@ -12,7 +21,7 @@ switch ($word1) {
             // $json2 = json_decode(file_get_contents($text2, false, $options), true);
             // $result = array_merge_recursive($json1, $json2);
             // echo json_encode($result);
-            $url = "https://www.train-guide.westjr.co.jp/api/v3/kyoto.json"
+            $url = "https://www.train-guide.westjr.co.jp/api/v3/kyoto.json";
             $json = json_decode(file_get_contents($url, false), true);
             echo json_encode($json);
         }

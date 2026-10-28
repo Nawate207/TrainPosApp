@@ -92,6 +92,74 @@ const CentralAreaLine = [
     { code: 'Aonami', line: 'あおなみ線', sectionId: 'lineBtnCentral', flowType: 'Aonami' },
 ];
 
+const ToeiAreaLine = [
+    { code: '1', line: 'A 浅草線', sectionId: 'lineBtnToei', flowType: 'Toei' },
+    { code: '2', line: 'I 三田線', sectionId: 'lineBtnToei', flowType: 'Toei' },
+    { code: '3', line: 'S 新宿線', sectionId: 'lineBtnToei', flowType: 'Toei' },
+    { code: '4', line: 'E 大江戸線', sectionId: 'lineBtnToei', flowType: 'Toei' },
+];
+
+// 路線ID → 路線名（受信JSONには路線名がないため、odpt:railway から変換して絞り込みに使う）
+const ToeiRailwayName = {
+    'odpt.Railway:Toei.Asakusa': '浅草線',
+    'odpt.Railway:Toei.Mita': '三田線',
+    'odpt.Railway:Toei.Shinjuku': '新宿線',
+    'odpt.Railway:Toei.Oedo': '大江戸線',
+    'odpt.Railway:Toei.Arakawa': '荒川線',
+};
+
+// 列車種別（odpt:trainType の "odpt.TrainType:Toei." 以降）
+const ToeiTrainTypeName = {
+    'Local': '普通',
+    'Rapid': '快速',
+    'Express': '急行',
+    'LimitedExpress': '特急',
+    'RapidLimitedExpress': '快特',
+    'AirportRapidLimitedExpress': 'エアポート快特',
+    'AccessExpress': 'アクセス特急',
+    'CommuterLimitedExpress': '通勤特急',
+};
+
+// 進行方向（odpt:railDirection の "odpt.RailDirection:" 以降）→ 上り／下り
+// 起点から終点へ向かう方向を「下り」、起点へ向かう方向を「上り」としている。
+//   浅草線 Northbound=押上方面 / 三田線 Northbound=西高島平方面 / 新宿線 Eastbound=本八幡方面 / 荒川線 Toei.Waseda=早稲田方面
+//   大江戸線は上下の区別がないため、外回りを下り・内回りを上りとして扱う。
+// 向きの対応を変えたい場合はこの表だけを修正すればよい。
+const ToeiDirectionMap = {
+    'Northbound': '下り',
+    'Eastbound': '下り',
+    'OuterLoop': '下り',
+    'Toei.Waseda': '下り',
+    'Southbound': '上り',
+    'Westbound': '上り',
+    'InnerLoop': '上り',
+    'Toei.Minowabashi': '上り',
+};
+
+// 車両所有会社（odpt:trainOwner の "odpt.Operator:" 以降）。直通運転の他社車両を示すために使用
+const ToeiOwnerName = {
+    'Toei': '都営',
+    'Keisei': '京成',
+    'Keikyu': '京急',
+    'Keio': '京王',
+    'Hokuso': '北総',
+    'Sotetsu': '相鉄',
+    'Tokyu': '東急',
+};
+
+// 車両所有会社ごとのカード枠線の色（コーポレートカラーに準拠。キーは ToeiOwnerName と同じ）
+const ToeiOwnerColorMap = {
+    'Toei': '#00a040',
+    'Keisei': '#0e4c9b',
+    'Keikyu': '#e5171f',
+    'Keio': '#dd0077',
+    'Hokuso': '#f39800',
+    'Sotetsu': '#1a3a8f',
+    'Tokyu': '#9b1b30',
+};
+// 所有会社が不明な場合の枠線の色
+const ToeiDefaultOwnerColor = '#00a040';
+
 /* ============================================================
  * 路線ボタンの配色（re-style.css の kakomi-系／span.系 定義に準拠。
  * 未定義の路線は re-style.css の kakomi-other と同じ既定色を使用）
@@ -159,6 +227,11 @@ const LineColorMap = {
     zaisenichijoho_10004: '#8d4b3b',
     zaisenichijoho_10005: '#9e9d24',
     zaisenichijoho_10006: '#26a69a',
+    // 都営地下鉄（キーは ToeiAreaLine の code）
+    '1': '#e85298',
+    '2': '#0079c2',
+    '3': '#6cbb5a',
+    '4': '#b6007a',
 };
 
 /* ============================================================
@@ -193,6 +266,13 @@ class TrainAonami {
     constructor() {
         this.position = ""; this.trainnumber = ""; this.sy = ""; this.tostation = "";
         this.delay = ""; this.locationCol = "";
+    }
+}
+
+class TrainToei {
+    constructor() {
+        this.no = ""; this.linename = [{ name: "" }]; this.displayType = ""; this.direction = "";
+        this.delayMinutes = 0; this.from = ""; this.to = null; this.dest = ""; this.owner = ""; this.ownerColor = ToeiDefaultOwnerColor;
     }
 }
 
@@ -275,9 +355,39 @@ function buildTrainAonami(obj) {
     return train;
 }
 
+// ODPT（公共交通オープンデータ）形式の列車JSON（都営地下鉄）を成形する
+//   "odpt:trainNumber": "1659H", "odpt:railway": "odpt.Railway:Toei.Asakusa", "odpt:trainType": "odpt.TrainType:Toei.Local",
+//   "odpt:railDirection": "odpt.RailDirection:Northbound",
+//   "odpt:fromStation": 直前に通過／停車中の駅, "odpt:toStation": 次の駅（駅に停車中の場合は null）,
+//   "odpt:destinationStation": ["odpt.Station:Keisei.Oshiage.Aoto"], "odpt:delay": 遅延（秒）
+function buildTrainToei(obj) {
+    const train = new TrainToei();
+    train.no = obj["odpt:trainNumber"];
+    train.linename = [{ name: toeiOwnValue(ToeiRailwayName, obj["odpt:railway"]) || "" }];
+    train.displayType = toeiTrainTypeNameGet(obj["odpt:trainType"]);
+    train.direction = toeiDirectionSet(obj["odpt:railDirection"]);
+    // odpt:delay は秒単位のため、他エリアと同じ分単位に変換する
+    train.delayMinutes = Math.floor((obj["odpt:delay"] || 0) / 60);
+    train.from = obj["odpt:fromStation"];
+    train.to = obj["odpt:toStation"];
+    const dests = obj["odpt:destinationStation"];
+    train.dest = dests && dests.length > 0 ? toeiStationNameGet(dests[0]) : null;
+    // 大江戸線など odpt:trainOwner を持たない列車は、運行会社（odpt:operator）を所有会社とみなす
+    const ownerId = obj["odpt:trainOwner"] || obj["odpt:operator"];
+    train.owner = toeiOwnerNameGet(ownerId);
+    train.ownerColor = toeiOwnerColorGet(ownerId);
+    return train;
+}
+
 /* ============================================================
  * 列車情報装飾関数（content.js と同一）
  * ========================================================== */
+// API 応答由来の値を HTML 文字列に埋め込む前に無害化する（& < > " ' を実体参照に置換。null/undefined は空文字）
+function escapeHtml(value) {
+    const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+    return String(value == null ? '' : value).replace(/[&<>"']/g, ch => map[ch]);
+}
+
 function AddDispTypeCol(trainType, linename) {
     var typeCol = null;
     switch (trainType) {
@@ -382,7 +492,7 @@ function AddDispTypeCol(trainType, linename) {
         case "回送": { typeCol = '<span class="notinservice">' + trainType + '</span>'; return typeCol; }
         case "臨時": { typeCol = '<span class="extra">' + trainType + '</span>'; return typeCol; }
         case "観光列車": { typeCol = '<span class="extra">' + trainType + '</span>'; return typeCol; }
-        default: { return trainType; }
+        default: { return escapeHtml(trainType); }
     }
 }
 
@@ -392,17 +502,30 @@ function AddDispTypeMapCol(trainType, linename) {
             switch (trainType) {
                 case "1": return '<span class="local">普通</span>';
                 case "6": return '<span class="extra">ノンストップ</span>';
-                default: return trainType;
+                default: return escapeHtml(trainType);
             }
         }
-        default: return trainType;
+        default: return escapeHtml(trainType);
+    }
+}
+
+// 快特・アクセス特急・通勤特急は既存の AddDispTypeCol に定義がないため、特急と同じ赤系の書式で装飾する
+function AddDispTypeColToei(trainType) {
+    switch (trainType) {
+        case '快特':
+        case 'エアポート快特':
+        case 'アクセス特急':
+        case '通勤特急':
+            return '<span class="limitedexp">' + trainType + '</span>';
+        default:
+            return AddDispTypeCol(trainType, 'toei');
     }
 }
 
 function AddDestCol(trainDest) {
     switch (trainDest) {
         case null: return '';
-        default: return '<span class="destination">' + trainDest + '</span>行き';
+        default: return '<span class="destination">' + escapeHtml(trainDest) + '</span>行き';
     }
 }
 
@@ -412,7 +535,7 @@ function AddDestMapCol(trainDest, line) {
             const staInfo = stations_Central.filter(Aostation => Aostation.kudariJun === trainDest && Aostation.ryokakuSenkuMei === "あおなみ線");
             return staInfo[0].ekiMei;
         }
-        default: return '<span class="destination">' + trainDest + '</span>行き';
+        default: return '<span class="destination">' + escapeHtml(trainDest) + '</span>行き';
     }
 }
 
@@ -454,20 +577,20 @@ function LineMarkGet(LineMark) {
         case "kinokuni": return '<span class="kinokuni">[W]</span>';
         case "other": return "";
         case "hagoromo": return "";
-        default: return LineMark;
+        default: return escapeHtml(LineMark);
     }
 }
 
 function nicknameSet(nickname, nickname_no, line) {
     switch (line) {
         case "central": {
-            if (nickname != null && nickname_no == '-1') return nickname;
+            if (nickname != null && nickname_no == '-1') return escapeHtml(nickname);
             else if (nickname == null || nickname_no == '-1') return "";
-            else return (nickname + nickname_no + "号");
+            else return escapeHtml(nickname + nickname_no + "号");
         }
     }
     if (nickname == null) return "";
-    else return nickname;
+    else return escapeHtml(nickname);
 }
 
 function directionSet(direction, line) {
@@ -481,10 +604,51 @@ function directionSet(direction, line) {
     }
 }
 
+// 遅延分は数値に変換してから表示する（数値以外が来ても HTML として解釈されないようにする）
 function delayMinutesSet(delayMinutes) {
-    if (delayMinutes == 0) return '<span class="noDelay"></span>';
-    else if (delayMinutes >= 60) return '<span class="overDelay">60分以上遅れ</span>';
-    else return '<span class="delayMinutes">' + delayMinutes + '分遅れ</span>';
+    const minutes = Number(delayMinutes);
+    if (isNaN(minutes) || minutes == 0) return '<span class="noDelay"></span>';
+    else if (minutes >= 60) return '<span class="overDelay">60分以上遅れ</span>';
+    else return '<span class="delayMinutes">' + minutes + '分遅れ</span>';
+}
+
+// 車両の所有会社を示す表記（所有会社が不明な場合は表示しない）
+function toeiOwnerSet(owner) {
+    return owner === '' ? '' : ' [' + owner + '車]';
+}
+
+// 辞書の参照。'constructor' や '__proto__' など、辞書自身の項目ではないキーは無視する
+function toeiOwnValue(table, key) {
+    return Object.prototype.hasOwnProperty.call(table, key) ? table[key] : undefined;
+}
+
+// "odpt.xxx:" などの接頭辞を除いた部分を返す
+function toeiIdTail(id, prefix) {
+    return typeof id === 'string' ? id.replace(prefix, '') : '';
+}
+
+// 辞書に無い駅は、駅IDの末尾（ローマ字）をそのまま表示する。HTMLに埋め込むためエスケープする
+// （ToeiStationName は stationList.js で定義）
+function toeiStationNameGet(stationId) {
+    const key = toeiIdTail(stationId, 'odpt.Station:');
+    return toeiOwnValue(ToeiStationName, key) || escapeHtml(key.split('.').pop());
+}
+
+function toeiTrainTypeNameGet(typeId) {
+    const key = toeiIdTail(typeId, 'odpt.TrainType:Toei.');
+    return toeiOwnValue(ToeiTrainTypeName, key) || escapeHtml(key);
+}
+
+function toeiDirectionSet(directionId) {
+    return toeiOwnValue(ToeiDirectionMap, toeiIdTail(directionId, 'odpt.RailDirection:')) || '';
+}
+
+function toeiOwnerNameGet(ownerId) {
+    return toeiOwnValue(ToeiOwnerName, toeiIdTail(ownerId, 'odpt.Operator:')) || '';
+}
+
+function toeiOwnerColorGet(ownerId) {
+    return toeiOwnValue(ToeiOwnerColorMap, toeiIdTail(ownerId, 'odpt.Operator:')) || ToeiDefaultOwnerColor;
 }
 
 /* ============================================================
@@ -546,6 +710,13 @@ function StaGet_Other(pos, line) {
     }
 }
 
+// 駅に停車中（toStation なし）は駅名、駅間を走行中は「前駅～次駅」で表示
+function StaGet_Toei(fromStation, toStation) {
+    const from = toeiStationNameGet(fromStation);
+    if (!toStation) return from;
+    return from + "～" + toeiStationNameGet(toStation);
+}
+
 /* ============================================================
  * 列車情報カードHTML生成（DOM生成の代わりに React へ渡す文字列を組み立てる）
  * ========================================================== */
@@ -575,7 +746,7 @@ function cardWestUrban(train, idx) {
         ureSeatInfo = "";
         typeChange = "";
     }
-    const html = train.no + " " + LineMark + DispTypeAddCol + " " + train.nickname + " " + typeChange + " " + train.via + " " + DestAddCol + " " + train.numberOfCars + "両 " + delayMinutes + " 走行位置：" + position + direction + aSeatInfo + otherInfo + ureSeatInfo;
+    const html = escapeHtml(train.no) + " " + LineMark + DispTypeAddCol + " " + escapeHtml(train.nickname) + " " + escapeHtml(typeChange) + " " + escapeHtml(train.via) + " " + DestAddCol + " " + escapeHtml(train.numberOfCars) + "両 " + delayMinutes + " 走行位置：" + position + direction + escapeHtml(aSeatInfo) + escapeHtml(otherInfo) + escapeHtml(ureSeatInfo);
     return { key: 'wu-' + idx, className: `kakomi-box3 kakomi-${train.dest.line}`, html, direction };
 }
 
@@ -601,7 +772,7 @@ function cardWestOther(train, idx) {
         ureSeatInfo = "";
         typeChange = "";
     }
-    const html = train.no + " " + DispTypeAddCol + typeChange + nickname + " " + DestAddCol + " " + delayMinutes + " 走行位置：" + position + direction + ureSeatInfo;
+    const html = escapeHtml(train.no) + " " + DispTypeAddCol + escapeHtml(typeChange) + nickname + " " + DestAddCol + " " + delayMinutes + " 走行位置：" + position + direction + escapeHtml(ureSeatInfo);
     return { key: 'wo-' + idx, className: 'kakomi-box3', html, direction };
 }
 
@@ -615,7 +786,7 @@ function cardCentral(train, idx) {
     const direction = directionSet(train.locationCol, line);
     const delayMinutes = delayMinutesSet(train.delay_lin);
     const position = StaGet_Central(train.linename[0].name, train.locationRow, train.position);
-    const html = train.trainnumber + " " + DispTypeAddCol + " " + nickname + " " + DestAddCol + Dest2AddCol + " " + delayMinutes + " 走行位置：" + position + direction;
+    const html = escapeHtml(train.trainnumber) + " " + DispTypeAddCol + " " + nickname + " " + DestAddCol + Dest2AddCol + " " + delayMinutes + " 走行位置：" + position + direction;
     return { key: 'ce-' + idx, className: 'kakomi-box3', html, direction };
 }
 
@@ -626,20 +797,50 @@ function cardAonami(train, idx) {
     const direction = directionSet(train.locationCol, line);
     const delayMinutes = delayMinutesSet(train.delay);
     const position = StaGet_Other(train.position, line);
-    const html = train.trainnumber + " " + DispTypeAddCol + " " + DestAddCol + " " + delayMinutes + " 走行位置：" + position + direction;
+    const html = escapeHtml(train.trainnumber) + " " + DispTypeAddCol + " " + DestAddCol + " " + delayMinutes + " 走行位置：" + position + direction;
     return { key: 'ao-' + idx, className: 'kakomi-box3', html, direction };
+}
+
+function cardToei(train, idx) {
+    const DispTypeAddCol = AddDispTypeColToei(train.displayType);
+    const DestAddCol = AddDestCol(train.dest);
+    const owner = toeiOwnerSet(train.owner);
+    const direction = train.direction;
+    const delayMinutes = delayMinutesSet(train.delayMinutes);
+    const position = StaGet_Toei(train.from, train.to);
+    const html = escapeHtml(train.no) + " " + DispTypeAddCol + " " + DestAddCol + " " + delayMinutes + " 走行位置：" + position + direction + owner;
+    return { key: 'to-' + idx, className: 'kakomi-box3', html, direction, borderColor: train.ownerColor };
+}
+
+// 受信JSON全体から、選択された路線の列車カード一覧を生成する（fetchLineTrains の case 'Toei' から呼ばれる）
+// 受信JSONは列車の配列、または { statusCode, headers, body: [列車の配列] } の形式のどちらでも受け付ける
+function buildCardsToei(body, line) {
+    const list = Array.isArray(body) ? body : (body && Array.isArray(body.body) ? body.body : null);
+    if (!list) return [];
+    const trains = list.map(buildTrainToei);
+    const regex = new RegExp('[ ]');
+    const displine = regex.test(line) ? line.split(' ')[1] : line;
+    const trainsFilter = trains.filter(train => train.linename[0].name === displine);
+    return trainsFilter.map((t, i) => cardToei(t, i));
 }
 
 /* ============================================================
  * 通信先エンドポイント（content.js と同一）
  * ========================================================== */
-const LINE_INFO_ENDPOINT = "https://prod-38.japaneast.logic.azure.com:443/workflows/a98ba8e0a5b74390a09eecfc147607fb/triggers/When_a_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=IMP3VtK1G505nZaw6u7osA8vInr_0M3DSb5kZzsK76o";
+const LINE_INFO_ENDPOINT = "https://prod-38.japaneast.logic.azure.com:443/workflows/a98ba8e0a5b74390a09eecfc147607fb/triggers/When_a_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=ku2n91cu38w3igcdPj0abiDvNA4VzC8QZw7kbc4LIGk";
 
-async function fetchLineTrains(linename, flowType, line) {
+// 連打対策の設定値
+const LINE_CACHE_TTL_MS = 30 * 1000;      // 取得結果を再利用する期間（この間は路線ボタンの再選択で通信しない）
+const REFRESH_COOLDOWN_MS = 10 * 1000;    // 更新ボタンの連続押下を受け付けない期間
+const LINE_FETCH_TIMEOUT_MS = 20 * 1000;  // 応答がない場合に通信を打ち切るまでの時間
+
+// signal: AbortController の signal（新しい取得の開始時・タイムアウト時に通信を中止するために使用）
+async function fetchLineTrains(linename, flowType, line, signal) {
     const response = await fetch(LINE_INFO_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ getLineName: linename, flowType: flowType }),
+        signal: signal,
     });
 
     if (!response.ok) {
@@ -664,13 +865,19 @@ async function fetchLineTrains(linename, flowType, line) {
             const trains = body.map(buildTrainCentral);
             const regex = new RegExp('[ ]');
             const displine = regex.test(line) ? line.split(' ')[1] : line;
-            const trainsFilter = trains.filter(t => t.linename[0].name === displine);
+            // 運行中の列車がない路線は各項目が null のプレースホルダーになるため除外する
+            const trainsFilter = trains.filter(t =>
+                t.linename[0].name === displine && t.traintype && t.tostation && t.tostation2 && t.nickname
+            );
             return trainsFilter.map((t, i) => cardCentral(t, i));
         }
         case 'Aonami': {
-            const trains = body.map(buildTrainAonami);
+            if (!Array.isArray(body)) return [];
+            const trains = body.filter(obj => obj.tr && obj.tr.length > 0).map(buildTrainAonami);
             return trains.map((t, i) => cardAonami(t, i));
         }
+        case 'Toei':
+            return buildCardsToei(body, line);
         default:
             return [];
     }
@@ -775,8 +982,8 @@ function AccordionSection({ title, defaultOpen = false, badge, children }) {
     );
 }
 
-// 路線／外部リンク ボタン（color指定時は路線ごとの色を使用）
-function ChipButton({ label, active, onClick, color }) {
+// 路線／外部リンク ボタン（color指定時は路線ごとの色を使用。disabled 時は押下できない）
+function ChipButton({ label, active, onClick, color, disabled = false }) {
     if (color) {
         const style = active
             ? { backgroundColor: color, borderColor: color, color: '#fff' }
@@ -785,8 +992,9 @@ function ChipButton({ label, active, onClick, color }) {
             <button
                 type="button"
                 onClick={onClick}
+                disabled={disabled}
                 style={style}
-                className="rounded-full border bg-white px-3 py-1.5 text-xs sm:text-sm font-medium shadow-sm transition-colors hover:opacity-80"
+                className="rounded-full border bg-white px-3 py-1.5 text-xs sm:text-sm font-medium shadow-sm transition-colors hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50"
             >
                 {label}
             </button>
@@ -796,8 +1004,9 @@ function ChipButton({ label, active, onClick, color }) {
         <button
             type="button"
             onClick={onClick}
+            disabled={disabled}
             className={
-                "rounded-full border px-3 py-1.5 text-xs sm:text-sm font-medium transition-colors " +
+                "rounded-full border px-3 py-1.5 text-xs sm:text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50 " +
                 (active
                     ? "border-emerald-600 bg-emerald-600 text-white shadow"
                     : "border-emerald-200 bg-emerald-50 text-emerald-800 hover:border-emerald-400 hover:bg-emerald-100")
@@ -808,16 +1017,18 @@ function ChipButton({ label, active, onClick, color }) {
     );
 }
 
-function ButtonGrid({ items, selectedCode, onSelect }) {
+// disabled: 読み込み中は路線ボタンの連打を防ぐため全ボタンを押下不可にする
+function ButtonGrid({ items, selectedLine, onSelect, disabled = false }) {
     return (
         <div className="flex flex-wrap gap-2">
             {items.map((item, i) => (
                 <ChipButton
                     key={item.code + '-' + i}
                     label={item.line}
-                    active={selectedCode === item.code}
+                    active={selectedLine === item.line}
                     onClick={() => onSelect(item)}
                     color={LineColorMap[item.code] || DEFAULT_LINE_COLOR}
+                    disabled={disabled}
                 />
             ))}
         </div>
@@ -827,12 +1038,210 @@ function ButtonGrid({ items, selectedCode, onSelect }) {
 function TrainCard({ card }) {
     return (
         <div
-            className={`${card.className} rounded-lg border border-slate-200 bg-white p-3 text-sm leading-relaxed shadow-sm`}
+            className={`${card.className}${card.borderColor ? ' kakomi-owner' : ''} rounded-lg border border-slate-200 bg-white p-3 text-sm leading-relaxed shadow-sm`}
+            // borderColor を持つカード（都営地下鉄など）は、ホバー時だけ枠線を所有会社の色にする（色は re-style.css の .kakomi-owner:hover が参照）
+            style={card.borderColor ? { '--owner-color': card.borderColor } : undefined}
             dangerouslySetInnerHTML={{ __html: card.html }}
         />
     );
 }
 
+// ヘッダー：スマホ用メニュー開閉ボタン・タイトル・現在時刻
+function AppHeader({ onToggleMenu }) {
+    return (
+        <header className="sticky top-0 z-20 bg-gradient-to-r from-slate-900 via-emerald-900 to-slate-900 shadow-md">
+            <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3">
+                <button
+                    type="button"
+                    onClick={onToggleMenu}
+                    className="rounded-lg p-2 text-white transition-colors hover:bg-white/10 lg:hidden"
+                    aria-label="メニューを開閉"
+                >
+                    <MenuIcon />
+                </button>
+                <div className="flex flex-1 flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                    <h1 className="text-lg font-bold text-white sm:text-xl">列車走行位置ビューア</h1>
+                    <Clock />
+                </div>
+            </div>
+        </header>
+    );
+}
+
+// サイドメニュー：スマホは初期非表示のオフキャンバス（背景タップで閉じる）、PCは常時表示
+function SideMenu({ open, onClose, selectedLine, onSelectLine, onOpenInfoLink, disabled = false }) {
+    return (
+        <>
+            {/* スマホでメニュー展開中の背景（タップでメニューを閉じる） */}
+            {open && (
+                <div
+                    className="fixed inset-0 z-30 bg-slate-900/50 lg:hidden"
+                    onClick={onClose}
+                />
+            )}
+
+            <aside
+                className={
+                    "fixed inset-y-0 left-0 z-40 w-[300px] max-w-[85vw] transform overflow-y-auto bg-slate-100 p-4 shadow-xl transition-transform duration-300 ease-in-out " +
+                    "lg:static lg:z-auto lg:w-auto lg:max-w-none lg:translate-x-0 lg:overflow-visible lg:bg-transparent lg:p-0 lg:shadow-none " +
+                    (open ? "translate-x-0" : "-translate-x-full")
+                }
+            >
+                {/* スマホ用のメニュータイトルと閉じるボタン */}
+                <div className="mb-3 flex items-center justify-between lg:hidden">
+                    <span className="text-sm font-semibold text-emerald-800">メニュー</span>
+                    <button
+                        type="button"
+                        onClick={onClose}
+                        className="rounded-lg p-1.5 text-emerald-700 hover:bg-emerald-100"
+                        aria-label="メニューを閉じる"
+                    >
+                        <CloseIcon />
+                    </button>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                    <AccordionSection title="更新情報（2026/10/29）" defaultOpen={true}>
+                        <div className="space-y-1 text-sm text-slate-700">
+                            <div>都営エリアを追加しました。</div>
+                        </div>
+                    </AccordionSection>
+
+                    {/* 外部の運行情報ページへのリンク */}
+                    <AccordionSection title="運行情報リンク（外部リンク）" defaultOpen={false} badge={OperationInfoPages.length}>
+                        <div className="flex flex-wrap gap-2">
+                            {OperationInfoPages.map((item, i) => (
+                                <ChipButton key={item.code + i} label={item.line} onClick={() => onOpenInfoLink(item)} />
+                            ))}
+                        </div>
+                    </AccordionSection>
+
+                    {/* エリアごとの路線ボタン */}
+                    <AccordionSection title="JRW 近畿エリア" defaultOpen={false} badge={KinkiAreaLine.length}>
+                        <ButtonGrid items={KinkiAreaLine} selectedLine={selectedLine} onSelect={onSelectLine} disabled={disabled} />
+                    </AccordionSection>
+
+                    <AccordionSection title="JRW 岡山エリア" defaultOpen={false} badge={OkayamaAreaLine.length}>
+                        <ButtonGrid items={OkayamaAreaLine} selectedLine={selectedLine} onSelect={onSelectLine} disabled={disabled} />
+                    </AccordionSection>
+
+                    <AccordionSection title="JRW 広島/下関エリア" defaultOpen={false} badge={HiroSekiAreaLine.length}>
+                        <ButtonGrid items={HiroSekiAreaLine} selectedLine={selectedLine} onSelect={onSelectLine} disabled={disabled} />
+                    </AccordionSection>
+
+                    <AccordionSection title="JRW 山陰エリア" defaultOpen={false} badge={SaninAreaLine.length}>
+                        <ButtonGrid items={SaninAreaLine} selectedLine={selectedLine} onSelect={onSelectLine} disabled={disabled} />
+                    </AccordionSection>
+
+                    <AccordionSection title="JRC 全エリア" defaultOpen={false} badge={CentralAreaLine.length}>
+                        <ButtonGrid items={CentralAreaLine} selectedLine={selectedLine} onSelect={onSelectLine} disabled={disabled} />
+                    </AccordionSection>
+
+                    <AccordionSection title="都営エリア" defaultOpen={false} badge={ToeiAreaLine.length}>
+                        <ButtonGrid items={ToeiAreaLine} selectedLine={selectedLine} onSelect={onSelectLine} disabled={disabled} />
+                    </AccordionSection>
+                </div>
+            </aside>
+        </>
+    );
+}
+
+// 選択中の路線名と更新ボタン（枠線・背景は選択中の路線カラーで装飾）
+// refreshLocked: 更新ボタンの連続押下を防ぐクールダウン中
+function SelectedLineBar({ selectedLine, selectedCode, loading, refreshLocked, onRefresh }) {
+    const lineColor = selectedCode ? (LineColorMap[selectedCode] || DEFAULT_LINE_COLOR) : null;
+    const canRefresh = !loading && !refreshLocked;
+    return (
+        <div
+            className={
+                "flex items-center justify-between gap-3 rounded-xl border-2 px-4 py-3 shadow-sm transition-colors " +
+                (lineColor ? "" : "border-slate-200 bg-white")
+            }
+            style={lineColor ? {
+                borderColor: lineColor,
+                backgroundColor: `color-mix(in srgb, ${lineColor} 12%, white)`,
+            } : undefined}
+        >
+            <div>
+                <div className="text-sm text-slate-500">選択中の路線</div>
+                <div className="text-lg font-semibold text-slate-800">
+                    {selectedLine || "路線を選択してください"}
+                </div>
+            </div>
+            <button
+                type="button"
+                onClick={onRefresh}
+                disabled={!selectedCode || !canRefresh}
+                title={refreshLocked && !loading ? "連続更新を防ぐため、しばらくお待ちください" : undefined}
+                style={lineColor && canRefresh ? { backgroundColor: lineColor } : undefined}
+                className={
+                    "inline-flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-white shadow transition-colors disabled:cursor-not-allowed disabled:bg-slate-300 " +
+                    (lineColor && canRefresh ? "hover:opacity-90" : "bg-emerald-600 hover:bg-emerald-500")
+                }
+            >
+                <RefreshIcon spinning={loading} />
+                更新
+            </button>
+        </div>
+    );
+}
+
+// 進行方向（上り／下り）ごとの列車カード一覧
+function DirectionColumn({ label, cards }) {
+    return (
+        <div className="flex flex-col gap-3">
+            <div className="flex items-center gap-2 text-sm font-semibold text-emerald-700">
+                <span className="rounded-full bg-emerald-100 px-2 py-0.5">{label}</span>
+                <span className="text-slate-400">（{cards.length}件）</span>
+            </div>
+            <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
+                {cards.map(card => <TrainCard key={card.key} card={card} />)}
+            </div>
+        </div>
+    );
+}
+
+// 結果表示領域：読み込み中／エラー／該当なし／列車一覧のいずれかを表示
+function TrainResultPanel({ loading, errorMsg, hasSelection, cards }) {
+    // 進行方向（上り/下り）で表示領域を左右に分ける
+    const upCards = cards.filter(card => card.direction === '上り');
+    const downCards = cards.filter(card => card.direction === '下り');
+
+    if (loading) {
+        return (
+            <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-6 text-slate-500 shadow-sm">
+                <span className="h-4 w-4 animate-spin rounded-full border-2 border-emerald-500 border-t-transparent"></span>
+                ・・・読み込み中・・・
+            </div>
+        );
+    }
+    if (errorMsg) {
+        return (
+            <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 shadow-sm">
+                エラーが発生しました：{errorMsg}
+            </div>
+        );
+    }
+    if (cards.length > 0) {
+        return (
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                <DirectionColumn label="上り" cards={upCards} />
+                <DirectionColumn label="下り" cards={downCards} />
+            </div>
+        );
+    }
+    // 路線選択済みで表示できる列車がない場合（路線未選択時は何も表示しない）
+    if (hasSelection) {
+        return (
+            <div className="rounded-xl border border-slate-200 bg-white px-4 py-6 text-slate-500 shadow-sm">
+                該当する列車情報がありません。
+            </div>
+        );
+    }
+    return null;
+}
+
+// アプリ本体：状態管理と、各表示コンポーネントの組み立て
 function App() {
     const [selectedLine, setSelectedLine] = useState(null);
     const [selectedCode, setSelectedCode] = useState(null);
@@ -840,33 +1249,69 @@ function App() {
     const [errorMsg, setErrorMsg] = useState(null);
     const [cards, setCards] = useState([]);
     const [sideMenuOpen, setSideMenuOpen] = useState(false);
+    const [refreshLocked, setRefreshLocked] = useState(false); // 更新ボタンのクールダウン中
     const requestSeq = useRef(0);
     const currentItemRef = useRef(null); // 更新ボタンでの再取得用に現在表示中の路線を保持
-    // 進行方向（上り/下り）で表示領域を左右に分ける
-    const upCards = cards.filter(card => card.direction === '上り');
-    const downCards = cards.filter(card => card.direction === '下り');
-    // 選択中の路線カラー（表示領域の枠線・塗りつぶしに使用）
-    const selectedLineColor = selectedCode ? (LineColorMap[selectedCode] || DEFAULT_LINE_COLOR) : null;
+    const cacheRef = useRef(new Map());  // 路線ごとの取得結果のキャッシュ（キー：路線名）
+    const abortRef = useRef(null);       // 通信中の AbortController
+    const lockTimerRef = useRef(null);   // 更新ボタンのクールダウン解除タイマー
 
-    const loadLineTrains = useCallback(async (item) => {
-        const seq = ++requestSeq.current;
+    // 画面を閉じるとき、通信とタイマーを後始末する
+    useEffect(() => () => {
+        if (abortRef.current) abortRef.current.abort();
+        clearTimeout(lockTimerRef.current);
+    }, []);
+
+    // force: true の場合はキャッシュを使わず必ず取得する（更新ボタン用）
+    const loadLineTrains = useCallback(async (item, force = false) => {
         currentItemRef.current = item;
         setSelectedLine(item.line);
         setSelectedCode(item.code);
-        setLoading(true);
         setErrorMsg(null);
+
+        // 新しい取得結果が残っていれば、通信せずにそれを表示する
+        const cached = cacheRef.current.get(item.line);
+        if (!force && cached && Date.now() - cached.at < LINE_CACHE_TTL_MS) {
+            if (abortRef.current) abortRef.current.abort();
+            ++requestSeq.current;
+            setCards(cached.cards);
+            setLoading(false);
+            return;
+        }
+
+        // 通信中のものがあれば中止し、今回の取得に切り替える
+        if (abortRef.current) abortRef.current.abort();
+        const controller = new AbortController();
+        abortRef.current = controller;
+        let timedOut = false;
+        const timer = setTimeout(() => { timedOut = true; controller.abort(); }, LINE_FETCH_TIMEOUT_MS);
+        const seq = ++requestSeq.current;
+
+        setLoading(true);
         setCards([]);
+        // 更新ボタンは一定時間、連続して押せないようにする
+        setRefreshLocked(true);
+        clearTimeout(lockTimerRef.current);
+        lockTimerRef.current = setTimeout(() => setRefreshLocked(false), REFRESH_COOLDOWN_MS);
+
         try {
-            const result = await fetchLineTrains(item.code, item.flowType, item.line);
+            const result = await fetchLineTrains(item.code, item.flowType, item.line, controller.signal);
+            cacheRef.current.set(item.line, { at: Date.now(), cards: result });
             if (requestSeq.current === seq) {
                 setCards(result);
             }
         } catch (error) {
-            console.error(error.message);
             if (requestSeq.current === seq) {
-                setErrorMsg(error.message);
+                if (error.name === 'AbortError') {
+                    // 中止のうち、画面に知らせるのはタイムアウトのみ（新しい取得への切り替え時は何もしない）
+                    if (timedOut) setErrorMsg("通信がタイムアウトしました。しばらくしてからもう一度お試しください。");
+                } else {
+                    console.error(error.message);
+                    setErrorMsg(error.message);
+                }
             }
         } finally {
+            clearTimeout(timer);
             if (requestSeq.current === seq) {
                 setLoading(false);
             }
@@ -875,185 +1320,58 @@ function App() {
 
     // 路線ボタンは選択の切り替えのみを行う（同じ路線を再取得したい場合はメイン領域の更新ボタンを使う）
     const handleSelectLine = useCallback((item) => {
-        if (currentItemRef.current && currentItemRef.current.code === item.code) return;
+        if (loading) return;
+        if (currentItemRef.current && currentItemRef.current.line === item.line) return;
         loadLineTrains(item);
         setSideMenuOpen(false);
-    }, [loadLineTrains]);
+    }, [loadLineTrains, loading]);
 
     const handleRefresh = useCallback(() => {
+        if (loading || refreshLocked) return;
         if (currentItemRef.current) {
-            loadLineTrains(currentItemRef.current);
+            loadLineTrains(currentItemRef.current, true);
         }
-    }, [loadLineTrains]);
+    }, [loadLineTrains, loading, refreshLocked]);
 
     const handleOpenInfoLink = useCallback((item) => {
         switch (item.area) {
             case 'JRW':
-                window.open('https://trafficinfo.westjr.co.jp/' + item.code + '.html', '_blank');
+                window.open('https://trafficinfo.westjr.co.jp/' + item.code + '.html', '_blank', 'noopener,noreferrer');
                 break;
             case 'JRC':
-                window.open('https://traininfo.jr-central.co.jp/' + item.code + '/index.html?lang=ja', '_blank');
+                window.open('https://traininfo.jr-central.co.jp/' + item.code + '/index.html?lang=ja', '_blank', 'noopener,noreferrer');
                 break;
         }
     }, []);
 
     return (
         <div className="min-h-screen bg-slate-100">
-            <header className="sticky top-0 z-20 bg-gradient-to-r from-slate-900 via-emerald-900 to-slate-900 shadow-md">
-                <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3">
-                    <button
-                        type="button"
-                        onClick={() => setSideMenuOpen(o => !o)}
-                        className="rounded-lg p-2 text-white transition-colors hover:bg-white/10 lg:hidden"
-                        aria-label="メニューを開閉"
-                    >
-                        <MenuIcon />
-                    </button>
-                    <div className="flex flex-1 flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-                        <h1 className="text-lg font-bold text-white sm:text-xl">列車走行位置ビューア</h1>
-                        <Clock />
-                    </div>
-                </div>
-            </header>
+            <AppHeader onToggleMenu={() => setSideMenuOpen(o => !o)} />
 
             <main className="mx-auto max-w-7xl grid grid-cols-1 gap-6 px-4 py-6 lg:grid-cols-[340px_1fr]">
-                {sideMenuOpen && (
-                    <div
-                        className="fixed inset-0 z-30 bg-slate-900/50 lg:hidden"
-                        onClick={() => setSideMenuOpen(false)}
-                    />
-                )}
-
-                {/* サイドメニュー：スマホは初期非表示のオフキャンバス、PCは常時表示 */}
-                <aside
-                    className={
-                        "fixed inset-y-0 left-0 z-40 w-[300px] max-w-[85vw] transform overflow-y-auto bg-slate-100 p-4 shadow-xl transition-transform duration-300 ease-in-out " +
-                        "lg:static lg:z-auto lg:w-auto lg:max-w-none lg:translate-x-0 lg:overflow-visible lg:bg-transparent lg:p-0 lg:shadow-none " +
-                        (sideMenuOpen ? "translate-x-0" : "-translate-x-full")
-                    }
-                >
-                    <div className="mb-3 flex items-center justify-between lg:hidden">
-                        <span className="text-sm font-semibold text-emerald-800">メニュー</span>
-                        <button
-                            type="button"
-                            onClick={() => setSideMenuOpen(false)}
-                            className="rounded-lg p-1.5 text-emerald-700 hover:bg-emerald-100"
-                            aria-label="メニューを閉じる"
-                        >
-                            <CloseIcon />
-                        </button>
-                    </div>
-
-                    <div className="flex flex-col gap-2">
-                        <AccordionSection title="更新情報（2026/09/09）" defaultOpen={true}>
-                            <div className="space-y-1 text-sm text-slate-700">
-                                <div>あおなみ線の処理を修正しました。</div>
-                            </div>
-                        </AccordionSection>
-
-                        <AccordionSection title="運行情報リンク（外部リンク）" defaultOpen={false} badge={OperationInfoPages.length}>
-                            <div className="flex flex-wrap gap-2">
-                                {OperationInfoPages.map((item, i) => (
-                                    <ChipButton key={item.code + i} label={item.line} onClick={() => handleOpenInfoLink(item)} />
-                                ))}
-                            </div>
-                        </AccordionSection>
-
-                        <AccordionSection title="JRW 近畿エリア" defaultOpen={false} badge={KinkiAreaLine.length}>
-                            <ButtonGrid items={KinkiAreaLine} selectedCode={selectedCode} onSelect={handleSelectLine} />
-                        </AccordionSection>
-
-                        <AccordionSection title="JRW 岡山エリア" defaultOpen={false} badge={OkayamaAreaLine.length}>
-                            <ButtonGrid items={OkayamaAreaLine} selectedCode={selectedCode} onSelect={handleSelectLine} />
-                        </AccordionSection>
-
-                        <AccordionSection title="JRW 広島/下関エリア" defaultOpen={false} badge={HiroSekiAreaLine.length}>
-                            <ButtonGrid items={HiroSekiAreaLine} selectedCode={selectedCode} onSelect={handleSelectLine} />
-                        </AccordionSection>
-
-                        <AccordionSection title="JRW 山陰エリア" defaultOpen={false} badge={SaninAreaLine.length}>
-                            <ButtonGrid items={SaninAreaLine} selectedCode={selectedCode} onSelect={handleSelectLine} />
-                        </AccordionSection>
-
-                        <AccordionSection title="JRC 全エリア" defaultOpen={false} badge={CentralAreaLine.length}>
-                            <ButtonGrid items={CentralAreaLine} selectedCode={selectedCode} onSelect={handleSelectLine} />
-                        </AccordionSection>
-                    </div>
-                </aside>
+                <SideMenu
+                    open={sideMenuOpen}
+                    onClose={() => setSideMenuOpen(false)}
+                    selectedLine={selectedLine}
+                    onSelectLine={handleSelectLine}
+                    onOpenInfoLink={handleOpenInfoLink}
+                    disabled={loading}
+                />
 
                 <section className="flex flex-col gap-4">
-                    <div
-                        className={
-                            "flex items-center justify-between gap-3 rounded-xl border-2 px-4 py-3 shadow-sm transition-colors " +
-                            (selectedLineColor ? "" : "border-slate-200 bg-white")
-                        }
-                        style={selectedLineColor ? {
-                            borderColor: selectedLineColor,
-                            backgroundColor: `color-mix(in srgb, ${selectedLineColor} 12%, white)`,
-                        } : undefined}
-                    >
-                        <div>
-                            <div className="text-sm text-slate-500">選択中の路線</div>
-                            <div className="text-lg font-semibold text-slate-800">
-                                {selectedLine || "路線を選択してください"}
-                            </div>
-                        </div>
-                        <button
-                            type="button"
-                            onClick={handleRefresh}
-                            disabled={!selectedCode || loading}
-                            style={selectedLineColor && !loading ? { backgroundColor: selectedLineColor } : undefined}
-                            className={
-                                "inline-flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-white shadow transition-colors disabled:cursor-not-allowed disabled:bg-slate-300 " +
-                                (selectedLineColor && !loading ? "hover:opacity-90" : "bg-emerald-600 hover:bg-emerald-500")
-                            }
-                        >
-                            <RefreshIcon spinning={loading} />
-                            更新
-                        </button>
-                    </div>
-
-                    {loading && (
-                        <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-6 text-slate-500 shadow-sm">
-                            <span className="h-4 w-4 animate-spin rounded-full border-2 border-emerald-500 border-t-transparent"></span>
-                            ・・・読み込み中・・・
-                        </div>
-                    )}
-
-                    {!loading && errorMsg && (
-                        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 shadow-sm">
-                            エラーが発生しました：{errorMsg}
-                        </div>
-                    )}
-
-                    {!loading && !errorMsg && selectedCode && cards.length === 0 && (
-                        <div className="rounded-xl border border-slate-200 bg-white px-4 py-6 text-slate-500 shadow-sm">
-                            該当する列車情報がありません。
-                        </div>
-                    )}
-
-                    {!loading && cards.length > 0 && (
-                        <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                            <div className="flex flex-col gap-3">
-                                <div className="flex items-center gap-2 text-sm font-semibold text-emerald-700">
-                                    <span className="rounded-full bg-emerald-100 px-2 py-0.5">上り</span>
-                                    <span className="text-slate-400">（{upCards.length}件）</span>
-                                </div>
-                                <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
-                                    {upCards.map(card => <TrainCard key={card.key} card={card} />)}
-                                </div>
-                            </div>
-                            <div className="flex flex-col gap-3">
-                                <div className="flex items-center gap-2 text-sm font-semibold text-emerald-700">
-                                    <span className="rounded-full bg-emerald-100 px-2 py-0.5">下り</span>
-                                    <span className="text-slate-400">（{downCards.length}件）</span>
-                                </div>
-                                <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
-                                    {downCards.map(card => <TrainCard key={card.key} card={card} />)}
-                                </div>
-                            </div>
-                        </div>
-                    )}
+                    <SelectedLineBar
+                        selectedLine={selectedLine}
+                        selectedCode={selectedCode}
+                        loading={loading}
+                        refreshLocked={refreshLocked}
+                        onRefresh={handleRefresh}
+                    />
+                    <TrainResultPanel
+                        loading={loading}
+                        errorMsg={errorMsg}
+                        hasSelection={!!selectedCode}
+                        cards={cards}
+                    />
                 </section>
             </main>
         </div>

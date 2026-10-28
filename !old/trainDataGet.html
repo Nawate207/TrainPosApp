@@ -12,7 +12,8 @@
     async function clickEvent(queryString, flowType) {
         elem.innerHTML = "<div class='nowloading'>・・・読み込み中・・・</div>";
         // リクエスト情報定義
-        const requestUrl = "https://prod-19.japaneast.logic.azure.com:443/workflows/0dc6fea0c8154c789218420e3b376d28/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=mRbcZRd-Nan8YGBNyirWuBGqLIAVspd0WjPAWAZEe5w"
+        // Logic Apps の署名付き URL はコードに埋め込まない。ページを開く前に、URL を window.TRAINPOS_REQUEST_URL に設定して使う
+        const requestUrl = window.TRAINPOS_REQUEST_URL
         const requestMethod = "POST"
         const requestHeaders = {
             "Content-Type": "application/json"
