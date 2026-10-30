@@ -7444,7 +7444,7 @@ var ToeiStationName = {
 	'Keisei.Main.KeiseiNarita': '京成成田',
 	'Keisei.Main.NaritaAirportTerminal1': '成田空港',
 	'Keisei.NaritaSkyAccess.NaritaAirportTerminal1': '成田空港',
-	'Shibayama.Main.ShibayamaChiyoda': '芝山千代田',
+	'Shibayama.Shibayama.ShibayamaChiyoda': '芝山千代田',
     // 北総
 	'Hokuso.Hokuso.ImbaNihonIdai': '印旛日本医大',
 	'Hokuso.Hokuso.InzaiMakinohara': '印西牧の原',
@@ -7466,6 +7466,7 @@ var ToeiStationName = {
     // 相鉄
 	'Sotetsu.Izumino.Shonandai': '湘南台',
 	'Sotetsu.Main.Nishiya': '西谷',
+	'Sotetsu.SotetsuShinYokohama.Nishiya': '西谷',
 	'Sotetsu.Main.Yamato': '大和',
 	'Sotetsu.Main.Ebina': '海老名',
     // 東急
